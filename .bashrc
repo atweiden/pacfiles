@@ -193,6 +193,7 @@ export PATH MANPATH
 
 _has_ack=$(command -v ack)
 _has_ag=$(command -v ag)
+_has_archversion=$(command -v archversion)
 _has_colordiff=$(command -v colordiff)
 _has_erl=$(command -v erl)
 _has_gvim=$(command -v gvim)
@@ -229,8 +230,8 @@ PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME
 
 # --- archversion {{{
 
-[[ -x /usr/bin/archversion ]] && alias avs='archversion sync && archversion report --new'
-[[ -x /usr/bin/archversion ]] && alias avr='archversion report --new'
+[[ -n "$_has_archversion" ]] && alias avs='archversion sync && archversion report --new'
+[[ -n "$_has_archversion" ]] && alias avr='archversion report --new'
 
 # --- end archversion }}}
 # --- diff {{{
