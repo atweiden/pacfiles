@@ -64,7 +64,7 @@ rsync --verbose "${_rsync_opts[@]}" "$DIR/" "$HOME"
 # -----------------------------------------------------------------------------
 # vim-plug
 
-if ! [[ -e "~/.vim/autoload/plug.vim" ]]; then
+if ! [[ -e ~/.vim/autoload/plug.vim ]]; then
   curl \
     -fLo ~/.vim/autoload/plug.vim \
     --create-dirs \
