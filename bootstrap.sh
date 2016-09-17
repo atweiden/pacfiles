@@ -62,6 +62,18 @@ rsync --verbose "${_rsync_opts[@]}" "$DIR/" "$HOME"
 
 
 # -----------------------------------------------------------------------------
+# vim-plug
+
+if ! [[ -e "~/.vim/autoload/plug.vim" ]]; then
+  curl \
+    -fLo ~/.vim/autoload/plug.vim \
+    --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  vim +PlugInstall +qa
+fi
+
+
+# -----------------------------------------------------------------------------
 # neovim
 
 mkdir -p ~/.config
