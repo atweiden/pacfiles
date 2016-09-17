@@ -1,9 +1,9 @@
 /* vim: set ft=journal fdm=marker fdl=0 nowrap: */
 
-Macfiles
+Pacfiles
 ========
 
-vim, tmux and fzf config for mac
+vim, tmux and fzf config for arch
 
 - based on my dotfiles [1]
   - more focused, and lighter weight

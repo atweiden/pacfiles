@@ -38,7 +38,7 @@ if has('gui_running')
   " use console dialogs instead of popups
   set guioptions+=c
   " use lightline-compatible monaco
-  set guifont=Monaco\ for\ Powerline:h24
+  set guifont=Monaco\ for\ Powerline\ 16
   " allow macvim window to occupy whole screen
   set guiheadroom=0
   " set normal mode cursor to unblinking Cursor highlighted block

@@ -1,5 +1,5 @@
-" mvim fzf
-let g:fzf_launcher = '~/.bin/iterm2-run %s'
+" open fzf in urxvt
+let g:fzf_launcher = 'urxvt -geometry 120x30 -e sh -c %s'
 
 " prepend FZF to commands
 let g:fzf_command_prefix = 'FZF'

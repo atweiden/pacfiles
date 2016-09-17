@@ -4,9 +4,6 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# system defaults
-[[ -f /etc/bashrc ]] && source /etc/bashrc
-
 # end base }}}
 # ==============================================================================
 # bash settings {{{
@@ -87,7 +84,7 @@ shopt -s histverify
 if [[ "x$DISPLAY" != "x" ]]; then
   export HAS_256_COLORS=yes
   alias tmux="tmux -2"
-  [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+  [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color-it
 else
   if [[ "$TERM" == "xterm" || "$TERM" =~ "256color" ]]; then
     export HAS_256_COLORS=yes
@@ -95,9 +92,30 @@ else
   fi
 fi
 if [[ "$TERM" == "screen" && "$HAS_256_COLORS" == "yes" ]]; then
-  export TERM=screen-256color
+  export TERM=screen-256color-it
 elif [[ "$TERM" == "tmux" && "$HAS_256_COLORS" == "yes" ]]; then
-  export TERM=screen-256color
+  export TERM=tmux-256color
+fi
+
+# miro8 console colors by jwr
+if [[ "$TERM" == "linux" || "$TERM" == "vt100" || "$TERM" == "vt220" ]]; then
+   echo -en "\e]P0000000" #black
+   echo -en "\e]P83d3d3d" #darkgrey
+   echo -en "\e]P18c4665" #darkred
+   echo -en "\e]P9bf4d80" #red
+   echo -en "\e]P2287373" #darkgreen
+   echo -en "\e]PA53a6a6" #green
+   echo -en "\e]P37c7c99" #brown
+   echo -en "\e]PB9e9ecb" #yellow
+   echo -en "\e]P4395573" #darkblue
+   echo -en "\e]PC477ab3" #blue
+   echo -en "\e]P55e468c" #darkmagenta
+   echo -en "\e]PD7e62b3" #magenta
+   echo -en "\e]P631658c" #darkcyan
+   echo -en "\e]PE6096bf" #cyan
+   echo -en "\e]P7899ca1" #lightgrey
+   echo -en "\e]PFc0c0c0" #white
+   clear # bring us back to default input colours
 fi
 
 # --- end display }}}
@@ -118,22 +136,9 @@ unset PATH MANPATH
 
 # --- defaults {{{
 
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
 
 # --- end defaults }}}
-# --- gnu {{{
-
-# use GNU tools on OSX instead of BSD
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
-MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
-MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:$MANPATH"
-
-# --- end gnu }}}
 # --- dotfiles {{{
 
 PATH="$HOME/.bin:$PATH"
@@ -141,20 +146,24 @@ PATH="$HOME/.bin:$PATH"
 # --- end dotfiles }}}
 # --- erlang {{{
 
-MANPATH=/usr/local/opt/erlang/lib/erlang/man:$MANPATH
+MANPATH="/usr/lib/erlang/man:$MANPATH"
 
 # --- end erlang }}}
 # --- ocaml {{{
 
 # (opam config env) https://github.com/ocaml/opam-repository/issues/584
-PATH=$HOME/.opam/4.02.3/bin:$PATH
-MANPATH=$HOME/.opam/4.02.3/man:$MANPATH
-export CAML_LD_LIBRARY_PATH=$HOME/.opam/4.02.3/lib/stublibs:/usr/lib/ocaml/stublibs
-export PERL5LIB=$HOME/.opam/4.02.3/lib/perl5:$PERL5LIB
-export OCAML_TOPLEVEL_PATH=$HOME/.opam/4.02.3/lib/toplevel:$OCAML_TOPLEVEL_PATH
-export OPAMUTF8MSGS="1"
+PATH="$HOME/.opam/4.02.3/bin:$PATH"
+MANPATH="$HOME/.opam/4.02.3/man:$MANPATH"
+export CAML_LD_LIBRARY_PATH="$HOME/.opam/4.02.3/lib/stublibs:/usr/lib/ocaml/stublibs"
+export PERL5LIB="$HOME/.opam/4.02.3/lib/perl5:$PERL5LIB"
+export OCAML_TOPLEVEL_PATH="$HOME/.opam/4.02.3/lib/toplevel:$OCAML_TOPLEVEL_PATH"
 
 # --- end ocaml }}}
+# --- perl {{{
+
+PATH="/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/site_perl:$PATH"
+
+# --- end perl }}}
 # --- perl6 {{{
 
 # from output of `~/.rakudobrew/bin/rakudobrew init -`
@@ -186,10 +195,10 @@ _has_ack=$(command -v ack)
 _has_ag=$(command -v ag)
 _has_colordiff=$(command -v colordiff)
 _has_erl=$(command -v erl)
+_has_gvim=$(command -v gvim)
 _has_icdiff=$(command -v icdiff)
 _has_iex=$(command -v iex)
 _has_mosh=$(command -v mosh)
-_has_mvim=$(command -v mvim)
 _has_nvim=$(command -v nvim)
 _has_perl6=$(command -v perl6)
 _has_pt=$(command -v pt)
@@ -218,6 +227,12 @@ PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME
 # ==============================================================================
 # aliases {{{
 
+# --- archversion {{{
+
+[[ -x /usr/bin/archversion ]] && alias avs='archversion sync && archversion report --new'
+[[ -x /usr/bin/archversion ]] && alias avr='archversion report --new'
+
+# --- end archversion }}}
 # --- diff {{{
 
 if [[ -n "$_has_icdiff" ]]; then
@@ -229,11 +244,11 @@ fi
 # --- end diff }}}
 # --- directory navigation {{{
 
-alias ls='LC_COLLATE=C gls --color=auto --group-directories-first'
-alias l='ls -1F'
-alias l1='ls -1AF'
-alias la='ls -aF'
-alias ll='ls -laihF'
+alias ls='ls --classify --color=auto --group-directories-first'
+alias l='ls -1'
+alias l1='ls -1A'
+alias la='ls -a'
+alias ll='ls -laih'
 [[ -n "$_has_tree" ]] && alias tree='tree -C --charset utf-8 --dirsfirst'
 alias ..='cd ..'
 alias ..2='cd ../..'
@@ -244,15 +259,15 @@ alias cdd='cd $HOME/Downloads'
 alias cdg='cd $(git rev-parse --show-cdup)'
 alias cdp='cd $HOME/Projects'
 alias cds='cd $HOME/.src'
-alias :o='open "${1:-.}"'
+[[ -x /usr/bin/pcmanfm ]] && alias :o='pcmanfm "$PWD" &'
 alias :q='exit'
 
 # --- end directory navigation }}}
 # --- disk space {{{
 
 alias df='df -h'
-alias du='du -h -d 1'
-alias dusort='du -x -m | sort -nr'
+alias du='du -h --max-depth=1'
+alias dusort='du -x --block-size=1048576 | sort -nr'
 
 # --- end disk space }}}
 # --- file compression {{{
@@ -270,8 +285,9 @@ alias egrep='egrep --ignore-case --color=auto'
 alias h\?='history | grep -v -E "grep|h\?" | grep "$@" -i --color=auto'
 alias l\?='ls -1F | grep "$@" -i --color=auto'
 alias p\?='ps -a -x -f | grep -v grep | grep "$@" -i --color=auto'
+alias pkg\?='pacman -Q | grep -v grep | grep "$@" -i --color=auto'
 [[ -n "$_has_ag" ]] && alias ag='ag --hidden --smart-case --skip-vcs-ignores --path-to-agignore=$HOME/.agignore'
-alias locate='glocate --ignore-case'
+alias locate='locate --ignore-case'
 
 # --- end grepping }}}
 # --- languages {{{
@@ -291,6 +307,11 @@ alias locate='glocate --ignore-case'
 # --- --- end perl6 }}}
 
 # --- end languages }}}
+# --- processes {{{
+
+alias ps='ps --forest'
+
+# --- end processes }}}
 # --- subrepo {{{
 
 [[ -n "$_has_subgit" ]] && alias sg='subgit'
@@ -304,11 +325,6 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # --- end safety }}}
-# --- osx {{{
-
-alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
-
-# --- end osx }}}
 # --- ssh {{{
 
 [[ -n "$_has_mosh" ]] && alias mosh='mosh -a'
@@ -323,14 +339,16 @@ alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 # --- vim {{{
 
 alias :e='"$EDITOR"'
+# if not in X, tell vim not to attempt connection w/ X server
+[[ "$DISPLAY" == "" ]] && alias vim='vim -X'
 [[ -n "$_has_vim" ]] && alias view='vim -R'
 [[ -n "$_has_vim" ]] && alias vime='vim -u $HOME/.vimencrypt -x'
 [[ -n "$_has_vim" ]] && alias viml='vim -u $HOME/.vimrc.lite'
 [[ -n "$_has_vim" ]] && alias vimmin='vim -u NONE -U NONE --cmd "set nocompatible | syntax on | filetype plugin indent on"'
-[[ -n "$_has_mvim" ]] && alias mview='mvim -R'
-[[ -n "$_has_mvim" ]] && alias mvime='mvim -u $HOME/.vimencrypt -x'
-[[ -n "$_has_mvim" ]] && alias mviml='mvim -u $HOME/.vimrc.lite'
-[[ -n "$_has_mvim" ]] && alias mvimmin='mvim -u NONE -U NONE --cmd "set nocompatible | syntax on | filetype plugin indent on"'
+[[ -n "$_has_gvim" ]] && alias gview='gvim -R'
+[[ -n "$_has_gvim" ]] && alias gvime='gvim -u $HOME/.vimencrypt -x'
+[[ -n "$_has_gvim" ]] && alias gviml='gvim -u $HOME/.vimrc.lite'
+[[ -n "$_has_gvim" ]] && alias gvimmin='gvim -u NONE -U NONE --cmd "set nocompatible | syntax on | filetype plugin indent on"'
 [[ -n "$_has_nvim" ]] && alias nv='nvim'
 [[ -n "$_has_nvim" ]] && alias nview='nvim -R'
 
@@ -346,23 +364,18 @@ for _fn in $(find "$HOME/.functions.d" -type f -name "*.sh"); do source "$_fn"; 
 # ==============================================================================
 # completions {{{
 
-[[ -f /usr/local/etc/bash_completion ]] && source /usr/local/etc/bash_completion
+[[ -r /usr/share/bash-completion/bash_completion ]] \
+  && source /usr/share/bash-completion/bash_completion
 
 # end completions }}}
 # ==============================================================================
-# osx {{{
+# archinfo {{{
 
-# copy or tar files without ._ (dot underscore) files
-export COPYFILE_DISABLE=true
+if [[ -x "$HOME/.bin/archinfo" && -x /usr/bin/python2 ]]; then
+  if ! [[ "$UID" == '0' ]]; then archinfo; else archinfo -c red; fi
+fi
 
-# end osx }}}
-# ==============================================================================
-# homebrew {{{
-
-# opt out of Homebrew's analytics
-export HOMEBREW_NO_ANALYTICS=1
-
-# end homebrew }}}
+# end archinfo }}}
 # ==============================================================================
 # fzf {{{
 
@@ -410,8 +423,8 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bin
 export FZF_CTRL_T_OPTS="--preview '(cat {} || tree -C {}) 2> /dev/null | head -$LINES'"
 
 # create fzf key bindings
-[[ -e "$HOME/.fzf.bash" ]] && source "$HOME/.fzf.bash"
-[[ -e "$HOME/.fzf-extras/fzf-extras.sh" ]] && source "$HOME/.fzf-extras/fzf-extras.sh"
+[[ -e "/etc/profile.d/fzf.bash" ]] && source /etc/profile.d/fzf.bash
+[[ -e "/etc/profile.d/fzf-extras.bash" ]] && source /etc/profile.d/fzf-extras.bash
 
 # end fzf }}}
 # ==============================================================================

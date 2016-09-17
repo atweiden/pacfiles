@@ -17,10 +17,8 @@ URxvt*saveLines: 65535
 URxvt*cursorBlink: false
 URxvt*cursorUnderline: true
 URxvt*perl-ext-common: clipboard
-URxvt.clipboard.copycmd:  pbcopy
-URxvt.clipboard.pastecmd: pbpaste
-URxvt*keysym.M-c: perl:clipboard:copy
-URxvt*keysym.M-v: perl:clipboard:paste
+URxvt*keysym.C-C: perl:clipboard:copy
+URxvt*keysym.C-V: perl:clipboard:paste
 URxvt*iso14755: false
 
 # IO
@@ -40,6 +38,9 @@ URxvt*scrollWithBuffer: True
 URxvt*scrollTtyKeypress: True
 # False: don't clear the screen after exiting Vim
 URxvt*secondaryScreen: False
+
+# icon
+URxvt*iconFile: /usr/share/icons/HighContrast/scalable/apps/utilities-terminal.svg
 
 # font
 URxvt*font: xft:Monaco\ for\ Powerline-16
@@ -129,7 +130,7 @@ XTerm*colorUL: #00afd7
 
 # font
 XTerm*faceName: Monaco for Powerline
-XTerm*faceSize: 24
+XTerm*faceSize: 16
 
 # clipboard
 XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
@@ -142,23 +143,5 @@ XTerm*fullscreen: never
 XTerm.omitTranslation: fullscreen
 
 # end xterm }}}
-
-# osx {{{
-
-*VT100.translations: #override\
-<Key>Prior: scroll-back(1,pages) \n\
-<Key>Next: scroll-forw(1,pages)\n\
-Meta <Key> K: send-signal(int) clear-saved-lines() \n\
-Meta <Key> P: print() \n\
-Meta <Key> minus: smaller-vt-font() \n\
-Meta <Key> KP_Subtract: smaller-vt-font() \n\
-Meta <Key> plus: larger-vt-font() \n\
-Meta <Key> KP_Add: larger-vt-font() \n\
-Meta <Key> C: select-cursor-start() \
-select-cursor-end(PRIMARY, CUT_BUFFER0) \n\
-Meta <Key> V: insert-selection(PRIMARY, CUT_BUFFER0) \n\
-Meta <Key> M: iconify() \n\
-
-# end osx }}}
 
 # vim: set filetype=xdefaults foldmethod=marker foldlevel=0 nowrap:

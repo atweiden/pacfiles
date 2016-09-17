@@ -10,6 +10,8 @@
 name="Andy Weidenbaum"     # Name      (GitHub)
 email="archbaum@gmail.com" # Email     (GitHub)
 github="atweiden"          # Account   (GitHub)
+latitude=45.523062         # Latitude  (Redshift)
+longitude=-122.676482      # Longitude (Redshift)
 
 
 # -----------------------------------------------------------------------------
@@ -60,10 +62,34 @@ rsync --verbose "${_rsync_opts[@]}" "$DIR/" "$HOME"
 
 
 # -----------------------------------------------------------------------------
+# neovim
+
+mkdir -p ~/.config
+! [[ -d ~/.config/nvim ]] && ln -s ~/.vim ~/.config/nvim
+! [[ -e ~/.config/nvim/init.vim ]] && ln -s ~/.vimrc ~/.config/nvim/init.vim
+
+
+# -----------------------------------------------------------------------------
+# makepkg
+
+sed -i "s#yourname#$name#"         "$HOME/.config/pacman/makepkg.conf"
+sed -i "s#youremail#$email#"       "$HOME/.config/pacman/makepkg.conf"
+
+
+# -----------------------------------------------------------------------------
 # github
 
-gsed -i "s#yourname#$name#"         "$HOME/.gitconfig"
-gsed -i "s#youremail#$email#"       "$HOME/.gitconfig"
-gsed -i "s#yourgithubacct#$github#" "$HOME/.gitconfig"
-gsed -i "s#yourname#$name#"         "$HOME/.hgrc"
-gsed -i "s#youremail#$email#"       "$HOME/.hgrc"
+sed -i "s#yourname#$name#"         "$HOME/.gitconfig"
+sed -i "s#youremail#$email#"       "$HOME/.gitconfig"
+sed -i "s#yourgithubacct#$github#" "$HOME/.gitconfig"
+sed -i "s#yourname#$name#"         "$HOME/.hgrc"
+sed -i "s#youremail#$email#"       "$HOME/.hgrc"
+
+
+# -----------------------------------------------------------------------------
+# redshift
+
+sed -i \
+  -e "s#LATITUDE#$latitude#" \
+  -e "s#LONGITUDE#$longitude#" \
+  "$HOME/.config/redshift/redshift.conf"
