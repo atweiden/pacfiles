@@ -195,6 +195,7 @@ _has_ack=$(command -v ack)
 _has_ag=$(command -v ag)
 _has_archversion=$(command -v archversion)
 _has_colordiff=$(command -v colordiff)
+_has_electrum=$(command -v electrum)
 _has_erl=$(command -v erl)
 _has_gvim=$(command -v gvim)
 _has_icdiff=$(command -v icdiff)
@@ -208,6 +209,7 @@ _has_subgit=$(command -v subgit)
 _has_subhg=$(command -v subhg)
 _has_tree=$(command -v tree)
 _has_vim=$(command -v vim)
+_has_zbarcam=$(command -v zbarcam)
 
 # end presence }}}
 # ==============================================================================
@@ -354,6 +356,12 @@ alias :e='"$EDITOR"'
 [[ -n "$_has_nvim" ]] && alias nview='nvim -R'
 
 # --- end vim }}}
+# --- zbar {{{
+
+[[ -n "$_has_electrum" ]] && alias electrum='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so electrum'
+[[ -n "$_has_zbarcam" ]] && alias zbarcam='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam'
+
+# --- end zbar }}}
 
 # end aliases }}}
 # ==============================================================================
