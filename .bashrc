@@ -289,7 +289,7 @@ alias h\?='history | grep -v -E "grep|h\?" | grep "$@" -i --color=auto'
 alias l\?='ls -1F | grep "$@" -i --color=auto'
 alias p\?='ps -a -x -f | grep -v grep | grep "$@" -i --color=auto'
 alias pkg\?='pacman -Q | grep -v grep | grep "$@" -i --color=auto'
-[[ -n "$_has_ag" ]] && alias ag='ag --hidden --smart-case --skip-vcs-ignores --path-to-agignore=$HOME/.agignore'
+[[ -n "$_has_ag" ]] && alias ag='ag --hidden --smart-case --skip-vcs-ignores --path-to-ignore=$HOME/.agignore'
 alias locate='locate --ignore-case'
 
 # --- end grepping }}}
@@ -390,7 +390,7 @@ fi
 
 # use ag/pt/ack as the default source for fzf
 if [[ -n "$_has_ag" ]]; then
-  export FZF_DEFAULT_COMMAND='ag --hidden --smart-case --nocolor --skip-vcs-ignores --path-to-agignore=$HOME/.agignore -g ""'
+  export FZF_DEFAULT_COMMAND='ag --hidden --smart-case --nocolor --skip-vcs-ignores --path-to-ignore=$HOME/.agignore -g ""'
 elif [[ -n "$_has_pt" ]]; then
   export FZF_DEFAULT_COMMAND='pt --hidden --nocolor -e -g=""'
 elif [[ -n "$_has_ack" ]]; then
@@ -408,7 +408,7 @@ _fzf_compgen_path() {
       --smart-case \
       --nocolor \
       --skip-vcs-ignores \
-      --path-to-agignore="$HOME/.agignore" \
+      --path-to-ignore="$HOME/.agignore" \
       -g "" \
       "$1"
   elif [[ -n "$_has_pt" ]]; then
