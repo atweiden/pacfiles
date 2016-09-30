@@ -1,0 +1,5 @@
+@define-color GVIMFIX #171717;
+
+window#vim-main-window {
+    background-color: @GVIMFIX;
+}
