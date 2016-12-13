@@ -204,6 +204,7 @@ _has_mosh=$(command -v mosh)
 _has_nvim=$(command -v nvim)
 _has_perl6=$(command -v perl6)
 _has_pt=$(command -v pt)
+_has_rclone=$(command -v rclone)
 _has_rlwrap=$(command -v rlwrap)
 _has_subgit=$(command -v subgit)
 _has_subhg=$(command -v subhg)
@@ -315,6 +316,11 @@ alias locate='locate --ignore-case'
 alias ps='ps --forest'
 
 # --- end processes }}}
+# --- rclone {{{
+
+[[ -n "$_has_rclone" ]] && alias rclone='rclone --transfers=16 --checkers=32 --ignore-size --low-level-retries 7 --retries 25 --delete-after'
+
+# --- end rclone }}}
 # --- subrepo {{{
 
 [[ -n "$_has_subgit" ]] && alias sg='subgit'
