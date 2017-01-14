@@ -2,6 +2,7 @@ set t_Co=256
 set background=dark
 let g:seoul256_background = 233
 let g:seoul256_light_background = 256
+let g:seoul256_srgb = 1
 colorscheme seoul256
 
 " window title {{{
