@@ -4,6 +4,7 @@ let g:seoul256_background = 233
 let g:seoul256_light_background = 256
 let g:seoul256_srgb = 1
 colorscheme seoul256
+set guicursor=
 
 " window title {{{
 
@@ -18,7 +19,7 @@ endif
 
 " end window title }}}
 
-" macvim {{{
+" gvim {{{
 
 if has('gui_running')
   " light colorscheme
@@ -67,7 +68,7 @@ if has('gui_running')
   cnoremap <S-Insert> <MiddleMouse>
 endif
 
-" end macvim }}}
+" end gvim }}}
 
 " highlighting {{{
 
