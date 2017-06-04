@@ -130,31 +130,6 @@ stty start undef
 
 # end terminal settings }}}
 # ==============================================================================
-# presence {{{
-
-_has_ack=$(command -v ack)
-_has_ag=$(command -v ag)
-_has_archversion=$(command -v archversion)
-_has_colordiff=$(command -v colordiff)
-_has_electrum=$(command -v electrum)
-_has_erl=$(command -v erl)
-_has_gvim=$(command -v gvim)
-_has_icdiff=$(command -v icdiff)
-_has_iex=$(command -v iex)
-_has_mosh=$(command -v mosh)
-_has_nvim=$(command -v nvim)
-_has_perl6=$(command -v perl6)
-_has_pt=$(command -v pt)
-_has_rclone=$(command -v rclone)
-_has_rlwrap=$(command -v rlwrap)
-_has_subgit=$(command -v subgit)
-_has_subhg=$(command -v subhg)
-_has_tree=$(command -v tree)
-_has_vim=$(command -v vim)
-_has_zbarcam=$(command -v zbarcam)
-
-# end presence }}}
-# ==============================================================================
 # path {{{
 
 unset PATH MANPATH
@@ -195,7 +170,7 @@ rakudobrew() {
 }
 
 # for locally-installed perl6 executables
-[[ -n "$_has_perl6" ]] \
+[[ $(command -v perl6) ]] \
   && PATH="$(perl6 -e 'say ~CompUnit::RepositoryRegistry.repository-for-name(q<site>)')/bin:$PATH"
 
 # --- end perl6 }}}
@@ -203,6 +178,31 @@ rakudobrew() {
 export PATH MANPATH
 
 # end path }}}
+# ==============================================================================
+# presence {{{
+
+_has_ack=$(command -v ack)
+_has_ag=$(command -v ag)
+_has_archversion=$(command -v archversion)
+_has_colordiff=$(command -v colordiff)
+_has_electrum=$(command -v electrum)
+_has_erl=$(command -v erl)
+_has_gvim=$(command -v gvim)
+_has_icdiff=$(command -v icdiff)
+_has_iex=$(command -v iex)
+_has_mosh=$(command -v mosh)
+_has_nvim=$(command -v nvim)
+_has_perl6=$(command -v perl6)
+_has_pt=$(command -v pt)
+_has_rclone=$(command -v rclone)
+_has_rlwrap=$(command -v rlwrap)
+_has_subgit=$(command -v subgit)
+_has_subhg=$(command -v subhg)
+_has_tree=$(command -v tree)
+_has_vim=$(command -v vim)
+_has_zbarcam=$(command -v zbarcam)
+
+# end presence }}}
 # ==============================================================================
 # prompt {{{
 
