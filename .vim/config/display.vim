@@ -41,7 +41,7 @@ if has('gui_running')
   set guioptions+=c
   " use lightline-compatible monaco
   set guifont=Monaco\ for\ Powerline\ 16
-  " allow macvim window to occupy whole screen
+  " allow gvim window to occupy whole screen
   set guiheadroom=0
   " set normal mode cursor to unblinking Cursor highlighted block
   set guicursor+=n:blinkon0-block-Cursor
