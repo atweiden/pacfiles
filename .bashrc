@@ -453,6 +453,13 @@ fi
 
 # end archinfo }}}
 # ==============================================================================
+# beam {{{
+
+# enable repl history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# end beam }}}
+# ==============================================================================
 # fzf {{{
 
 # use ag/pt/ack as the default source for fzf
