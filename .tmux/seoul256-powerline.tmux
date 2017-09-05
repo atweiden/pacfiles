@@ -28,5 +28,7 @@ setw -g window-status-format "#[fg=colour109,bg=colour233] #I #[fg=colour109,
 setw -g window-status-current-format "#[fg=colour233,bg=colour109,nobold,nounderscore,noitalics]#[fg=colour252,bg=colour109] #I #[fg=colour233,bg=colour109,nobold,nounderscore,noitalics]#[fg=colour233,bg=colour109] #W #[fg=colour109,bg=colour233,nobold,nounderscore,noitalics]"
 
 # seoul256 copy mode colors
-setw -g mode-fg "#000000"
-setw -g mode-bg "#87d7d7"
+# XXX: hexadecimal RBG strings aren't working on linux
+#setw -g mode-fg "#000000"
+#setw -g mode-bg "#87d7d7"
+set -g mode-style bg=brightcyan,fg=black
