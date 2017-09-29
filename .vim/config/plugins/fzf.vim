@@ -1,6 +1,3 @@
-" open fzf in urxvt
-let g:fzf_launcher = 'urxvt -geometry 120x30 -e sh -c %s'
-
 " save fzf history in $VIMPATH
 let g:fzf_history_dir = $VIMPATH.'/.fzf-history'
 
