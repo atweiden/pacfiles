@@ -186,6 +186,7 @@ _has_subhg=$(command -v subhg)
 _has_systemctl=$(command -v systemctl)
 _has_tree=$(command -v tree)
 _has_vim=$(command -v vim)
+_has_xautolock=$(command -v xautolock)
 _has_zbarcam=$(command -v zbarcam)
 
 # end presence }}}
@@ -425,6 +426,11 @@ alias :e='"$EDITOR"'
 [[ -n "$_has_nvim" ]] && alias nview='nvim -R'
 
 # --- end vim }}}
+# --- xautolock {{{
+
+[[ -n "$_has_xautolock" ]] && alias xautolock-start='xautolock -secure -time 7 -locker "/usr/bin/xlock -mode blank" -detectsleep &'
+
+# --- end xautolock }}}
 # --- zbar {{{
 
 [[ -n "$_has_electrum" ]] && alias electrum='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so electrum'
