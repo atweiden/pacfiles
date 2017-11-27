@@ -183,6 +183,7 @@ _has_rclone=$(command -v rclone)
 _has_rlwrap=$(command -v rlwrap)
 _has_subgit=$(command -v subgit)
 _has_subhg=$(command -v subhg)
+_has_systemctl=$(command -v systemctl)
 _has_tree=$(command -v tree)
 _has_vim=$(command -v vim)
 _has_zbarcam=$(command -v zbarcam)
@@ -314,6 +315,11 @@ alias rm='rm -i'
 [[ -n "$_has_mosh" ]] && alias mosh='mosh -a'
 
 # --- end ssh }}}
+# --- systemctl {{{
+
+[[ -n "$_has_systemctl" ]] && alias userctl='systemctl --user'
+
+# --- end systemctl }}}
 # --- timestamp {{{
 
 alias dt='date +%FT%T%:::z'
