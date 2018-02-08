@@ -1,237 +1,288 @@
-#!/usr/bin/env python2
-#
-# Archey [version 0.3.0]
-#
-# Archey is a simple system information tool written in Python.
-#
-# Copyright 2010 Melik Manukyan <melik@archlinux.us>
-#
-# ASCII art by Brett Bohnenkamper <kittykatt@silverirc.com>
-# Changes Jerome Launay <jerome@projet-libre.org>
-# Fedora support by YeOK <yeok@henpen.org>
-# Modified for ArchBang -sHyLoCk
-# Modified for Manjaro -https://forum.manjaro.org/index.php?topic=2651.0
-# Modified for pacstrapit -atweiden
-#
-# Distributed under the terms of the GNU General Public License v3.
-# See http://www.gnu.org/licenses/gpl.txt for the full license text.
+#!/bin/bash
 
-# Import libraries
-import os, sys, subprocess, optparse, re
-from subprocess import Popen, PIPE
-from optparse import OptionParser
-from getpass import getuser
-from time import ctime, sleep
+# _usage_function() {{{
 
-# Display [Comment/Uncomment to Enable/Disable information.]
-display = [
- 'os', # Display Operating System
- 'hostname', # Display Machine Hostname
- 'kernel',  # Display Kernel Version
-# 'battery', # Display Battery Usage [Requires 'acpi']
- 'uptime',  # Display System Uptime
- 'wm',  # Display Window Manager
-# 'de', # Display Desktop Environment
- 'packages', # Display Number of Packages Installed
- 'ram', # Display RAM Usage
- 'cpu', # Display CPU Model
- 'sh', # Display Current Shell
-# 'fs:/boot', # Display /boot Partition Usage
- 'fs:/home', # Display /home Partition Usage
-# 'fs:/MOUNT/POINT', # Display * Partition, Edit To Your Needs
-# 'fs:/' # Display / Partition Usage
- ]
-# Array containing Values
-result = []
+_usage_function() {
+read -d '' _usage_string <<'EOF'
+Usage:
+  archinfo [-c|--color <color>]
 
-# Options
-if __name__=='__main__':
- parser = OptionParser(usage='%prog [-c COLOR] [-s, --screenshot]', description='To customize the info displayed on archey, edit "/usr/bin/archey" directly and look for the display array. Note: Archey can only allow up to 15 fields.', version="%prog 0.1.11")
- parser.add_option('-c',
-  action='store', default='blue', type='choice', dest='color', choices=('black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'), help='choose a color: black, red, green, yellow, blue, magenta, cyan, white [Default: blue]')
- parser.add_option('-s', '--screenshot',
-  action='store_true', dest='screenshot', help='take a screenshot')
- (options, args) = parser.parse_args()
+Colors:
+  black, red, green, yellow, blue (default), magenta, cyan, white
+EOF
+echo "$_usage_string"
+}
 
-# Define colors
-colorscheme = '%s' % options.color
-colors = {'black': '0', 'red': '1', 'green': '2', 'yellow': '3', 'blue': '4', 'magenta': '5', 'cyan': '6', 'white': '7'}
-for key in colors.keys():
- if key in colorscheme: colorcode = colors[key]
-color = '\x1b[1;3%sm' % colorcode
-color2 = '\x1b[0;3%sm' % colorcode
-clear = '\x1b[0m'
+# end _usage_function() }}}
 
-# Define processes for identifying Desktop Environmentss, Window Managers, Shells.
-de_dict = {
- 'gnome-session': 'GNOME',
- 'ksmserver': 'KDE',
- 'xfconfd': 'Xfce'}
+while [[ $# -gt 0 ]]; do
+  _key="$1"
+  case "$_key" in
+    -h|--help)
+      _usage_function
+      exit 0
+      ;;
+    -c|--color)
+      _user_selected_color="$2"
+      # shift past argument and value
+      shift
+      shift
+      ;;
+    *)
+      # unknown option
+      _usage_function
+      exit 1
+      ;;
+  esac
+done
 
-wm_dict = {
- 'awesome': 'Awesome',
- 'beryl': 'Beryl',
- 'blackbox': 'Blackbox',
- 'compiz': 'Compiz',
- 'dwm': 'DWM',
- 'enlightenment': 'Enlightenment',
- 'fluxbox': 'Fluxbox',
- 'fvwm': 'FVWM',
- 'icewm': 'IceWM',
- 'kwin': 'KWin',
- 'metacity': 'Metacity',
- 'musca': 'Musca',
- 'openbox': 'Openbox',
- 'pekwm': 'PekWM',
- 'ratpoison': 'ratpoison',
- 'scrotwm': 'ScrotWM',
- 'wmaker': 'Window Maker',
- 'wmii': 'wmii',
- 'xfwm4': 'Xfwm',
- 'xmonad': 'xmonad'}
+# _color {{{
 
-sh_dict = {
- 'zsh': 'Zsh',
- 'bash': 'Bash',
- 'dash': 'Dash',
- 'fish': 'Fish',
- 'ksh': 'Ksh',
- 'csh': 'Csh',
- 'jsh': 'Jsh',
- 'tcsh': 'Tcsh'}
+declare -A _color_dict=(
+  [black]='0'
+  [red]='1'
+  [green]='2'
+  [yellow]='3'
+  [blue]='4'
+  [magenta]='5'
+  [cyan]='6'
+  [white]='7'
+)
 
-# Find running processes.
-def xmonadfix(str):
- if re.compile("xmonad").match(str): return "xmonad"
- return str
-p1 = Popen(['ps', '-u', getuser()], stdout=PIPE).communicate()[0].split('\n')
-processes = map(xmonadfix, [process.split()[3] for process in p1 if process])
-p1 = None
+_color_code="${_color_dict[${_user_selected_color:-blue}]}"
+_color=$(printf "\x1b[1;3%sm" "$_color_code")
+_clear=$(printf "\x1b[0m")
 
-# Print coloured key with normal value.
-def output(key, value):
- output = '%s%s:%s %s' % (color, key, clear, value)
- result.append(output)
+# end _color }}}
 
-# RAM Function
-def ram_display():
- raminfo = Popen(['free', '-m'], stdout=PIPE).communicate()[0].split('\n')
- ram = ''.join(filter(re.compile('M').search, raminfo)).split()
- used = int(ram[1]) - int(ram[6])
- output ('RAM', '%s MB / %s MB' % (used, ram[1]))
+# _title_case_function() {{{
 
-# Screenshot Function
-screen = '%s' % options.screenshot
-def screenshot():
- print 'Taking shot in',
- list = range(1,6)
- list.reverse()
- for x in list:
-   print '%s..' % x,
-   sys.stdout.flush()
-   sleep(1)
- print 'Say Cheeze!'
- subprocess.check_call(['scrot'])
+_title_case_function() {
+  echo "$1" | awk '{printf("%s%s\n", toupper(substr($0, 1, 1)), substr($0, 2))}'
+}
 
-# Operating System Function
-def os_display():
- arch = Popen(['uname', '-m'], stdout=PIPE).communicate()[0].rstrip('\n')
- os = 'Arch %s' % (arch)
- output('OS', os)
+# end _title_case_function() }}}
 
-# Kernel Function
-def kernel_display():
- kernel = Popen(['uname', '-r'], stdout=PIPE).communicate()[0].rstrip('\n')
- output ('Kernel', kernel)
+# _output_function() {{{
 
-# Hostname Function
-def hostname_display():
- hostname = Popen(['uname', '-n'], stdout=PIPE).communicate()[0].rstrip('\n')
- output ('Hostname', hostname)
+_output_function() {
+  local _key="$1"
+  local _value="$2"
+  local _output=$(printf '%s%s:%s %s' "$_color" "$_key" "$_clear" "$_value")
+  echo "$_output"
+}
 
-# CPU Function
-def cpu_display():
- file = open('/proc/cpuinfo').readlines()
- cpuinfo = re.sub('  +', ' ', file[4].replace('model name\t: ', '').rstrip('\n'))
- output ('CPU', cpuinfo)
+# end _output_function() }}}
+# _output_ram_function() {{{
 
-# Uptime Function
-def uptime_display():
- fuptime = int(open('/proc/uptime').read().split('.')[0])
- day = int(fuptime / 86400)
- fuptime = fuptime % 86400
- hour = int(fuptime / 3600)
- fuptime = fuptime % 3600
- minute = int(fuptime / 60)
- uptime = ''
- if day == 1:
-  uptime += '%d day, ' % day
- if day > 1:
-  uptime += '%d days, ' % day
- uptime += '%d:%02d' % (hour, minute)
- output('Uptime', uptime)
+_output_ram_function() {
+  local _mem=()
+  mapfile -n 1 -s 1 -t _mem <<< $(free -m)
+  local _total="$(echo ${_mem[0]} | awk '{print $2}')"
+  local _available="$(echo ${_mem[0]} | awk '{print $7}')"
+  local _used="$(($_total - $_available))"
+  local _ram="$(printf '%s MB / %s MB' $_used $_total)"
+  local _output_ram=$(_output_function 'RAM' "$_ram")
+  echo "$_output_ram"
+}
 
-# Battery Function [Requires: acpi]
-def battery_display():
- p1 = Popen(['acpi'], stdout=PIPE).communicate()[0].lstrip()
- battery = p1.split(' ')[3].rstrip('\n')
- output ('Battery', battery)
+# end _output_ram_function() }}}
+# _output_os_function() {{{
 
-# Desktop Environment Function
-def de_display():
- de = 'None found'
- for key in de_dict.keys():
-  if key in processes: de = de_dict[key]
- output ('Desktop Environment', de)
+_output_os_function() {
+  local _architecture="$(uname -m)"
+  local _os="$(printf 'Arch %s' $_architecture)"
+  local _output_os=$(_output_function 'OS' "$_os")
+  echo "$_output_os"
+}
 
-# Window Manager Function
-def wm_display():
- wm = 'None found'
- for key in wm_dict.keys():
-  if key in processes: wm = wm_dict[key]
- output ('Window Manager', wm)
+# end _output_os_function() }}}
+# _output_kernel_function() {{{
 
-# Shell Function
-def sh_display():
- sh = os.getenv("SHELL").split('/')[-1].capitalize()
- output ('Shell', sh)
+_output_kernel_function() {
+  local _kernel="$(uname -r)"
+  local _output_kernel=$(_output_function 'Kernel' "$_kernel")
+  echo "$_output_kernel"
+}
 
-# Packages Function
-def packages_display():
- p1 = Popen(['pacman', '-Q'], stdout=PIPE)
- p2 = Popen(['wc', '-l'], stdin=p1.stdout, stdout=PIPE)
- packages = p2.communicate()[0].rstrip('\n')
- output ('Packages', packages)
+# end _output_kernel_function() }}}
+# _output_hostname_function() {{{
 
-# File System Function
-def fs_display(mount=''):
- p1 = Popen(['df', '-TPh', mount], stdout=PIPE).communicate()[0]
- used = [line for line in p1.split('\n') if line][1]
- used = used.split()[3]
- total = [line for line in p1.split('\n') if line][1]
- total = total.split()[2]
- type = [line for line in p1.split('\n') if line][1]
- type = type.split()[1]
- if mount == '/': mount = '/root'
- fs = mount.rpartition('/')[2].title() + " FS"
- part = '%s / %s (%s)' % (used, total, type)
- output (fs, part)
+_output_hostname_function() {
+  local _hostname="$(uname -n)"
+  local _output_hostname=$(_output_function 'Hostname' "$_hostname")
+  echo "$_output_hostname"
+}
 
-# Run functions found in 'display' array.
-for x in display:
- call = [arg for arg in x.split(':') if arg]
- funcname=call[0] + '_display'
- func=locals()[funcname]
- if len(call) > 1:
-  func(arg)
- else:
-  func()
+# end _output_hostname_function() }}}
+# _output_cpu_function() {{{
 
-# Array containing values.
-result.extend(['']*(16 - len(display)))
+_output_cpu_function() {
+  local _cpuinfo=()
+  mapfile -n 1 -s 4 -t _cpuinfo <<< $(cat /proc/cpuinfo)
+  local _cpu="$(echo ${_cpuinfo[@]} | awk -F':' '{print $2}')"
+  local _output_cpu=$(_output_function 'CPU' "$_cpu")
+  echo "$_output_cpu"
+}
 
-###### Result #######
-print """%s
+# end _output_cpu_function() }}}
+# _output_uptime_function() {{{
+
+_output_uptime_function() {
+  local _uptime=$(cat /proc/uptime | awk -F'.' '{print $1}')
+  local _day=$(($_uptime / 86400))
+  _uptime=$(($_uptime % 86400))
+  local _hour=$(($_uptime / 3600))
+  _uptime=$(($_uptime % 3600))
+  local _minute=$(($_uptime / 60))
+
+  local _fmt_uptime_day=''
+  if [[ "$_day" == '1' ]]; then
+    _fmt_uptime_day="$(printf '%d day, ' $_day)"
+  elif [[ "$_day" > '1' ]]; then
+    _fmt_uptime_day="$(printf '%d days, ' $_day)"
+  fi
+
+  local _fmt_uptime_hour_minute="$(printf '%d:%02d' $_hour $_minute)"
+  local _fmt_uptime=$(printf '%s%s' \
+    "$_fmt_uptime_day" \
+    "$_fmt_uptime_hour_minute")
+  local _output_uptime=$(_output_function 'Uptime' "$_fmt_uptime")
+  echo "$_output_uptime"
+}
+
+# end _output_uptime_function() }}}
+# _output_window_manager_function() {{{
+
+_output_window_manager_function() {
+  declare -A _window_manager_dict=(
+    [openbox]='Openbox'
+  )
+
+  local _process_array=()
+  mapfile -s 1 -t _process_array <<< $(ps -u $USER | FS="\n" awk '{print $4}')
+
+  local _window_manager='None found'
+  for _wm in "${!_window_manager_dict[@]}"; do
+    for _process in ${_process_array[@]}; do
+      if [[ "$_wm" == "$_process" ]]; then
+        _window_manager="${_window_manager_dict[$_wm]}"
+      fi
+    done
+  done
+
+  local _output_window_manager=$(_output_function \
+    'Window Manager' \
+    "$_window_manager")
+  echo "$_output_window_manager"
+}
+
+# end _output_window_manager_function() }}}
+# _output_shell_function() {{{
+
+_output_shell_function() {
+  local _shell="$(_title_case_function $(basename $SHELL))"
+  local _output_shell=$(_output_function 'Shell' "$_shell")
+  echo "$_output_shell"
+}
+
+# end _output_shell_function() }}}
+# _output_packages_function() {{{
+
+_output_packages_function() {
+  local _packages=$(pacman -Qq | wc -l)
+  local _output_packages=$(_output_function 'Packages' "$_packages")
+  echo "$_output_packages"
+}
+
+# end _output_packages_function() }}}
+# _output_filesystem_function() {{{
+
+_output_filesystem_function() {
+  local _mount="${1:-/home}"
+  local _df=()
+  mapfile -s 1 -t _df <<< "$(df -TPh $_mount)"
+  local _filesystem_type=$(echo "${_df[0]}" | awk '{print $2}')
+  local _filesystem_size=$(echo "${_df[0]}" | awk '{print $3}')
+  local _filesystem_used=$(echo "${_df[0]}" | awk '{print $4}')
+  local _filesystem_name=''
+  if [[ "$_mount" == '/' ]]; then
+    _filesystem_name='Root FS'
+  else
+    _filesystem_name="$(_title_case_function $(basename "$_mount")) FS"
+  fi
+  local _filesystem="$(printf '%s / %s (%s)' \
+    $_filesystem_used \
+    $_filesystem_size \
+    $_filesystem_type)"
+  local _output_filesystem=$(_output_function \
+    "$_filesystem_name" \
+    "$_filesystem")
+  echo "$_output_filesystem"
+}
+
+# end _output_filesystem_function() }}}
+
+# _result_array {{{
+
+_result_array=(
+  "$(_output_os_function)"
+  "$(_output_hostname_function)"
+  "$(_output_kernel_function)"
+  "$(_output_uptime_function)"
+  "$(_output_window_manager_function)"
+  "$(_output_packages_function)"
+  "$(_output_ram_function)"
+  "$(_output_cpu_function)"
+  "$(_output_shell_function)"
+  "$(_output_filesystem_function '/home')"
+  '' '' ''
+)
+
+# end _result_array }}}
+# _output_array {{{
+
+_output_array=(
+  "$_color"
+  "$_color"
+  "$_color"
+  "$_color"
+  "$_color"
+  "$_color"
+  "$_color"
+  "${_result_array[0]}"
+  "$_color"
+  "${_result_array[1]}"
+  "$_color"
+  "${_result_array[2]}"
+  "$_color"
+  "${_result_array[3]}"
+  "$_color"
+  "${_result_array[4]}"
+  "$_color"
+  "${_result_array[5]}"
+  "$_color"
+  "${_result_array[6]}"
+  "$_color"
+  "${_result_array[7]}"
+  "$_color"
+  "${_result_array[8]}"
+  "$_color"
+  "${_result_array[9]}"
+  "$_color"
+  "${_result_array[10]}"
+  "$_color"
+  "${_result_array[11]}"
+  "$_color"
+  "${_result_array[12]}"
+  "$_clear"
+)
+
+# end _output_array }}}
+# _arch {{{
+
+read -d '' _arch_string <<'EOF'
+%s
 %s               +
 %s               #
 %s              ###
@@ -243,14 +294,20 @@ print """%s
 %s         #############;         %s
 %s        ###############+        %s
 %s       #######   #######        %s
-%s     .######;     ;###;`\".      %s
+%s     .######;     ;###;`".      %s
 %s    .#######;     ;#####.       %s
 %s    #########.   .########`     %s
 %s   ######'           '######    %s
 %s  ;####                 ####;   %s
 %s  ##'                     '##   %s
 %s #'                         `#  %s
-%s """ % (color, color, color, color, color, color, color, result[0], color, result[1], color, result[2], color, result[3], color, result[4], color, result[5], color, result[6], color, result[7], color, result[8], color, result[9], color, result[10], color, result[11], color, result[12], clear)
+%s
+EOF
 
-if screen == 'True':
- screenshot()
+_arch=$(printf "$_arch_string\n" "${_output_array[@]}")
+
+# end _arch }}}
+
+echo "${_arch}"
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0:
