@@ -455,7 +455,7 @@ for _fn in $(find "$HOME/.functions.d" -type f -name "*.sh"); do source "$_fn"; 
 # ==============================================================================
 # archinfo {{{
 
-if [[ -x "$HOME/.bin/archinfo" && -x /usr/bin/python2 ]]; then
+if [[ -x "$HOME/.bin/archinfo" ]]; then
   if ! [[ "$UID" == '0' ]]; then archinfo; else archinfo -c red; fi
 fi
 
