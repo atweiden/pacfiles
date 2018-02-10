@@ -338,9 +338,9 @@ _output_array=(
 )
 
 # end _output_array }}}
-# _arch {{{
+# _archinfo {{{
 
-read -r -d '' _arch_string <<'EOF'
+read -r -d '' _archinfo_string <<'EOF'
 %s
 %s               +
 %s               #
@@ -363,10 +363,10 @@ read -r -d '' _arch_string <<'EOF'
 %s
 EOF
 
-_arch="$(printf "$_arch_string\\n" "${_output_array[@]}")"
+_archinfo="$(printf "$_archinfo_string\\n" "${_output_array[@]}")"
 
-# end _arch }}}
+# end _archinfo }}}
 
-echo "${_arch}"
+echo "${_archinfo}"
 
 # vim: set filetype=sh foldmethod=marker foldlevel=0:
