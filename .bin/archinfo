@@ -3,7 +3,7 @@
 # _usage_function() {{{
 
 _usage_function() {
-read -d '' _usage_string <<'EOF'
+read -r -d '' _usage_string <<'EOF'
 Usage:
   archinfo [-c|--color <color>]
 
@@ -16,8 +16,7 @@ echo "$_usage_string"
 # end _usage_function() }}}
 
 while [[ $# -gt 0 ]]; do
-  _key="$1"
-  case "$_key" in
+  case "$1" in
     -h|--help)
       _usage_function
       exit 0
@@ -50,8 +49,8 @@ declare -A _color_dict=(
 )
 
 _color_code="${_color_dict[${_user_selected_color:-blue}]}"
-_color=$(printf "\x1b[1;3%sm" "$_color_code")
-_clear=$(printf "\x1b[0m")
+_color="$(printf '\x1b[1;3%sm' "$_color_code")"
+_clear="$(printf '\x1b[0m')"
 
 # end _color }}}
 
@@ -66,9 +65,14 @@ _title_case_function() {
 # _output_function() {{{
 
 _output_function() {
-  local _key="$1"
-  local _value="$2"
-  local _output=$(printf '%s%s:%s %s' "$_color" "$_key" "$_clear" "$_value")
+  local _key
+  local _value
+  local _output
+
+  _key="$1"
+  _value="$2"
+  _output="$(printf '%s%s:%s %s' "$_color" "$_key" "$_clear" "$_value")"
+
   echo "$_output"
 }
 
@@ -77,12 +81,19 @@ _output_function() {
 
 _output_ram_function() {
   local _mem=()
-  mapfile -n 1 -s 1 -t _mem <<< $(free -m)
-  local _total="$(echo ${_mem[0]} | awk '{print $2}')"
-  local _available="$(echo ${_mem[0]} | awk '{print $7}')"
-  local _used="$(($_total - $_available))"
-  local _ram="$(printf '%s MB / %s MB' $_used $_total)"
-  local _output_ram=$(_output_function 'RAM' "$_ram")
+  local _total
+  local _available
+  local _used
+  local _ram
+  local -output_ram
+
+  mapfile -n 1 -s 1 -t _mem <<< "$(free -m)"
+  _total="$(echo "${_mem[0]}" | awk '{print $2}')"
+  _available="$(echo "${_mem[0]}" | awk '{print $7}')"
+  _used="$((_total - _available))"
+  _ram="$(printf '%s MB / %s MB' "$_used" "$_total")"
+  _output_ram="$(_output_function 'RAM' "$_ram")"
+
   echo "$_output_ram"
 }
 
@@ -90,9 +101,14 @@ _output_ram_function() {
 # _output_os_function() {{{
 
 _output_os_function() {
-  local _architecture="$(uname -m)"
-  local _os="$(printf 'Arch %s' $_architecture)"
-  local _output_os=$(_output_function 'OS' "$_os")
+  local _architecture
+  local _os
+  local _output_os
+
+  _architecture="$(uname -m)"
+  _os="$(printf 'Arch %s' "$_architecture")"
+  _output_os="$(_output_function 'OS' "$_os")"
+
   echo "$_output_os"
 }
 
@@ -100,8 +116,12 @@ _output_os_function() {
 # _output_kernel_function() {{{
 
 _output_kernel_function() {
-  local _kernel="$(uname -r)"
-  local _output_kernel=$(_output_function 'Kernel' "$_kernel")
+  local _kernel
+  local _output_kernel
+
+  _kernel="$(uname -r)"
+  _output_kernel="$(_output_function 'Kernel' "$_kernel")"
+
   echo "$_output_kernel"
 }
 
@@ -109,8 +129,12 @@ _output_kernel_function() {
 # _output_hostname_function() {{{
 
 _output_hostname_function() {
-  local _hostname="$(uname -n)"
-  local _output_hostname=$(_output_function 'Hostname' "$_hostname")
+  local _hostname
+  local _output_hostname
+
+  _hostname="$(uname -n)"
+  _output_hostname="$(_output_function 'Hostname' "$_hostname")"
+
   echo "$_output_hostname"
 }
 
@@ -119,9 +143,13 @@ _output_hostname_function() {
 
 _output_cpu_function() {
   local _cpuinfo=()
-  mapfile -n 1 -s 4 -t _cpuinfo <<< $(cat /proc/cpuinfo)
-  local _cpu=$(echo ${_cpuinfo[@]} | sed "s/^.*:\s\+//")
-  local _output_cpu=$(_output_function 'CPU' "$_cpu")
+  local _cpu
+  local _output_cpu
+
+  mapfile -n 1 -s 4 -t _cpuinfo <<< "$(cat /proc/cpuinfo)"
+  _cpu="$(echo "${_cpuinfo[@]}" | sed 's/^.*:\s\+//')"
+  _output_cpu="$(_output_function 'CPU' "$_cpu")"
+
   echo "$_output_cpu"
 }
 
@@ -129,25 +157,32 @@ _output_cpu_function() {
 # _output_uptime_function() {{{
 
 _output_uptime_function() {
-  local _uptime=$(cat /proc/uptime | awk -F'.' '{print $1}')
-  local _day=$(($_uptime / 86400))
-  _uptime=$(($_uptime % 86400))
-  local _hour=$(($_uptime / 3600))
-  _uptime=$(($_uptime % 3600))
-  local _minute=$(($_uptime / 60))
+  local _uptime
+  local _day
+  local _hour
+  local _minute
+  local _fmt_uptime_day
+  local _fmt_uptime_hour_minute
+  local _fmt_uptime
+  local _output_uptime
 
-  local _fmt_uptime_day=''
-  if [[ "$_day" == '1' ]]; then
-    _fmt_uptime_day="$(printf '%d day, ' $_day)"
-  elif [[ "$_day" > '1' ]]; then
-    _fmt_uptime_day="$(printf '%d days, ' $_day)"
+  _uptime="$(awk -F'.' '{print $1}' /proc/uptime)"
+  _day="$((_uptime / 86400))"
+  _uptime="$((_uptime % 86400))"
+  _hour="$((_uptime / 3600))"
+  _uptime="$((_uptime % 3600))"
+  _minute="$((_uptime / 60))"
+
+  if [[ $_day == 1 ]]; then
+    _fmt_uptime_day="$(printf '%d day, ' "$_day")"
+  elif [[ $_day -gt 1 ]]; then
+    _fmt_uptime_day="$(printf '%d days, ' "$_day")"
   fi
 
-  local _fmt_uptime_hour_minute="$(printf '%d:%02d' $_hour $_minute)"
-  local _fmt_uptime=$(printf '%s%s' \
-    "$_fmt_uptime_day" \
-    "$_fmt_uptime_hour_minute")
-  local _output_uptime=$(_output_function 'Uptime' "$_fmt_uptime")
+  _fmt_uptime_hour_minute="$(printf '%d:%02d' "$_hour" "$_minute")"
+  _fmt_uptime="$(printf '%s%s' "$_fmt_uptime_day" "$_fmt_uptime_hour_minute")"
+  _output_uptime="$(_output_function 'Uptime' "$_fmt_uptime")"
+
   echo "$_output_uptime"
 }
 
@@ -160,20 +195,25 @@ _output_window_manager_function() {
   )
 
   local _process_array=()
-  mapfile -s 1 -t _process_array <<< $(ps -u $USER | FS="\n" awk '{print $4}')
+  local _window_manager
+  local _output_window_manager
 
-  local _window_manager='None found'
+  mapfile -s 1 -t _process_array <<< "$(ps -u "$USER" \
+                                      | FS='\n' awk '{print $4}')"
+
+  _window_manager='None found'
   for _wm in "${!_window_manager_dict[@]}"; do
-    for _process in ${_process_array[@]}; do
+    for _process in "${_process_array[@]}"; do
       if [[ "$_wm" == "$_process" ]]; then
         _window_manager="${_window_manager_dict[$_wm]}"
       fi
     done
   done
 
-  local _output_window_manager=$(_output_function \
+  _output_window_manager="$(_output_function \
     'Window Manager' \
-    "$_window_manager")
+    "$_window_manager")"
+
   echo "$_output_window_manager"
 }
 
@@ -181,8 +221,12 @@ _output_window_manager_function() {
 # _output_shell_function() {{{
 
 _output_shell_function() {
-  local _shell="$(_title_case_function $(basename $SHELL))"
-  local _output_shell=$(_output_function 'Shell' "$_shell")
+  local _shell
+  local _output_shell
+
+  _shell="$(_title_case_function "$(basename "$SHELL")")"
+  _output_shell="$(_output_function 'Shell' "$_shell")"
+
   echo "$_output_shell"
 }
 
@@ -190,8 +234,12 @@ _output_shell_function() {
 # _output_packages_function() {{{
 
 _output_packages_function() {
-  local _packages=$(pacman -Qq | wc -l)
-  local _output_packages=$(_output_function 'Packages' "$_packages")
+  local _packages
+  local _output_packages
+
+  _packages="$(pacman -Qq | wc -l)"
+  _output_packages="$(_output_function 'Packages' "$_packages")"
+
   echo "$_output_packages"
 }
 
@@ -199,25 +247,34 @@ _output_packages_function() {
 # _output_filesystem_function() {{{
 
 _output_filesystem_function() {
-  local _mount="${1:-/home}"
+  local _mount
   local _df=()
-  mapfile -s 1 -t _df <<< "$(df -TPh $_mount)"
-  local _filesystem_type=$(echo "${_df[0]}" | awk '{print $2}')
-  local _filesystem_size=$(echo "${_df[0]}" | awk '{print $3}')
-  local _filesystem_used=$(echo "${_df[0]}" | awk '{print $4}')
-  local _filesystem_name=''
+  local _filesystem_type
+  local _filesystem_size
+  local _filesystem_used
+  local _filesystem_name
+  local _filesystem
+  local _output_filesystem
+
+  _mount="${1:-/home}"
+
+  mapfile -s 1 -t _df <<< "$(df -TPh "$_mount")"
+  _filesystem_type="$(echo "${_df[0]}" | awk '{print $2}')"
+  _filesystem_size="$(echo "${_df[0]}" | awk '{print $3}')"
+  _filesystem_used="$(echo "${_df[0]}" | awk '{print $4}')"
+
   if [[ "$_mount" == '/' ]]; then
     _filesystem_name='Root FS'
   else
-    _filesystem_name="$(_title_case_function $(basename "$_mount")) FS"
+    _filesystem_name="$(_title_case_function "$(basename "$_mount")") FS"
   fi
-  local _filesystem="$(printf '%s / %s (%s)' \
-    $_filesystem_used \
-    $_filesystem_size \
-    $_filesystem_type)"
-  local _output_filesystem=$(_output_function \
-    "$_filesystem_name" \
-    "$_filesystem")
+
+  _filesystem="$(printf '%s / %s (%s)' \
+    "$_filesystem_used" \
+    "$_filesystem_size" \
+    "$_filesystem_type")"
+  _output_filesystem="$(_output_function "$_filesystem_name" "$_filesystem")"
+
   echo "$_output_filesystem"
 }
 
@@ -236,7 +293,9 @@ _result_array=(
   "$(_output_cpu_function)"
   "$(_output_shell_function)"
   "$(_output_filesystem_function '/home')"
-  '' '' ''
+  ''
+  ''
+  ''
 )
 
 # end _result_array }}}
@@ -281,7 +340,7 @@ _output_array=(
 # end _output_array }}}
 # _arch {{{
 
-read -d '' _arch_string <<'EOF'
+read -r -d '' _arch_string <<'EOF'
 %s
 %s               +
 %s               #
@@ -304,7 +363,7 @@ read -d '' _arch_string <<'EOF'
 %s
 EOF
 
-_arch=$(printf "$_arch_string\n" "${_output_array[@]}")
+_arch="$(printf "$_arch_string\\n" "${_output_array[@]}")"
 
 # end _arch }}}
 
