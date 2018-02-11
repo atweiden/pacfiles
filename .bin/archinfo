@@ -85,7 +85,7 @@ _output_ram_function() {
   local _available
   local _used
   local _ram
-  local -output_ram
+  local _output_ram
 
   mapfile -n 1 -s 1 -t _mem <<< "$(free -m)"
   _total="$(echo "${_mem[0]}" | awk '{print $2}')"
