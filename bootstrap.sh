@@ -4,20 +4,89 @@
 # bootstrap: quick and easy dotfiles setup
 # -----------------------------------------------------------------------------
 
+# _usage_function() {{{
+
+_usage_function() {
+read -r -d '' _usage_string <<'EOF'
+Usage:
+  bootstrap [-h|--help]
+  bootstrap [-n|--name <name>] [-e|--email <email>] [-g|--github <github>]
+  bootstrap [-a|--latitude <coordinate>] [-o|--longitude <coordinate>]
+
+Options:
+  -h, --help
+    print this help message
+  -n, --name <name>
+    set full name (defaults to "Andy Weidenbaum")
+  -e, --email <email>
+    set email address (defaults to "archbaum@gmail.com")
+  -g, --github <github>
+    set GitHub username (defaults to "atweiden")
+  -a, --latitude <coordinate>
+    set latitude (defaults to "45.523062")
+  -o, --longitude <coordinate>
+    set longitude (defaults to "-122.676482")
+EOF
+echo "$_usage_string"
+}
+
+# end _usage_function() }}}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      _usage_function
+      exit 0
+      ;;
+    -n|--name)
+      _name="$2"
+      # shift past argument and value
+      shift
+      shift
+      ;;
+    -e|--email)
+      _email="$2"
+      shift
+      shift
+      ;;
+    -g|--github)
+      _github="$2"
+      shift
+      shift
+      ;;
+    -a|--latitude)
+      _latitude="$2"
+      shift
+      shift
+      ;;
+    -o|--longitude)
+      _longitude="$2"
+      shift
+      shift
+      ;;
+    *)
+      # unknown option
+      _usage_function
+      exit 1
+      ;;
+  esac
+done
+
+
 # -----------------------------------------------------------------------------
 # settings
 
-name="Andy Weidenbaum"     # Name      (GitHub)
-email="archbaum@gmail.com" # Email     (GitHub)
-github="atweiden"          # Account   (GitHub)
-latitude=45.523062         # Latitude  (Redshift)
-longitude=-122.676482      # Longitude (Redshift)
+name="${_name:-Andy Weidenbaum}"       # Name    (GitHub/AUR)
+email="${_email:-archbaum@gmail.com}"  # Email   (GitHub/AUR)
+github="${_github:-atweiden}"          # Account (GitHub)
+latitude="${_latitude:-45.523062}"     # Latitude  (Redshift)
+longitude="${_longitude:--122.676482}" # Longitude (Redshift)
 
 
 # -----------------------------------------------------------------------------
 # dirs
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p "$HOME/.marks"    \
          "$HOME/.src"      \
          "$HOME/Desktop"   \
@@ -105,3 +174,5 @@ sed -i \
   -e "s#LATITUDE#$latitude#" \
   -e "s#LONGITUDE#$longitude#" \
   "$HOME/.config/redshift/redshift.conf"
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0:
