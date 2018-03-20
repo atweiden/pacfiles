@@ -176,4 +176,10 @@ sed -i \
   -e "s#LONGITUDE#$longitude#" \
   "$HOME/.config/redshift/redshift.conf"
 
+
+# -----------------------------------------------------------------------------
+# permissions
+
+chmod 700 "$HOME/.gnupg" "$HOME/.ssh"
+
 # vim: set filetype=sh foldmethod=marker foldlevel=0:
