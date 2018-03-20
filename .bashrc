@@ -474,7 +474,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # use rg/ag/pt/ack as the default source for fzf
 if [[ -n "$_has_rg" ]]; then
-  export FZF_DEFAULT_COMMAND='rg --hidden --smart-case --color never --ignore-vcs -g ""'
+  export FZF_DEFAULT_COMMAND='rg --hidden --smart-case --color never --ignore-vcs --files -g ""'
 elif [[ -n "$_has_ag" ]]; then
   export FZF_DEFAULT_COMMAND='ag --hidden --smart-case --nocolor --skip-vcs-ignores -g ""'
 elif [[ -n "$_has_pt" ]]; then
@@ -489,7 +489,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # use rg/ag/pt/ack for ** completion
 _fzf_compgen_path() {
   if [[ -n "$_has_rg" ]]; then
-    rg --hidden --smart-case --color never --ignore-vcs -g "" "$1"
+    rg --hidden --smart-case --color never --ignore-vcs --files -g "" "$1"
   elif [[ -n "$_has_ag" ]]; then
     ag --hidden --smart-case --nocolor --skip-vcs-ignores -g "" "$1"
   elif [[ -n "$_has_pt" ]]; then
