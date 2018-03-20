@@ -132,7 +132,7 @@ stty start undef
 # ==============================================================================
 # path {{{
 
-unset PATH MANPATH
+unset PATH
 
 # --- defaults {{{
 
@@ -144,11 +144,6 @@ PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
 PATH="$HOME/.bin:$PATH"
 
 # --- end dotfiles }}}
-# --- erlang {{{
-
-MANPATH="/usr/lib/erlang/man:$MANPATH"
-
-# --- end erlang }}}
 # --- perl {{{
 
 PATH="/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/site_perl:$PATH"
@@ -160,7 +155,7 @@ PATH="/usr/share/perl6/site/bin:/usr/share/perl6/vendor/bin:$PATH"
 
 # --- end perl6 }}}
 
-export PATH MANPATH
+export PATH
 
 # end path }}}
 # ==============================================================================
