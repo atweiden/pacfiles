@@ -287,7 +287,7 @@ alias locate='locate --ignore-case'
 # --- end languages }}}
 # --- pacman {{{
 
-[[ -n "$_has_makepkg" ]] && alias mksrcinfo='makepkg --printsrcinfo > .SRCINFO'
+[[ -n "$_has_makepkg" ]] && alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
 
 # --- end pacman }}}
 # --- processes {{{
