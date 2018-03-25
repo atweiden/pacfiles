@@ -1,5 +1,5 @@
 [Unit]
-Description=Kill all ssh sessions before system turns off
+Description=Kill all SSH sessions before system shutdown
 Before=network.target
 
 [Service]
