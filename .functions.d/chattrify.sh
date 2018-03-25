@@ -1,63 +1,76 @@
 #!/bin/bash
 
-# -----------------------------------------------------------------------------
-# chattrify: disable Btrfs Copy-On-Write (CoW) for single directories
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# chattrify: disable Btrfs copy-on-write (CoW) for single directories
+# ----------------------------------------------------------------------------
 
+#                           (requires root)                                  #
 
-#                           (requires root)                                   #
-
-
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 #
 # Args
 #
-#   arg 1 = DIRECTORY in which to disable CoW
-#   arg 2 = PERMISSIONS with which to chmod DIRECTORY
-#   arg 3 = USER with which to chown DIRECTORY
-#   arg 4 = GROUP with which to chown DIRECTORY
+#   arg 1 = DIRECTORY to disable CoW on
+#   arg 2 = PERMISSIONS to chmod DIRECTORY to
+#   arg 3 = USER to chown DIRECTORY to
+#   arg 4 = GROUP to chown DIRECTORY to
 #
 # Examples
 #
 #   chattrify "DIRECTORY" "PERMISSIONS" "USER" "GROUP"
 #   chattrify "/var/log/journal" "755" "root" "systemd-journal"
-#   chattrify "/srv/bitcoin" "755" "bitcoin" "bitcoin"
 
 chattrify() {
+  local _path
+  local _path_bak
+  local _permissions
+  local _user
+  local _group
 
-_orig_dir=$( echo "$1" | sed 's@/$@@' )
+  # check for root
+  [[ "${UID}" -eq 0 ]] || echo "chattrify requires root"; exit 1
 
-if [[ -d "$1" ]]; then
-  echo -n "Moving original directory '$1' to '${_orig_dir}_old'... "
-  mv "$1" "${_orig_dir}"_old
+  # remove trailing forward slashes from directory path
+  _path="$(echo "$1" | sed 's,/\+$,,')"
+  _path_bak="${_path}_old"
+  _permissions="$2"
+  _user="$3"
+  _group="$4"
+
+  if [[ -d "${_path}" ]]; then
+    echo -n "Moving original directory '${_path}' to '${_path_bak}'... "
+    mv "${_path}" "${_path_bak}"
+    echo "done"
+  else
+    echo "Sorry, couldn't find existing readable directory at '${_path}'"
+    exit 1
+  fi
+
+  echo -n "Creating new directory '${_path}'... "
+  mkdir -p "${_path}"
   echo "done"
-fi
 
-echo -n "Creating new directory '$1'... "
-mkdir -p "$1"
-echo "done"
-
-echo -n "Setting permissions on new directory '$1'... "
-chmod "$2" "$1"
-echo "done"
-
-echo -n "Disabling CoW on new directory '$1'... "
-chattr +C "$1"
-echo "done"
-
-if [[ -d "${_orig_dir}"_old ]]; then
-  echo -n "Copying original files into new directory '$1'... "
-  find "${_orig_dir}"_old -mindepth 1 -maxdepth 1 -exec cp -R '{}' "$1" \;
+  echo -n "Setting permissions on new directory '${_path}'... "
+  chmod "${_permissions}" "${_path}"
   echo "done"
-fi
 
-echo -n "Setting owner on new directory '$1'... "
-chown -R $3:$4 "$1"
-echo "done"
-
-if [[ -d "${_orig_dir}"_old ]]; then
-  echo -n "Removing backup of original directory '${_orig_dir}_old'... "
-  rm -rf "${_orig_dir}"_old
+  echo -n "Setting owner on new directory '${_path}'... "
+  chown "${_user}:${_group}" "${_path}"
   echo "done"
-fi
+
+  echo -n "Disabling CoW on new directory '${_path}'... "
+  chattr -R +C "${_path}"
+  echo "done"
+
+  if [[ -d "${_path_bak}" ]]; then
+    echo -n "Copying original files into new directory '${_path}'... "
+    find "${_path_bak}" -mindepth 1 -maxdepth 1 -exec cp -dpr '{}' "${_path}" \;
+    echo "done"
+  fi
+
+  if [[ -d "${_path_bak}" ]]; then
+    echo -n "Removing backup of original directory '${_path_bak}'... "
+    rm -rf "${_path_bak}"
+    echo "done"
+  fi
 }
