@@ -8,15 +8,16 @@
 #
 # Args
 #
-#   arg 1 = DIRECTORY to disable CoW on
-#   arg 2 = PERMISSIONS to chmod DIRECTORY to
-#   arg 3 = USER to chown DIRECTORY to
-#   arg 4 = GROUP to chown DIRECTORY to
+#   arg 1 = DIRECTORY to disable CoW on       (required)
+#   arg 2 = PERMISSIONS to chmod DIRECTORY to (optional)
+#   arg 3 = USER to chown DIRECTORY to        (optional)
+#   arg 4 = GROUP to chown DIRECTORY to       (optional)
 #
 # Examples
 #
 #   chattrify "DIRECTORY" "PERMISSIONS" "USER" "GROUP"
 #   chattrify "/var/log/journal" "755" "root" "systemd-journal"
+#   chattrify ~/.gnupg
 
 chattrify() {
   local _path
@@ -25,12 +26,14 @@ chattrify() {
   local _user
   local _group
 
+  [[ $# -gt 0 ]] || echo "No arguments supplied"; exit 1
+
   # remove trailing forward slashes from directory path
   _path="$(echo "$1" | sed 's,/\+$,,')"
   _path_bak="${_path}_old"
-  _permissions="$2"
-  _user="$3"
-  _group="$4"
+  _permissions="${2:-755}"
+  _user="${3:-$(id -un)}"
+  _group="${4:-$(id -gn)}"
 
   if [[ -d "${_path}" ]]; then
     echo -n "Moving original directory '${_path}' to '${_path_bak}'... "
