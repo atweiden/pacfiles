@@ -26,7 +26,10 @@ chattrify() {
   local _user
   local _group
 
-  [[ $# -gt 0 ]] || echo "No arguments supplied"; exit 1
+  if ! (($#)); then
+    echo "No arguments supplied"
+    exit 1
+  fi
 
   # remove trailing forward slashes from directory path
   _path="$(echo "$1" | sed 's,/\+$,,')"
@@ -72,3 +75,5 @@ chattrify() {
     echo "done"
   fi
 }
+
+chattrify "$@"
