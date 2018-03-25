@@ -25,9 +25,9 @@ srm_file() {
 srm_dir() {
   /usr/bin/find "$1" -mindepth 1 -maxdepth 1 -type d \
     | while read -r -d '' _d; do srm_dir "$_d"; done
-  /usr/bin/find "$1" -mindepth 1 -maxdepth 1 -type f \
+  /usr/bin/find "$1" -mindepth 1 -maxdepth 1 \
     | while read -r -d '' _f; do srm_file "$_f"; done
-  [[ -d "$1" ]] && /usr/bin/rm -rf "$1"
+  [[ -d "$1" ]] && /usr/bin/rmdir "$1"
 }
 
 quixand_rm_stragglers() {
@@ -47,3 +47,6 @@ quixand_down() {
   /usr/bin/quixand -p "${_quixand_files[@]}" -d "${_quixand_dirs[@]}"
   quixand_rm_stragglers
 }
+
+unset quixand_dirs quixand_files
+unset -f quixand_rm_stragglers srm_dir srm_file

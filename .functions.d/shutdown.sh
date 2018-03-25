@@ -19,3 +19,5 @@ slur() {
   [[ -x '/usr/bin/quixand' ]] && _quixand_down
   sudo reboot
 }
+
+unset -f _quixand_down
