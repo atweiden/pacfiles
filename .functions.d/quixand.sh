@@ -27,7 +27,7 @@ srm_dir() {
     | while read -r -d '' _d; do srm_dir "$_d"; done
   /usr/bin/find "$1" -mindepth 1 -maxdepth 1 -type f \
     | while read -r -d '' _f; do srm_file "$_f"; done
-  [[ -d "$1" ]] && rm -rf "$1"
+  [[ -d "$1" ]] && /usr/bin/rm -rf "$1"
 }
 
 quixand_rm_stragglers() {
