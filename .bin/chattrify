@@ -22,16 +22,14 @@ Usage:
             <directory> [<directory> <directory>..]
 
 Options:
-  -h, --help
-    Show this help text
-  -v, --verbose
-    Show verbose output
-  -p, --permissions <octal>
-    Permissions to chmod directory to (defaults to "$_PERMISSIONS")
-  -u, --user <username>
-    User to chown directory to (defaults to "$_USER")
-  -g, --group <groupname>
-    Group to chown directory to (defaults to "$_GROUP")
+  -h, --help                 Show this help text
+  -v, --verbose              Show verbose output
+  -p, --permissions <octal>  Octal file mode bits (defaults to "$_PERMISSIONS")
+  -u, --user <username>      Named user to own file (defaults to "$_USER")
+  -g, --group <groupname>    Named group to own file (defaults to "$_GROUP")
+
+Positionals:
+  <directory>                Path to directory
 EOF
 echo "$_usage_string"
 }
