@@ -1,19 +1,12 @@
-[[ -f ~/.bashrc ]] && source ~/.bashrc
+#
+# ~/.bash_profile
+#
 
-# quixand
-[[ -x /usr/bin/quixand ]] \
-  && quixand ~/.bash_history \
-             ~/.gmrun_history \
-             ~/.lesshst \
-             ~/.local/share/recently-used.xbel \
-             ~/.sdcv_history \
-             ~/.viminfo \
-             ~/.vim_mru_files \
-             -d ~/Sandbox \
-                ~/.cache \
-                ~/.thumbnails \
-                ~/.vim/.backups \
-                ~/.vim/.swaps \
-                ~/.vim/.tmp \
-                ~/.vim/.undo \
-                ~/.vim/view
+[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
+
+_quixand_up() {
+  [[ -f "$HOME/.functions.d/quixand.sh" ]] \
+    && source "$HOME/.functions.d/quixand.sh"
+  quixand_up
+}
+[[ -x '/usr/bin/quixand' ]] && _quixand_up
