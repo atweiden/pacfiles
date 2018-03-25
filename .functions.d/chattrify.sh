@@ -4,8 +4,6 @@
 # chattrify: disable Btrfs copy-on-write (CoW) for single directories
 # ----------------------------------------------------------------------------
 
-#                           (requires root)                                  #
-
 # ----------------------------------------------------------------------------
 #
 # Args
@@ -26,9 +24,6 @@ chattrify() {
   local _permissions
   local _user
   local _group
-
-  # check for root
-  [[ "${UID}" -eq 0 ]] || echo "chattrify requires root"; exit 1
 
   # remove trailing forward slashes from directory path
   _path="$(echo "$1" | sed 's,/\+$,,')"
