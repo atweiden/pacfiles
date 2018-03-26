@@ -47,6 +47,3 @@ quixand_down() {
   /usr/bin/quixand -p "${_quixand_files[@]}" -d "${_quixand_dirs[@]}"
   quixand_rm_stragglers
 }
-
-unset quixand_dirs quixand_files
-unset -f quixand_rm_stragglers srm_dir srm_file
