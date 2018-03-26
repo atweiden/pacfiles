@@ -37,4 +37,3 @@ _completemarks() {
 }
 
 complete -F _completemarks jump unmark
-unset -f _completemarks
