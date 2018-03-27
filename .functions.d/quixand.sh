@@ -19,7 +19,10 @@ _quixand_files=("$HOME/.bash_history"
                 "$HOME/.viminfo")
 
 srm_file() {
-  [[ -f "$1" ]] && /usr/bin/shred -vz -n 7 "$1" && /usr/bin/rm -f "$1"
+  if [[ -f "$1" ]]; then
+    /usr/bin/shred -vz -n 7 "$1"
+    /usr/bin/rm -f "$1"
+  fi
 }
 
 srm_dir() {
