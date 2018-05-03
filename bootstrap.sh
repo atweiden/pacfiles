@@ -4,8 +4,6 @@
 # usage
 # -----------------------------------------------------------------------------
 
-# _usage_function() {{{
-
 _usage_function() {
 read -r -d '' _usage_string <<'EOF'
 Usage:
@@ -29,8 +27,6 @@ Options:
 EOF
 echo "$_usage_string"
 }
-
-# end _usage_function() }}}
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
