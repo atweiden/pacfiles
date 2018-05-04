@@ -544,8 +544,12 @@ export CRYFS_NO_UPDATE_CHECK=true
 # ==============================================================================
 # gpg {{{
 
+# configure pinentry to use the correct tty
 GPG_TTY=$(tty)
 export GPG_TTY
+
+# refresh gpg-agent tty in case user switches into an x session
+gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # end gpg }}}
 # ==============================================================================
