@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# `-nolisten local` disables abstract sockets of X11 to help with
+# isolation: https://tstarling.com/blog/2016/06/x11-security-isolation/
+#
+# `vt$XDG_VTNR` starts Xorg on the same virtual terminal where the login
+# occurred in order to maintain an authenticated session with logind
+# and prevent bypassing the screen locker by switching terminals
+exec /usr/bin/Xorg -nolisten tcp -nolisten local "$@" "vt$XDG_VTNR"
