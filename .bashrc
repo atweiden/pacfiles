@@ -223,7 +223,7 @@ fi
 # --- end diff }}}
 # --- directory navigation {{{
 
-alias ls='ls --classify --color=auto --group-directories-first'
+alias ls='ls --classify --color=auto --group-directories-first --time-style=long-iso'
 alias l='ls -1'
 alias l1='ls -1A'
 alias la='ls -a'
