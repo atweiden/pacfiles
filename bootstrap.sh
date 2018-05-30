@@ -183,8 +183,8 @@ sed -i "s#yourusername#$username#" "$HOME/.config/yay/config.json"
 sed -i "s#yourname#$name#"         "$HOME/.config/git/config"
 sed -i "s#youremail#$email#"       "$HOME/.config/git/config"
 sed -i "s#yourgithubacct#$github#" "$HOME/.config/git/config"
-sed -i "s#yourname#$name#"         "$HOME/.hgrc"
-sed -i "s#youremail#$email#"       "$HOME/.hgrc"
+sed -i "s#yourname#$name#"         "$HOME/.config/hg/hgrc"
+sed -i "s#youremail#$email#"       "$HOME/.config/hg/hgrc"
 
 
 # -----------------------------------------------------------------------------
