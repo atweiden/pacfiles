@@ -180,9 +180,9 @@ sed -i "s#yourusername#$username#" "$HOME/.config/yay/config.json"
 # github
 # -----------------------------------------------------------------------------
 
-sed -i "s#yourname#$name#"         "$HOME/.gitconfig"
-sed -i "s#youremail#$email#"       "$HOME/.gitconfig"
-sed -i "s#yourgithubacct#$github#" "$HOME/.gitconfig"
+sed -i "s#yourname#$name#"         "$HOME/.config/git/config"
+sed -i "s#youremail#$email#"       "$HOME/.config/git/config"
+sed -i "s#yourgithubacct#$github#" "$HOME/.config/git/config"
 sed -i "s#yourname#$name#"         "$HOME/.hgrc"
 sed -i "s#youremail#$email#"       "$HOME/.hgrc"
 
