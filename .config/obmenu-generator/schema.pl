@@ -73,7 +73,7 @@ our $SCHEMA = [
     {begin_cat => ['Advanced Settings', 'gnome-settings']},
 
         # Configuration files
-        {item      => ["$editor ~/.conkyrc",              'Conky RC',    $editor]},
+        {item      => ["$editor ~/.config/conky/conkyrc", 'Conky RC',    $editor]},
         {item      => ["$editor ~/.config/tint2/tint2rc", 'Tint2 Panel', $editor]},
 
         # obmenu-generator category
