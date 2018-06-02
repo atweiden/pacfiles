@@ -1,4 +1,0 @@
-style "gvimfix" {
-  bg[NORMAL] = "#ffffff" # fix gvim buggy border colors
-}
-widget "vim-main-window.*GtkForm" style "gvimfix"
