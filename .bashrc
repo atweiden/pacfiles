@@ -277,7 +277,7 @@ alias h\?='history | grep -v -E "grep|h\?" | grep "$@" -i --color=auto'
 alias l\?='ls -1F | grep "$@" -i --color=auto'
 alias p\?='ps -a -x -f | grep -v grep | grep "$@" -i --color=auto'
 alias pkg\?='pacman -Q | grep -v grep | grep "$@" -i --color=auto'
-[[ -n "$_has_ack" ]] && alias ack='ack --ackrc $HOME/.config/ack/ackrc'
+[[ -n "$_has_ack" ]] && alias ack='ack --ackrc=$HOME/.config/ack/ackrc'
 [[ -n "$_has_ag" ]] && alias ag='ag --hidden --smart-case --skip-vcs-ignores'
 alias locate='locate --ignore-case'
 
