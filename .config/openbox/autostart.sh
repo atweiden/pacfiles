@@ -10,7 +10,7 @@
 [[ -x /usr/bin/xautolock && -x /usr/bin/xlock ]] \
   && xautolock -secure -time 7 -locker "/usr/bin/xlock -mode blank" -detectsleep &
 [[ -x /usr/bin/redshift ]] \
-  && redshift -c ~/.config/redshift/redshift.conf &
+  && redshift -c "$HOME/.config/redshift/redshift.conf" &
 [[ -x /usr/bin/pcmanfm ]] \
   && pcmanfm -d &
 [[ -x /usr/bin/cbatticon ]] \
