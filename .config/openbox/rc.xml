@@ -394,10 +394,10 @@
     </keybind>
     <keybind key="W-x">
       <action name="Execute">
-        <command>conkyswitcher</command>
+        <command>conky-switcher</command>
         <startupnotify>
           <enabled>yes</enabled>
-          <name>Switches conky</name>
+          <name>Switch between conkyrc files</name>
         </startupnotify>
       </action>
     </keybind>

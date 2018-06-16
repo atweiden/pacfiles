@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# ----------------------------------------------------------------------------
+# conky-switcher: switch between two different conkyrc files
+# ----------------------------------------------------------------------------
+
+_conkydir="$HOME/.config/conky"
+_activerc="$_conkydir/conkyrc"
+_hiddenrc="$_activerc.hidden"
+_poisedrc="$_activerc.poised"
+
+# exit with an error if ~/.config/conky/conkyrc{,.hidden} DNE
+[[ -f "$_activerc" && -f "$_hiddenrc" ]] || exit 1
+
+# exit with an error if ~/.config/conky/conkyrc.poised exists
+[[ -f "$_poisedrc" ]] && exit 1
+
+# swap conkyrc files
+mv "$_hiddenrc" "$_poisedrc" \
+  && mv "$_activerc" "$_hiddenrc" \
+  && mv "$_poisedrc" "$_activerc"
