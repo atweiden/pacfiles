@@ -9,10 +9,10 @@ Install Software
 ```sh
 # xorg
 pacman -S xautolock \
-          xlockmore \
           xdg-utils \
-          xorg-xkill \
+          xlockmore \
           xorg-drivers \
+          xorg-xkill \
           xorg-xmodmap \
           xterm
 
@@ -40,8 +40,8 @@ pacman -S adwaita-icon-theme \
           lxrandr-gtk3 \
           openbox \
           openbox-themes \
-          obmenu-generator \
           materia-gtk-theme
+pacaur -S obmenu-generator
 
 # graphics (nvidia)
 git clone https://gist.github.com/atweiden/701d14375996cf4823d369ef51169580
@@ -69,7 +69,7 @@ pacman -S cbatticon \
           wmctrl
 
 # fonts
-yay -S monaco-powerline-font-git \
-       ttf-google-fonts-git \
-       ttf-monaco
+pacaur -S monaco-powerline-font-git \
+          ttf-google-fonts-git \
+          ttf-monaco
 ```
