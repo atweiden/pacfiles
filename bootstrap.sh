@@ -115,6 +115,7 @@ _rsync_opts=()
 _rsync_opts+=('--exclude=.git'
               '--exclude=.hg'
               '--exclude=.subgit'
+              '--exclude=doc'
               '--exclude=bootstrap.sh'
               '--exclude=fetch-pgp-keys.sh'
               '--exclude=README.txt'

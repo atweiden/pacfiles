@@ -1,0 +1,75 @@
+/* vim: set ft=journal fdm=marker fdl=0 nowrap: */
+
+Installation
+============
+
+Install Software
+----------------
+
+```sh
+# xorg
+pacman -S xautolock \
+          xlockmore \
+          xdg-utils \
+          xorg-xkill \
+          xorg-drivers \
+          xorg-xmodmap \
+          xterm
+
+# audio
+pacman -S alsa-firmware \
+          alsa-utils \
+          pulseaudio \
+          pulseaudio-alsa
+
+# terminal emulators
+pacman -S lxterminal \
+          rxvt-unicode-pixbuf \
+          urxvt-perls \
+          xfce4-terminal
+
+# desktop
+pacman -S adwaita-icon-theme \
+          gnome-icon-theme \
+          gnome-icon-theme-extras \
+          gnome-menus \
+          gnome-themes-extra \
+          gtk-engines \
+          lxappearance-obconf-gtk3 \
+          lxinput-gtk3 \
+          lxrandr-gtk3 \
+          openbox \
+          openbox-themes \
+          obmenu-generator \
+          materia-gtk-theme
+
+# graphics (nvidia)
+git clone https://gist.github.com/atweiden/701d14375996cf4823d369ef51169580
+
+# desktop apps
+pacman -S cbatticon \
+          chromium \
+          compton \
+          conky \
+          dmenu \
+          feh \
+          firefox \
+          galculator \
+          gmrun \
+          gnumeric \
+          gvim \
+          keepassxc \
+          leafpad \
+          nitrogen \
+          pcmanfm \
+          redshift \
+          tint2 \
+          vlc \
+          volumeicon \
+          wmctrl
+
+# fonts
+yay -S monaco-powerline-font-git \
+       ttf-google-fonts-git \
+       ttf-monaco
+```
