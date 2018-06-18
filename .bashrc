@@ -42,6 +42,11 @@ export LC_ALL=en_US.UTF-8
 export MANPAGER="less $LESS"
 
 # --- end man pages }}}
+# --- opener {{{
+
+export OPENER='xdg-open'
+
+# --- end opener }}}
 # --- safety {{{
 
 # do not overwrite existing file by redirect `>`
