@@ -439,8 +439,8 @@ alias dt-zurich='_t=$(TZ=Europe/Zurich dt)            ; echo "[$_t] Zürich"'
 # --- end timestamp }}}
 # --- tmux {{{
 
-[[ -n $TMUX ]] && alias clear='clear; tmux clear-history'
-[[ -n $TMUX ]] && alias reset='reset; tmux clear-history'
+[[ -n "$TMUX" ]] && alias clear='clear; tmux clear-history'
+[[ -n "$TMUX" ]] && alias reset='reset; tmux clear-history'
 
 # --- end tmux }}}
 # --- vim {{{
