@@ -23,8 +23,8 @@ pacman -S alsa-firmware \
           pulseaudio-alsa
 
 # terminal emulators
+pacaur -S rxvt-unicode-pixbuf
 pacman -S lxterminal \
-          rxvt-unicode-pixbuf \
           urxvt-perls \
           xfce4-terminal
 
