@@ -185,6 +185,7 @@ _has_gdb=$(command -v gdb)
 _has_gvim=$(command -v gvim)
 _has_icdiff=$(command -v icdiff)
 _has_iex=$(command -v iex)
+_has_locate=$(command -v locate)
 _has_makepkg=$(command -v makepkg)
 _has_mosh=$(command -v mosh)
 _has_nvim=$(command -v nvim)
@@ -293,15 +294,21 @@ alias bzip2='bzip2 -9'
 alias grep='grep --ignore-case --color=auto'
 alias fgrep='fgrep --ignore-case --color=auto'
 alias egrep='egrep --ignore-case --color=auto'
-alias h\?='history | grep -v -E "grep|h\?" | grep "$@" -i --color=auto'
-alias l\?='ls -1F | grep "$@" -i --color=auto'
-alias p\?='ps -a -x -f | grep -v grep | grep "$@" -i --color=auto'
-alias pkg\?='pacman -Q | grep -v grep | grep "$@" -i --color=auto'
+alias h\?='history | grep -v -E "grep|h\?" | grep "$@"'
+alias ls\?='ls -1F | grep "$@"'
+alias ps\?='ps -a -x -f | grep -v grep | grep "$@"'
+alias pkg\?='pacman -Q | grep -v grep | grep "$@"'
 [[ -n "$_has_ack" ]] && alias ack='ack --ackrc=$HOME/.config/ack/ackrc'
 [[ -n "$_has_ag" ]] && alias ag='ag --hidden --smart-case --skip-vcs-ignores'
-alias locate='locate --ignore-case'
+[[ -n "$_has_locate" ]] && alias locate='locate --ignore-case'
 
 # --- end grepping }}}
+# --- ip {{{
+
+alias ip='drill -V 3 myip.opendns.com @resolver1.opendns.com | grep IN | tail -n 1 | cut -f5 -s'
+alias localip='ipconfig getifaddr en0'
+
+# --- end ip }}}
 # --- languages {{{
 
 # --- --- beam {{{
@@ -324,6 +331,11 @@ alias locate='locate --ignore-case'
 [[ -n "$_has_makepkg" ]] && alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
 
 # --- end pacman }}}
+# --- path {{{
+
+alias path='echo -e ${PATH//:/\\n}'
+
+# --- end path }}}
 # --- processes {{{
 
 alias ps='ps --forest'
@@ -352,6 +364,11 @@ alias rm='rm -i'
 [[ -n "$_has_mosh" ]] && alias mosh='mosh -a'
 
 # --- end ssh }}}
+# --- stopwatch {{{
+
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# --- end stopwatch }}}
 # --- systemctl {{{
 
 [[ -n "$_has_systemctl" ]] && alias userctl='systemctl --user'
