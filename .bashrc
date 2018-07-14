@@ -305,8 +305,8 @@ alias pkg\?='pacman -Q | grep -v grep | grep "$@"'
 # --- end grepping }}}
 # --- ip {{{
 
-alias ip='drill -V 3 myip.opendns.com @resolver1.opendns.com | grep IN | tail -n 1 | cut -f5 -s'
-alias localip='ipconfig getifaddr en0'
+alias localip='hostname -i'
+alias publicip='drill -V 3 myip.opendns.com @resolver1.opendns.com | grep IN | tail -n 1 | cut -f5 -s'
 
 # --- end ip }}}
 # --- languages {{{
