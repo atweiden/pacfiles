@@ -94,8 +94,7 @@ longitude="${_longitude:--122.676482}" # Longitude (Redshift)
 # -----------------------------------------------------------------------------
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-mkdir -p "$HOME/.marks"    \
-         "$HOME/.src"      \
+mkdir -p "$HOME/.src"      \
          "$HOME/Desktop"   \
          "$HOME/Documents" \
          "$HOME/Downloads" \
