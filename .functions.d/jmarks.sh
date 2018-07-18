@@ -2,10 +2,11 @@
 
 # -----------------------------------------------------------------------------
 # jmarks: quickly navigate your filesystem from the command-line
-# http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
+#
+# credit: http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 # -----------------------------------------------------------------------------
 
-readonly MARKPATH="$HOME/.marks"
+readonly MARKPATH="$HOME/.config/jmarks"
 
 jump() {
   mkdir -p "$MARKPATH"
@@ -38,3 +39,5 @@ _completemarks() {
 
 complete -F _completemarks jump unmark
 export MARKPATH
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:
