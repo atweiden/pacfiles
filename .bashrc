@@ -350,7 +350,7 @@ alias ps='ps --forest'
 # --- end processes }}}
 # --- rclone {{{
 
-[[ -n "$_has_rclone" ]] && alias rclone='rclone --transfers=16 --checkers=32 --ignore-size --low-level-retries 7 --retries 25 --delete-after'
+[[ -n "$_has_rclone" ]] && alias rclone='rclone --transfers=16 --checkers=32 --ignore-size --low-level-retries=7 --retries=25 --delete-after'
 
 # --- end rclone }}}
 # --- subrepo {{{
