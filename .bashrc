@@ -191,6 +191,7 @@ _has_makepkg=$(command -v makepkg)
 _has_mosh=$(command -v mosh)
 _has_nvim=$(command -v nvim)
 _has_perl6=$(command -v perl6)
+_has_pkgcacheclean=$(command -v pkgcacheclean)
 _has_pt=$(command -v pt)
 _has_rclone=$(command -v rclone)
 _has_rg=$(command -v rg)
@@ -336,6 +337,7 @@ alias publicip='drill -V 3 myip.opendns.com @resolver1.opendns.com | grep IN | t
 # --- pacman {{{
 
 [[ -n "$_has_makepkg" ]] && alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
+[[ -n "$_has_pkgcacheclean" ]] && alias pkgcacheclean='pkgcacheclean --human-readable'
 
 # --- end pacman }}}
 # --- path {{{
