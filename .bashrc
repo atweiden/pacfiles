@@ -189,6 +189,7 @@ _has_irssi=$(command -v irssi)
 _has_locate=$(command -v locate)
 _has_makepkg=$(command -v makepkg)
 _has_mosh=$(command -v mosh)
+_has_ncdu=$(command -v ncdu)
 _has_nvim=$(command -v nvim)
 _has_perl6=$(command -v perl6)
 _has_pkgcacheclean=$(command -v pkgcacheclean)
@@ -277,6 +278,7 @@ alias :q='exit'
 alias df='df -h'
 alias du='du -h --max-depth=1'
 alias dusort='du -x --block-size=1048576 | sort -nr'
+[[ -n "$_has_ncdu" ]] && alias ncdu='ncdu --color dark -rr -x --si --confirm-quit --exclude-from $HOME/.ignore'
 
 # --- end disk space }}}
 # --- file compression {{{
