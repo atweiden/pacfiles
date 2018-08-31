@@ -585,9 +585,12 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bin
 [[ -x "$HOME/.vim/plugged/fzf.vim/bin/preview.sh" ]] \
   && export FZF_CTRL_T_OPTS="--preview '$HOME/.vim/plugged/fzf.vim/bin/preview.sh {} | head -200'"
 
-# create fzf key bindings
-[[ -e "/etc/profile.d/fzf.bash" ]] && source /etc/profile.d/fzf.bash
-[[ -e "/etc/profile.d/fzf-extras.bash" ]] && source /etc/profile.d/fzf-extras.bash
+# source fzf key bindings
+[[ -e "/etc/profile.d/fzf.bash" ]] \
+  && source /etc/profile.d/fzf.bash
+# source fzf functions
+[[ -e "/etc/profile.d/fzf-extras.bash" ]] \
+  && source /etc/profile.d/fzf-extras.bash
 
 # end fzf }}}
 # ==============================================================================
