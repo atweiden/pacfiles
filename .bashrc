@@ -615,6 +615,12 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # end gpg }}}
 # ==============================================================================
+# screen {{{
+
+export SCREENRC="$HOME/.config/screen/screenrc"
+
+# end screen }}}
+# ==============================================================================
 # pg {{{
 
 export PSQLRC="$HOME/.config/pg/psqlrc"
