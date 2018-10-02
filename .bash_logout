@@ -8,3 +8,4 @@ _quixand_down() {
   quixand_down
 }
 [[ -x '/usr/bin/quixand' ]] && _quixand_down
+clear
