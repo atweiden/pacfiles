@@ -309,7 +309,7 @@ alias pkg\?='pacman -Q | grep -v grep | grep "$@"'
 # --- end grepping }}}
 # --- ip {{{
 
-alias localip='hostname -i'
+alias localip="ip -o -4 route get 1 | awk '/src/ {print \$7}'"
 alias publicip='drill -V 3 myip.opendns.com @resolver1.opendns.com | grep IN | tail -n 1 | cut -f5 -s'
 
 # --- end ip }}}
