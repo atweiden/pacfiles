@@ -2,7 +2,7 @@
   && source "$HOME/.bashrc"
 
 _quixand_up() {
-  [[ -f "$HOME/.functions.d/quixand.sh" ]] \
+  [[ -r "$HOME/.functions.d/quixand.sh" ]] \
     && source "$HOME/.functions.d/quixand.sh"
   quixand_up
 }
