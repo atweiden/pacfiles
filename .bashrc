@@ -2,7 +2,8 @@
 # base {{{
 
 # if not running interactively, don't do anything
-[[ $- != *i* ]] && return
+[[ $- != *i* ]] \
+  && return
 
 # end base }}}
 # ==============================================================================
@@ -11,15 +12,15 @@
 # --- editor {{{
 
 set -o vi
-export EDITOR=vim
-export FCEDIT=vim
-export VISUAL=vim
-export SUDO_EDITOR=rvim
+export EDITOR='vim'
+export FCEDIT='vim'
+export VISUAL='vim'
+export SUDO_EDITOR='rvim'
 
 # --- end editor }}}
 # --- history {{{
 
-export HISTCONTROL=ignoreboth
+export HISTCONTROL='ignoreboth'
 export HISTIGNORE='l:ls:cd:exit'
 export HISTSIZE=
 export HISTFILESIZE=
@@ -32,8 +33,8 @@ export LESS='-RSX'
 # --- end less }}}
 # --- locale {{{
 
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
 
 # --- end locale }}}
 # --- man pages {{{
@@ -77,7 +78,8 @@ shopt -s no_empty_cmd_completion
 # --- end shopt }}}
 # --- tmpdir {{{
 
-[[ -z "$TMPDIR" ]] && export TMPDIR=/tmp
+[[ -z "$TMPDIR" ]] \
+  && export TMPDIR='/tmp'
 
 # --- end tmpdir }}}
 # --- xdg {{{
@@ -94,41 +96,60 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 # --- display {{{
 
-if [[ "x$DISPLAY" != "x" ]]; then
-  export HAS_256_COLORS=yes
-  alias tmux="tmux -2"
-  [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color-it
+if [[ "x$DISPLAY" != 'x' ]]; then
+  export HAS_256_COLORS='yes'
+  alias tmux='tmux -2'
+  if [[ "$TERM" == 'xterm' ]]; then
+    export TERM='xterm-256color'
+  fi
 else
-  if [[ "$TERM" == "xterm" || "$TERM" =~ "256color" ]]; then
-    export HAS_256_COLORS=yes
-    alias tmux="tmux -2"
+  if [[ "$TERM" == 'xterm' || "$TERM" =~ '256color' ]]; then
+    export HAS_256_COLORS='yes'
+    alias tmux='tmux -2'
   fi
 fi
-if [[ "$TERM" == "screen" && "$HAS_256_COLORS" == "yes" ]]; then
-  export TERM=screen-256color-it
-elif [[ "$TERM" == "tmux" && "$HAS_256_COLORS" == "yes" ]]; then
-  export TERM=tmux-256color
+if [[ "$TERM" == 'screen' && "$HAS_256_COLORS" == 'yes' ]]; then
+  export TERM='screen-256color'
+elif [[ "$TERM" == 'tmux' && "$HAS_256_COLORS" == 'yes' ]]; then
+  export TERM='tmux-256color'
 fi
 
 # miro8 console colors by jwr
 if [[ "$TERM" == "linux" || "$TERM" == "vt100" || "$TERM" == "vt220" ]]; then
-   echo -en "\e]P0000000" #black
-   echo -en "\e]P83d3d3d" #darkgrey
-   echo -en "\e]P18c4665" #darkred
-   echo -en "\e]P9bf4d80" #red
-   echo -en "\e]P2287373" #darkgreen
-   echo -en "\e]PA53a6a6" #green
-   echo -en "\e]P37c7c99" #brown
-   echo -en "\e]PB9e9ecb" #yellow
-   echo -en "\e]P4395573" #darkblue
-   echo -en "\e]PC477ab3" #blue
-   echo -en "\e]P55e468c" #darkmagenta
-   echo -en "\e]PD7e62b3" #magenta
-   echo -en "\e]P631658c" #darkcyan
-   echo -en "\e]PE6096bf" #cyan
-   echo -en "\e]P7899ca1" #lightgrey
-   echo -en "\e]PFc0c0c0" #white
-   clear # bring us back to default input colours
+   # black
+   echo -en "\e]P0000000"
+   # darkgrey
+   echo -en "\e]P83d3d3d"
+   # darkred
+   echo -en "\e]P18c4665"
+   # red
+   echo -en "\e]P9bf4d80"
+   # darkgreen
+   echo -en "\e]P2287373"
+   # green
+   echo -en "\e]PA53a6a6"
+   # brown
+   echo -en "\e]P37c7c99"
+   # yellow
+   echo -en "\e]PB9e9ecb"
+   # darkblue
+   echo -en "\e]P4395573"
+   # blue
+   echo -en "\e]PC477ab3"
+   # darkmagenta
+   echo -en "\e]P55e468c"
+   # magenta
+   echo -en "\e]PD7e62b3"
+   # darkcyan
+   echo -en "\e]P631658c"
+   # cyan
+   echo -en "\e]PE6096bf"
+   # lightgrey
+   echo -en "\e]P7899ca1"
+   # white
+   echo -en "\e]PFc0c0c0"
+   # bring us back to default input colours
+   clear
 fi
 
 # --- end display }}}
@@ -149,7 +170,7 @@ unset PATH
 
 # --- defaults {{{
 
-PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
+PATH='/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin'
 
 # --- end defaults }}}
 # --- dotfiles {{{
@@ -159,12 +180,16 @@ PATH="$HOME/.bin:$PATH"
 # --- end dotfiles }}}
 # --- perl {{{
 
-PATH="/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/site_perl:$PATH"
+PATH="/usr/bin/vendor_perl:$PATH"
+PATH="/usr/bin/core_perl:$PATH"
+PATH="/usr/bin/site_perl:$PATH"
 
 # --- end perl }}}
 # --- perl6 {{{
 
-PATH="$HOME/.perl6/bin:/usr/share/perl6/site/bin:/usr/share/perl6/vendor/bin:$PATH"
+PATH="$HOME/.perl6/bin:$PATH"
+PATH="/usr/share/perl6/site/bin:$PATH"
+PATH="/usr/share/perl6/vendor/bin:$PATH"
 
 # --- end perl6 }}}
 
@@ -174,38 +199,39 @@ export PATH
 # ==============================================================================
 # presence {{{
 
-_has_ack=$(command -v ack)
-_has_ag=$(command -v ag)
-_has_archversion=$(command -v archversion)
-_has_colordiff=$(command -v colordiff)
-_has_curl=$(command -v curl)
-_has_electrum=$(command -v electrum)
-_has_erl=$(command -v erl)
-_has_gdb=$(command -v gdb)
-_has_gvim=$(command -v gvim)
-_has_icdiff=$(command -v icdiff)
-_has_iex=$(command -v iex)
-_has_irssi=$(command -v irssi)
-_has_locate=$(command -v locate)
-_has_makepkg=$(command -v makepkg)
-_has_mosh=$(command -v mosh)
-_has_ncdu=$(command -v ncdu)
-_has_nvim=$(command -v nvim)
-_has_perl6=$(command -v perl6)
-_has_pkgcacheclean=$(command -v pkgcacheclean)
-_has_pt=$(command -v pt)
-_has_rclone=$(command -v rclone)
-_has_rg=$(command -v rg)
-_has_rlwrap=$(command -v rlwrap)
-_has_sqlite3=$(command -v sqlite3)
-_has_subgit=$(command -v subgit)
-_has_subhg=$(command -v subhg)
-_has_systemctl=$(command -v systemctl)
-_has_tree=$(command -v tree)
-_has_vim=$(command -v vim)
-_has_wget=$(command -v wget)
-_has_xautolock=$(command -v xautolock)
-_has_zbarcam=$(command -v zbarcam)
+_has_ack="$(command -v ack)"
+_has_ag="$(command -v ag)"
+_has_archversion="$(command -v archversion)"
+_has_colordiff="$(command -v colordiff)"
+_has_curl="$(command -v curl)"
+_has_electrum="$(command -v electrum)"
+_has_erl="$(command -v erl)"
+_has_gdb="$(command -v gdb)"
+_has_gvim="$(command -v gvim)"
+_has_icdiff="$(command -v icdiff)"
+_has_iex="$(command -v iex)"
+_has_irssi="$(command -v irssi)"
+_has_locate="$(command -v locate)"
+_has_makepkg="$(command -v makepkg)"
+_has_mosh="$(command -v mosh)"
+_has_ncdu="$(command -v ncdu)"
+_has_nvim="$(command -v nvim)"
+_has_pcmanfm="$(command -v pcmanfm)"
+_has_perl6="$(command -v perl6)"
+_has_pkgcacheclean="$(command -v pkgcacheclean)"
+_has_pt="$(command -v pt)"
+_has_rclone="$(command -v rclone)"
+_has_rg="$(command -v rg)"
+_has_rlwrap="$(command -v rlwrap)"
+_has_sqlite3="$(command -v sqlite3)"
+_has_subgit="$(command -v subgit)"
+_has_subhg="$(command -v subhg)"
+_has_systemctl="$(command -v systemctl)"
+_has_tree="$(command -v tree)"
+_has_vim="$(command -v vim)"
+_has_wget="$(command -v wget)"
+_has_xautolock="$(command -v xautolock)"
+_has_zbarcam="$(command -v zbarcam)"
 
 # end presence }}}
 # ==============================================================================
@@ -213,12 +239,17 @@ _has_zbarcam=$(command -v zbarcam)
 
 # --- history {{{
 
-export PROMPT_COMMAND="history -a; history -c; history -r"
+export PROMPT_COMMAND='history -a; history -c; history -r'
 
 # --- end history }}}
 # --- ps1 {{{
 
-PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
+unset PS1
+PS1+="\[\e[01;31m\]"
+PS1+="┌─[\[\e[01;35m\u\e[01;31m\]]"
+PS1+="──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]"
+PS1+="└──\[\e[01;36m\]>>\[\e[0m\]"
+export PS1
 
 # --- end ps1 }}}
 
@@ -228,19 +259,24 @@ PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME
 
 # --- archversion {{{
 
-[[ -n "$_has_archversion" ]] && alias avs='archversion sync && archversion report --new'
-[[ -n "$_has_archversion" ]] && alias avr='archversion report --new'
+[[ -n "$_has_archversion" ]] \
+  && alias avs='archversion sync && archversion report --new'
+[[ -n "$_has_archversion" ]] \
+  && alias avr='archversion report --new'
 
 # --- end archversion }}}
 # --- curl {{{
 
-[[ -n "$_has_curl" ]] && alias curl='curl --config $HOME/.config/curl/curlrc'
+[[ -n "$_has_curl" ]] \
+  && alias curl='curl --config $HOME/.config/curl/curlrc'
 
 # --- end curl }}}
 # --- dbs {{{
 
-[[ -n "$_has_sqlite3" ]] && alias sqlite3='sqlite3 -init $HOME/.config/sqlite3/sqliterc'
-[[ -n "$_has_sqlite3" ]] && alias sql='sqlite3 -interactive :memory:'
+[[ -n "$_has_sqlite3" ]] \
+  && alias sqlite3='sqlite3 -init $HOME/.config/sqlite3/sqliterc'
+[[ -n "$_has_sqlite3" ]] \
+  && alias sql='sqlite3 -interactive :memory:'
 
 # --- end dbs }}}
 # --- diff {{{
@@ -254,12 +290,17 @@ fi
 # --- end diff }}}
 # --- directory navigation {{{
 
-alias ls='ls --classify --color=auto --group-directories-first --time-style=long-iso'
+alias ls='ls \
+  --classify \
+  --color=auto \
+  --group-directories-first \
+  --time-style=long-iso'
 alias l='ls -1'
 alias l1='ls -1A'
 alias la='ls -a'
 alias ll='ls -laih'
-[[ -n "$_has_tree" ]] && alias tree='tree -C --charset utf-8 --dirsfirst'
+[[ -n "$_has_tree" ]] \
+  && alias tree='tree -C --charset utf-8 --dirsfirst'
 alias ..='cd ..'
 alias ..2='cd ../..'
 alias ..3='cd ../../..'
@@ -269,7 +310,8 @@ alias cdd='cd $HOME/Downloads'
 alias cdg='cd $(git rev-parse --show-cdup)'
 alias cdp='cd $HOME/Projects'
 alias cds='cd $HOME/.src'
-[[ -x /usr/bin/pcmanfm ]] && alias :o='pcmanfm "$PWD" &'
+[[ -n "$_has_pcmanfm" ]] \
+  && alias :o='pcmanfm "$PWD" &'
 alias :q='exit'
 
 # --- end directory navigation }}}
@@ -278,7 +320,14 @@ alias :q='exit'
 alias df='df -h'
 alias du='du -h --max-depth=1'
 alias dusort='du -x --block-size=1048576 | sort -nr'
-[[ -n "$_has_ncdu" ]] && alias ncdu='ncdu --color dark -rr -x --si --confirm-quit --exclude-from $HOME/.ignore'
+[[ -n "$_has_ncdu" ]] \
+  && alias ncdu='ncdu \
+    --color dark \
+    -rr \
+    -x \
+    --si \
+    --confirm-quit \
+    --exclude-from $HOME/.ignore'
 
 # --- end disk space }}}
 # --- file compression {{{
@@ -290,7 +339,8 @@ alias bzip2='bzip2 -9'
 # --- end file compression }}}
 # --- gdb {{{
 
-[[ -n "$_has_gdb" ]] && alias gdb='gdb -q -nh -x $HOME/.config/gdb/init'
+[[ -n "$_has_gdb" ]] \
+  && alias gdb='gdb -q -nh -x $HOME/.config/gdb/init'
 
 # --- end gdb }}}
 # --- grepping {{{
@@ -298,51 +348,69 @@ alias bzip2='bzip2 -9'
 alias grep='grep --ignore-case --color=auto'
 alias fgrep='fgrep --ignore-case --color=auto'
 alias egrep='egrep --ignore-case --color=auto'
-alias h\?='history | grep -v -E "grep|h\?" | grep "$@"'
+alias history\?='history | grep -v -E "grep|h\?" | grep "$@"'
 alias ls\?='ls -1F | grep "$@"'
 alias ps\?='ps -a -x -f | grep -v grep | grep "$@"'
 alias pkg\?='pacman -Q | grep -v grep | grep "$@"'
-[[ -n "$_has_ack" ]] && alias ack='ack --ackrc=$HOME/.config/ack/ackrc'
-[[ -n "$_has_ag" ]] && alias ag='ag --hidden --smart-case --skip-vcs-ignores'
-[[ -n "$_has_rg" ]] && alias rg='rg --hidden --smart-case'
-[[ -n "$_has_locate" ]] && alias locate='locate --ignore-case'
+[[ -n "$_has_ack" ]] \
+  && alias ack='ack --ackrc=$HOME/.config/ack/ackrc'
+[[ -n "$_has_ag" ]] \
+  && alias ag='ag --hidden --smart-case --skip-vcs-ignores'
+[[ -n "$_has_rg" ]] \
+  && alias rg='rg --hidden --smart-case'
+[[ -n "$_has_locate" ]] \
+  && alias locate='locate --ignore-case'
 
 # --- end grepping }}}
 # --- ip {{{
 
 INTERFACE="$(ip -o -4 route show to default | awk '/dev/ {print $5}')"
-alias macaddr="ip -0 addr show dev $INTERFACE | awk '/link/ && /ether/ {print \$2}' | tr '[:upper:]' '[:lower:]'"
+alias macaddr="ip -0 addr show dev $INTERFACE \
+  | awk '/link/ && /ether/ {print \$2}' \
+  | tr '[:upper:]' '[:lower:]'"
 alias localip="ip -o -4 route get 1 | awk '/src/ {print \$7}'"
-alias publicip='drill -V 3 myip.opendns.com @resolver1.opendns.com | grep IN | tail -n 1 | cut -f5 -s'
+alias publicip='drill -V 3 myip.opendns.com @resolver1.opendns.com \
+  | grep IN \
+  | tail -n 1 \
+  | cut -f5 -s'
 
 # --- end ip }}}
 # --- irssi {{{
 
 [[ -n "$_has_irssi" ]] \
-  && alias irssi='irssi --config=$HOME/.config/irssi/config --home=$HOME/.config/irssi'
+  && alias irssi='irssi \
+    --config=$HOME/.config/irssi/config \
+    --home=$HOME/.config/irssi'
 
 # --- end irssi }}}
 # --- languages {{{
 
 # --- --- beam {{{
 
-[[ -n "$_has_iex" && -n "$_has_rlwrap" ]] && alias iex='rlwrap --always-readline --ansi-colour-aware iex'
-[[ -n "$_has_erl" && -n "$_has_rlwrap" ]] && alias erl='rlwrap --always-readline --ansi-colour-aware erl'
+[[ -n "$_has_erl" && -n "$_has_rlwrap" ]] \
+  && alias erl='rlwrap --always-readline --ansi-colour-aware erl'
+[[ -n "$_has_iex" && -n "$_has_rlwrap" ]] \
+  && alias iex='rlwrap --always-readline --ansi-colour-aware iex'
 
 # --- --- end beam }}}
 # --- --- perl6 {{{
 
-[[ -n "$_has_perl6" ]] && alias p6='perl6'
-[[ -n "$_has_perl6" ]] && alias prove6='prove -r -e perl6'
-[[ -n "$_has_perl6" && -n "$_has_rlwrap" ]] && alias rp='rlwrap perl6'
+[[ -n "$_has_perl6" ]] \
+  && alias p6='perl6'
+[[ -n "$_has_perl6" ]] \
+  && alias prove6='prove -r -e perl6'
+[[ -n "$_has_perl6" && -n "$_has_rlwrap" ]] \
+  && alias rp='rlwrap perl6'
 
 # --- --- end perl6 }}}
 
 # --- end languages }}}
 # --- pacman {{{
 
-[[ -n "$_has_makepkg" ]] && alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
-[[ -n "$_has_pkgcacheclean" ]] && alias pkgcacheclean='pkgcacheclean --human-readable'
+[[ -n "$_has_makepkg" ]] \
+  && alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
+[[ -n "$_has_pkgcacheclean" ]] \
+  && alias pkgcacheclean='pkgcacheclean --human-readable'
 
 # --- end pacman }}}
 # --- path {{{
@@ -357,13 +425,22 @@ alias ps='ps --forest'
 # --- end processes }}}
 # --- rclone {{{
 
-[[ -n "$_has_rclone" ]] && alias rclone='rclone --transfers=16 --checkers=32 --ignore-size --low-level-retries=7 --retries=25 --delete-after'
+[[ -n "$_has_rclone" ]] \
+  && alias rclone='rclone \
+    --transfers=16 \
+    --checkers=32 \
+    --ignore-size \
+    --low-level-retries=7 \
+    --retries=25 \
+    --delete-after'
 
 # --- end rclone }}}
 # --- subrepo {{{
 
-[[ -n "$_has_subgit" ]] && alias sg='subgit'
-[[ -n "$_has_subhg" ]] && alias shg='subhg'
+[[ -n "$_has_subgit" ]] \
+  && alias sg='subgit'
+[[ -n "$_has_subhg" ]] \
+  && alias shg='subhg'
 
 # --- end subrepo }}}
 # --- safety {{{
@@ -375,22 +452,28 @@ alias rm='rm -i'
 # --- end safety }}}
 # --- ssh {{{
 
-[[ -n "$_has_mosh" ]] && alias mosh='mosh -a'
+[[ -n "$_has_mosh" ]] \
+  && alias mosh='mosh -a'
 
 # --- end ssh }}}
 # --- stopwatch {{{
 
-alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+alias timer='echo "Timer started. Stop with Ctrl-D." \
+  && date \
+  && time cat \
+  && date'
 
 # --- end stopwatch }}}
 # --- systemctl {{{
 
-[[ -n "$_has_systemctl" ]] && alias userctl='systemctl --user'
+[[ -n "$_has_systemctl" ]] \
+  && alias userctl='systemctl --user'
 
 # --- end systemctl }}}
 # --- text {{{
 
-alias hr='printf "$(printf "\e["$(shuf -i 91-97 -n 1)";1m%%%ds\e[0m\n" "$(tput cols)")" | tr " " ='
+alias hr='printf "$(printf "\e["$(shuf -i 91-97 -n 1)";1m%%%ds\e[0m\n" "$(tput cols)")" \
+  | tr " " ='
 
 # --- end text }}}
 # --- timestamp {{{
@@ -477,41 +560,68 @@ alias dt-zurich='_t=$(TZ=Europe/Zurich dt)            ; echo "[$_t] Zürich"'
 # --- end timestamp }}}
 # --- tmux {{{
 
-[[ -n "$TMUX" ]] && alias clear='clear; tmux clear-history'
-[[ -n "$TMUX" ]] && alias reset='reset; tmux clear-history'
+[[ -n "$TMUX" ]] \
+  && alias clear='clear; tmux clear-history'
+[[ -n "$TMUX" ]] \
+  && alias reset='reset; tmux clear-history'
 
 # --- end tmux }}}
 # --- vim {{{
 
 alias :e='"$EDITOR"'
 # if not in X, tell vim not to attempt connection w/ X server
-[[ -z "$DISPLAY" ]] && alias vim='vim -X'
-[[ -n "$_has_vim" ]] && alias view='vim -R'
-[[ -n "$_has_vim" ]] && alias vime='vim -u $HOME/.vim/vimrc.encrypt -x'
-[[ -n "$_has_vim" ]] && alias viml='vim -u $HOME/.vim/vimrc.lite'
-[[ -n "$_has_vim" ]] && alias vimmin='vim -u NONE -U NONE --cmd "set nocompatible | syntax on | filetype plugin indent on"'
-[[ -n "$_has_gvim" ]] && alias gview='gvim -R'
-[[ -n "$_has_gvim" ]] && alias gvime='gvim -u $HOME/.vim/vimrc.encrypt -x'
-[[ -n "$_has_gvim" ]] && alias gviml='gvim -u $HOME/.vim/vimrc.lite'
-[[ -n "$_has_gvim" ]] && alias gvimmin='gvim -u NONE -U NONE --cmd "set nocompatible | syntax on | filetype plugin indent on"'
-[[ -n "$_has_nvim" ]] && alias nv='nvim'
-[[ -n "$_has_nvim" ]] && alias nview='nvim -R'
+[[ -z "$DISPLAY" ]] \
+  && alias vim='vim -X'
+[[ -n "$_has_vim" ]] \
+  && alias view='vim -R'
+[[ -n "$_has_vim" ]] \
+  && alias vime='vim -u $HOME/.vim/vimrc.encrypt -x'
+[[ -n "$_has_vim" ]] \
+  && alias viml='vim -u $HOME/.vim/vimrc.lite'
+[[ -n "$_has_vim" ]] \
+  && alias vimmin='vim \
+    -u NONE \
+    -U NONE \
+    --cmd "set nocompatible | syntax on | filetype plugin indent on"'
+[[ -n "$_has_gvim" ]] \
+  && alias gview='gvim -R'
+[[ -n "$_has_gvim" ]] \
+  && alias gvime='gvim -u $HOME/.vim/vimrc.encrypt -x'
+[[ -n "$_has_gvim" ]] \
+  && alias gviml='gvim -u $HOME/.vim/vimrc.lite'
+[[ -n "$_has_gvim" ]] \
+  && alias gvimmin='gvim \
+    -u NONE \
+    -U NONE \
+    --cmd "set nocompatible | syntax on | filetype plugin indent on"'
+[[ -n "$_has_nvim" ]] \
+  && alias nv='nvim'
+[[ -n "$_has_nvim" ]] \
+  && alias nview='nvim -R'
 
 # --- end vim }}}
 # --- wget {{{
 
-[[ -n "$_has_wget" ]] && alias wget='wget --hsts-file=$HOME/.config/wget/wget-hsts'
+[[ -n "$_has_wget" ]] \
+  && alias wget='wget --hsts-file=$HOME/.config/wget/wget-hsts'
 
 # --- end wget }}}
 # --- xautolock {{{
 
-[[ -n "$_has_xautolock" ]] && alias xautolock-start='xautolock -secure -time 7 -locker "/usr/bin/xlock -mode blank" -detectsleep &'
+[[ -n "$_has_xautolock" ]] \
+  && alias xautolock-start='xautolock \
+    -secure \
+    -time 7 \
+    -locker "/usr/bin/xlock -mode blank" \
+    -detectsleep &'
 
 # --- end xautolock }}}
 # --- zbar {{{
 
-[[ -n "$_has_electrum" ]] && alias electrum='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so electrum'
-[[ -n "$_has_zbarcam" ]] && alias zbarcam='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam'
+[[ -n "$_has_electrum" ]] \
+  && alias electrum='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so electrum'
+[[ -n "$_has_zbarcam" ]] \
+  && alias zbarcam='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam'
 
 # --- end zbar }}}
 
@@ -519,20 +629,22 @@ alias :e='"$EDITOR"'
 # ==============================================================================
 # functions {{{
 
-for _fn in $(find "$HOME/.functions.d" -type f -name "*.sh"); do source "$_fn"; done
+for _fn in $(find "$HOME/.functions.d" -type f -name "*.sh"); do
+  source "$_fn"
+done
 
 # end functions }}}
 # ==============================================================================
 # completions {{{
 
-[[ -r /usr/share/bash-completion/bash_completion ]] \
+[[ -r '/usr/share/bash-completion/bash_completion' ]] \
   && source /usr/share/bash-completion/bash_completion
 
 # end completions }}}
 # ==============================================================================
 # archinfo {{{
 
-if [[ -x "$HOME/.bin/archinfo" ]] && [[ -z "$VIMRUNTIME" ]]; then
+if [[ -x "$HOME/.bin/archinfo" && -z "$VIMRUNTIME" ]]; then
   if ! [[ "$UID" == '0' ]]; then
     archinfo
   else
@@ -545,7 +657,7 @@ fi
 # beam {{{
 
 # enable repl history
-export ERL_AFLAGS="-kernel shell_history enabled"
+export ERL_AFLAGS='-kernel shell_history enabled'
 
 # end beam }}}
 # ==============================================================================
@@ -553,13 +665,31 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # use rg/ag/pt/ack as the default source for fzf
 if [[ -n "$_has_rg" ]]; then
-  export FZF_DEFAULT_COMMAND='rg --hidden --smart-case --color never --ignore-vcs --files -g ""'
+  export FZF_DEFAULT_COMMAND='rg \
+    --hidden \
+    --smart-case \
+    --color never \
+    --ignore-vcs \
+    --files \
+    -g ""'
 elif [[ -n "$_has_ag" ]]; then
-  export FZF_DEFAULT_COMMAND='ag --hidden --smart-case --nocolor --skip-vcs-ignores -g ""'
+  export FZF_DEFAULT_COMMAND='ag \
+    --hidden \
+    --smart-case \
+    --nocolor \
+    --skip-vcs-ignores \
+    -g ""'
 elif [[ -n "$_has_pt" ]]; then
-  export FZF_DEFAULT_COMMAND='pt --hidden --nocolor -e -g=""'
+  export FZF_DEFAULT_COMMAND='pt \
+    --hidden \
+    --nocolor \
+    -e \
+    -g=""'
 elif [[ -n "$_has_ack" ]]; then
-  export FZF_DEFAULT_COMMAND='ack --nocolor --nopager -g ""'
+  export FZF_DEFAULT_COMMAND='ack \
+    --nocolor \
+    --nopager \
+    -g ""'
 fi
 
 # use rg/ag/pt/ack for ctrl-t completion
@@ -588,15 +718,18 @@ export FZF_DEFAULT_OPTS='
 # improved preview
 [[ -n "$_has_tree" ]] \
   && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -$LINES'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind ?:toggle-preview"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' \
+  --preview-window down:3:hidden \
+  --bind ?:toggle-preview"
 [[ -x "$HOME/.vim/plugged/fzf.vim/bin/preview.sh" ]] \
-  && export FZF_CTRL_T_OPTS="--preview '$HOME/.vim/plugged/fzf.vim/bin/preview.sh {} | head -200'"
+  && export FZF_CTRL_T_OPTS="--preview '$HOME/.vim/plugged/fzf.vim/bin/preview.sh {} \
+    | head -200'"
 
 # source fzf key bindings
-[[ -e "/etc/profile.d/fzf.bash" ]] \
+[[ -r '/etc/profile.d/fzf.bash' ]] \
   && source /etc/profile.d/fzf.bash
 # source fzf functions
-[[ -e "/etc/profile.d/fzf-extras.bash" ]] \
+[[ -r '/etc/profile.d/fzf-extras.bash' ]] \
   && source /etc/profile.d/fzf-extras.bash
 
 # end fzf }}}
@@ -610,7 +743,7 @@ export CRYFS_NO_UPDATE_CHECK=true
 # gpg {{{
 
 # configure pinentry to use the correct tty
-GPG_TTY=$(tty)
+GPG_TTY="$(tty)"
 export GPG_TTY
 
 # refresh gpg-agent tty in case user switches into an x session
