@@ -12,7 +12,7 @@ set -g status-left-attr "none"
 set -g status-left "#[fg=blue,nobright] #S |"
 set -g status-right-length "100"
 set -g status-right-attr "none"
-set -g status-right "#[fg=blue,nobright] %Y-%m-%d | %H:%M | #(acpi --battery | awk '{print $4}' | sed 's/,$//') "
+set -g status-right "#[fg=blue,nobright] %Y-%m-%d | %H:%M | #(battery) "
 set -g status-interval 1
 
 # default statusbar colors
