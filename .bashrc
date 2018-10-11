@@ -364,15 +364,7 @@ alias pkg\?='pacman -Q | grep -v grep | grep "$@"'
 # --- end grepping }}}
 # --- ip {{{
 
-readonly INTERFACE="$(ip -o -4 route show to default | awk '/dev/ {print $5}')"
-alias macaddr="ip -0 addr show dev $INTERFACE \
-  | awk '/link/ && /ether/ {print \$2}' \
-  | tr '[:upper:]' '[:lower:]'"
-alias localip="ip -o -4 route get 1 | awk '/src/ {print \$7}'"
-alias publicip='drill -V 3 myip.opendns.com @resolver1.opendns.com \
-  | grep IN \
-  | tail -n 1 \
-  | cut -f5 -s'
+export INTERFACE="$(ip -o -4 route show to default | awk '/dev/ {print $5}')"
 
 # --- end ip }}}
 # --- irssi {{{
