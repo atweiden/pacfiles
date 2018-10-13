@@ -4,5 +4,9 @@
 # localip: show local IP address
 # ----------------------------------------------------------------------------
 
-ip -o -4 route get 1 \
-  | awk '/src/ {print $7}'
+main() {
+  ip -o -4 route get 1 \
+    | awk '/src/ {print $7}'
+}
+
+main

@@ -4,6 +4,16 @@
 # macaddr: show hardware MAC address
 # ----------------------------------------------------------------------------
 
-ip -0 addr show dev "$INTERFACE" \
-  | awk '/link/ && /ether/ {print $2}' \
-  | tr '[:upper:]' '[:lower:]'
+main() {
+  local _interface
+  _interface="${1:-$INTERFACE}"
+  if [[ -n "$_interface" ]]; then
+    ip -0 addr show dev "$_interface" \
+      | awk '/link/ && /ether/ {print $2}' \
+      | tr '[:upper:]' '[:lower:]'
+  else
+    exit 1
+  fi
+}
+
+main "$1"

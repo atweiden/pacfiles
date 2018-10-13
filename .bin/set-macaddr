@@ -47,9 +47,9 @@ main() {
     echo 'Sorry, requires root privileges'
     exit 1
   fi
-  ip link set "$INTERFACE" down
-  ip link set dev "$INTERFACE" address "$1"
-  ip link set "$INTERFACE" up
+  ip link set "$1" down
+  ip link set dev "$1" address "$2"
+  ip link set "$1" up
 }
 
 main "$_interface" "$_macaddr"
