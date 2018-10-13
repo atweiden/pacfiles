@@ -8,7 +8,7 @@ _usage() {
 read -r -d '' _usage_string <<'EOF'
 Usage:
   set-macaddr [-h|--help] <interface> <macaddr>
-  set-macaddr eth0 d4:9a:20:11:44:26
+  set-macaddr wlan0 d4:9a:20:11:44:26
 
 Options:
   -h, --help  Show this help text
