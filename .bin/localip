@@ -4,8 +4,10 @@
 # localip: show local IP address
 # ----------------------------------------------------------------------------
 
+set -o pipefail
+
 main() {
-  ip -o -4 route get 1 \
+  ip -o -4 route get 1 2>/dev/null \
     | awk '/src/ {print $7}'
 }
 
