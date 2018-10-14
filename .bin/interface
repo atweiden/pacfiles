@@ -7,7 +7,7 @@
 set -o pipefail
 
 main() {
-  ip -o -4 route show to default \
+  ip -o -4 route show to default 2>/dev/null \
     | tr '[:space:]' '\n' \
     | sed -n '/dev/{n;p}'
 }
