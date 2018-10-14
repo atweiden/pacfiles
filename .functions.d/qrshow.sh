@@ -6,3 +6,5 @@
 # -----------------------------------------------------------------------------
 
 qrshow() { qrencode -s 10 "$1" -o - | display - ; }
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

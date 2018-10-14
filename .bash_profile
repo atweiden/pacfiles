@@ -9,3 +9,5 @@ _quixand_up() {
 
 [[ -x '/usr/bin/quixand' ]] \
   && _quixand_up
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

@@ -21,3 +21,5 @@ slur() {
     && _quixand_down
   sudo reboot
 }
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

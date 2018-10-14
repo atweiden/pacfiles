@@ -9,8 +9,6 @@ _PERMISSIONS='755'
 _USER="$(id -un)"
 _GROUP="$(id -gn)"
 
-# _usage() {{{
-
 _usage() {
 read -r -d '' _usage_string <<EOF
 Usage:
@@ -33,8 +31,6 @@ Positionals:
 EOF
 echo "$_usage_string"
 }
-
-# end _usage() }}}
 
 _POSITIONAL=()
 
@@ -161,4 +157,4 @@ for _dir in "$@"; do
   _chattrify "$_dir" "$_PERMISSIONS" "$_USER" "$_GROUP"
 done
 
-# vim:set filetype=sh foldmethod=marker foldlevel=0:
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

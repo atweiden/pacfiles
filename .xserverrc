@@ -7,3 +7,5 @@
 # occurred in order to maintain an authenticated session with logind
 # and prevent bypassing the screen locker by switching terminals
 exec /usr/bin/Xorg -nolisten tcp -nolisten local "$@" "vt$XDG_VTNR"
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

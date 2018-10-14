@@ -57,3 +57,5 @@ quixand_down() {
   /usr/bin/quixand -p "${_quixand_files[@]}" -d "${_quixand_dirs[@]}"
   quixand_rm_stragglers
 }
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:
