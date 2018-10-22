@@ -12,7 +12,7 @@ main() {
   if [[ -n "$_interface" ]]; then
     ip -o -6 addr show dev "$_interface" 2>/dev/null \
       | tr '[:space:]' '\n' \
-      | sed -n 's/inet6/{n;p}' \
+      | sed -n '/inet6/{n;p}' \
       | cut -d '/' -f 1
   else
     exit 1
