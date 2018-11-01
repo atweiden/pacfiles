@@ -74,3 +74,23 @@ pacaur -S monaco-powerline-font-git \
           ttf-google-fonts-git \
           ttf-monaco
 ```
+
+
+Get Monaco
+----------
+
+On macOS:
+
+```sh
+brew install fondu
+cp /System/Library/Fonts/Monaco.dfont .
+fondu Monaco.dfont
+```
+
+on Arch:
+
+```sh
+mkdir -p "$HOME/.local/share/fonts"
+mv Monaco.ttf "$HOME/.local/share/fonts"
+fc-cache -vf
+```
