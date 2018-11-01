@@ -1,22 +1,22 @@
 #!/bin/bash
 
-[[ -x '/usr/bin/tint2' ]] \
+[ -x '/usr/bin/tint2' ] \
   && tint2 &
-[[ -x '/usr/bin/conky' ]] \
+[ -x '/usr/bin/conky' ] \
   && conky --config="$HOME/.config/conky/conkyrc" -qd &
-[[ -x '/usr/bin/volumeicon' ]] \
+[ -x '/usr/bin/volumeicon' ] \
   && volumeicon &
-[[ -x '/usr/bin/nitrogen' ]] \
+[ -x '/usr/bin/nitrogen' ] \
   && nitrogen --restore &
-[[ -x '/usr/bin/xautolock' && -x '/usr/bin/xlock' ]] \
+[ -x '/usr/bin/xautolock' && -x '/usr/bin/xlock' ] \
   && xautolock -secure -time 7 -locker "/usr/bin/xlock -mode blank" -detectsleep &
-[[ -x '/usr/bin/redshift' ]] \
+[ -x '/usr/bin/redshift' ] \
   && redshift -c "$HOME/.config/redshift/redshift.conf" &
-[[ -x '/usr/bin/pcmanfm' ]] \
+[ -x '/usr/bin/pcmanfm' ] \
   && pcmanfm -d &
-[[ -x '/usr/bin/cbatticon' ]] \
+[ -x '/usr/bin/cbatticon' ] \
   && (sleep 3 && cbatticon) &
-[[ -x '/usr/bin/compton' ]] \
+[ -x '/usr/bin/compton' ] \
   && compton --config "$HOME/.config/compton/compton.conf" -b &
 
 # vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:
