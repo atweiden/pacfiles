@@ -3,7 +3,7 @@
 Pacfiles
 ========
 
-vim, tmux and fzf config for arch
+vim, tmux and fzf config for arch xorg
 
 - based on my dotfiles [1]
   - more focused, and lighter weight
