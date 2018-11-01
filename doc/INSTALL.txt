@@ -76,8 +76,8 @@ pacaur -S monaco-powerline-font-git \
 ```
 
 
-Get Monaco
-----------
+Install Monaco
+--------------
 
 On macOS:
 
@@ -92,5 +92,27 @@ on Arch:
 ```sh
 mkdir -p "$HOME/.local/share/fonts"
 mv Monaco.ttf "$HOME/.local/share/fonts"
+fc-cache -vf
+```
+
+
+Install Monaco for Powerline
+----------------------------
+
+on macOS:
+
+```sh
+brew install fontforge
+git clone https://github.com/Lokaltog/powerline
+git clone https://gist.github.com/atweiden/3666975d171cc862cc2beb35b94de921 mkmonaco
+cp mkmonaco/Makefile powerline/font
+make -C powerline/font
+```
+
+on Arch:
+
+```sh
+mkdir -p "$HOME/.local/share/fonts"
+mv Monaco\ for\ Powerline.ttf "$HOME/.local/share/fonts"
 fc-cache -vf
 ```
