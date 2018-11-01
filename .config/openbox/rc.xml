@@ -367,7 +367,7 @@
     </keybind>
     <keybind key="W-C-l">
       <action name="Execute">
-        <command>xlock -mode blank</command>
+        <command>i3lock</command>
         <startupnotify>
           <enabled>yes</enabled>
           <name>lock</name>
@@ -461,7 +461,7 @@
     </keybind>
     <keybind key="XF86ScreenSaver">
       <action name="Execute">
-        <command>xlock -mode blank</command>
+        <command>i3lock</command>
       </action>
     </keybind>
     <keybind key="XF86Sleep">

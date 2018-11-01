@@ -109,7 +109,7 @@ our $SCHEMA = [
     {sep => undef},
 
     ## The screen lock command
-    {item => ['xlock -mode blank', 'Lock', 'lock']},
+    {item => ['i3lock', 'Lock', 'lock']},
 
     # This option uses the default Openbox's action "Exit"
     {exit => ['Exit', 'exit']},

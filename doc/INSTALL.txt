@@ -10,7 +10,7 @@ Install Software
 # xorg
 pacman -S xautolock \
           xdg-utils \
-          xlockmore \
+          xdotool \
           xorg-drivers \
           xorg-xkill \
           xorg-xmodmap \
@@ -35,6 +35,7 @@ pacman -S adwaita-icon-theme \
           gnome-menus \
           gnome-themes-extra \
           gtk-engines \
+          i3lock \
           lxappearance-obconf-gtk3 \
           lxinput-gtk3 \
           lxrandr-gtk3 \
@@ -52,6 +53,7 @@ pacman -S cbatticon \
           compton \
           conky \
           dmenu \
+          evince \
           feh \
           firefox \
           galculator \

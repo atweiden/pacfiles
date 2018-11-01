@@ -613,7 +613,7 @@ alias :e='"$EDITOR"'
   && alias xautolock-start='xautolock \
     -secure \
     -time 7 \
-    -locker "/usr/bin/xlock -mode blank" \
+    -locker "/usr/bin/i3lock" \
     -detectsleep &'
 
 # --- end xautolock }}}
