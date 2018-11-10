@@ -8,7 +8,7 @@
   && volumeicon &
 [ -x '/usr/bin/nitrogen' ] \
   && nitrogen --restore &
-[ -x '/usr/bin/xautolock' && -x '/usr/bin/i3lock' ] \
+[ -x '/usr/bin/xautolock' ] && [ -x '/usr/bin/i3lock' ] \
   && xautolock -secure -time 7 -locker '/usr/bin/i3lock' -detectsleep &
 [ -x '/usr/bin/redshift' ] \
   && redshift -c "$HOME/.config/redshift/redshift.conf" &
