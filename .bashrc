@@ -730,11 +730,11 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' \
 [[ -r '/usr/share/bash-completion/completions/fzf' ]] \
   && source /usr/share/bash-completion/completions/fzf
 # source fzf key bindings
-[[ -r '/etc/profile.d/fzf.bash' ]] \
-  && source /etc/profile.d/fzf.bash
+[[ -r '/usr/share/fzf/fzf.bash' ]] \
+  && source /usr/share/fzf/fzf.bash
 # source fzf functions
-[[ -r '/etc/profile.d/fzf-extras.bash' ]] \
-  && source /etc/profile.d/fzf-extras.bash
+[[ -r '/usr/share/fzf/fzf-extras.bash' ]] \
+  && source /usr/share/fzf/fzf-extras.bash
 
 # end fzf }}}
 # ==============================================================================
