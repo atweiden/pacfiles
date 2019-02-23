@@ -364,7 +364,11 @@ alias sysctl\?='sysctl --all 2>/dev/null | grep -v grep | grep "$@"'
 [[ -n "$_has_ack" ]] \
   && alias ack='ack --ackrc=$HOME/.config/ack/ackrc'
 [[ -n "$_has_ag" ]] \
-  && alias ag='ag --hidden --smart-case --skip-vcs-ignores'
+  && alias ag='ag \
+      --hidden \
+      --smart-case \
+      --path-to-ignore $HOME/.ignore \
+      --skip-vcs-ignores'
 [[ -n "$_has_rg" ]] \
   && alias rg='rg --hidden --smart-case'
 [[ -n "$_has_locate" ]] \
@@ -678,6 +682,7 @@ elif [[ -n "$_has_ag" ]]; then
     --hidden \
     --smart-case \
     --nocolor \
+    --path-to-ignore $HOME/.ignore \
     --skip-vcs-ignores \
     -g ""'
 elif [[ -n "$_has_pt" ]]; then
@@ -701,7 +706,14 @@ _fzf_compgen_path() {
   if [[ -n "$_has_rg" ]]; then
     rg --hidden --smart-case --color never --ignore-vcs --files -g "" "$1"
   elif [[ -n "$_has_ag" ]]; then
-    ag --hidden --smart-case --nocolor --skip-vcs-ignores -g "" "$1"
+    ag \
+      --hidden \
+      --smart-case \
+      --nocolor \
+      --path-to-ignore "$HOME/.ignore" \
+      --skip-vcs-ignores \
+      -g "" \
+      "$1"
   elif [[ -n "$_has_pt" ]]; then
     pt --hidden --nocolor -e -g="" "$1"
   elif [[ -n "$_has_ack" ]]; then
