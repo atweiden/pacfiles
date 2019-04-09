@@ -629,6 +629,11 @@ alias :e='"$EDITOR"'
   && alias zbarcam='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam'
 
 # --- end zbar }}}
+# --- xyz {{{
+
+alias ,='clear'
+
+# --- end xyz }}}
 
 # end aliases }}}
 # ==============================================================================
