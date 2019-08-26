@@ -780,6 +780,13 @@ export SCREENRC="$HOME/.config/screen/screenrc"
 
 # end screen }}}
 # ==============================================================================
+# gerbil {{{
+
+export GERBIL_GSC='/usr/bin/gambitc'
+export GERBIL_HOME='/usr/lib/gerbil'
+
+# end gerbil }}}
+# ==============================================================================
 # pg {{{
 
 export PSQLRC="$HOME/.config/pg/psqlrc"
