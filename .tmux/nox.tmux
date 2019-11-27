@@ -20,13 +20,15 @@ set -g status-bg default
 set -g window-status-bell-style bg=default,fg=red,bright
 
 # default window title colors
-setw -g window-status-style fg=blue,bg=black,none
-setw -g window-status-activity-style none
-setw -g window-status-separator ""
-setw -g window-status-format "#[fg=blue]#I:#W "
+set -w -g window-status-style fg=blue,bg=black,none
+set -w -g window-status-activity-style none
+set -w -g window-status-separator ""
+set -w -g window-status-format "#[fg=blue]#I:#W "
 
 # active window title colours
-setw -g window-status-current-format "#[fg=red]#I#[fg=blue]:#W "
+set -w -g window-status-current-format "#[fg=red]#I#[fg=blue]:#W "
 
 # message colours
 set -g message-style fg=magenta,bg=default,bright
+
+# vim: set filetype=tmux foldmethod=marker foldlevel=0 nowrap:
