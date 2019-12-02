@@ -52,7 +52,6 @@ git clone https://gist.github.com/atweiden/701d14375996cf4823d369ef51169580
 # desktop apps
 pacman -S cbatticon \
           chromium \
-          compton \
           conky \
           dmenu \
           evince \
@@ -66,6 +65,7 @@ pacman -S cbatticon \
           leafpad \
           nitrogen \
           pcmanfm \
+          picom \
           redshift \
           tint2 \
           vlc \
