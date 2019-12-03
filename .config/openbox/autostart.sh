@@ -16,7 +16,7 @@
   && pcmanfm -d &
 [ -x '/usr/bin/cbatticon' ] \
   && (sleep 3 && cbatticon) &
-[ -x '/usr/bin/compton' ] \
-  && compton --config "$HOME/.config/compton/compton.conf" -b &
+[ -x '/usr/bin/picom' ] \
+  && picom --config "$HOME/.config/picom/picom.conf" -b &
 
 # vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:
