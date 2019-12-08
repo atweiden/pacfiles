@@ -756,11 +756,11 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' \
     | head -200'"
 
 # source fzf completions
-[[ -r '/usr/share/bash-completion/completions/fzf' ]] \
-  && source /usr/share/bash-completion/completions/fzf
+[[ -r '/usr/share/fzf/completion.bash' ]] \
+  && source /usr/share/fzf/completion.bash
 # source fzf key bindings
-[[ -r '/usr/share/fzf/fzf.bash' ]] \
-  && source /usr/share/fzf/fzf.bash
+[[ -r '/usr/share/fzf/key-bindings.bash' ]] \
+  && source /usr/share/fzf/key-bindings.bash
 # source fzf functions
 [[ -r '/usr/share/fzf/fzf-extras.bash' ]] \
   && source /usr/share/fzf/fzf-extras.bash
