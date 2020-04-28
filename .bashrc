@@ -394,6 +394,11 @@ alias sysctl\?='sysctl --all 2>/dev/null | grep -v grep | grep "$@"'
   && alias locate='locate --ignore-case'
 
 # --- end grepping }}}
+# --- history {{{
+
+alias incognito=' unset HISTFILE'
+
+# --- end history }}}
 # --- info {{{
 
 alias info='info --vi-keys'
