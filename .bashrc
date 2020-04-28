@@ -244,6 +244,7 @@ _has_gvim="$(command -v gvim)"
 _has_icdiff="$(command -v icdiff)"
 _has_irssi="$(command -v irssi)"
 _has_locate="$(command -v locate)"
+_has_lynx="$(command -v lynx)"
 _has_makepkg="$(command -v makepkg)"
 _has_mosh="$(command -v mosh)"
 _has_ncdu="$(command -v ncdu)"
@@ -432,6 +433,12 @@ export INTERFACE="$(interface)"
     --home=$HOME/.config/irssi'
 
 # --- end irssi }}}
+# --- lynx {{{
+
+[[ -n "$_has_lynx" ]] \
+  && alias lynx='lynx -cfg $HOME/.config/lynx/lynx.cfg'
+
+# --- end lynx }}}
 # --- pacman {{{
 
 [[ -n "$_has_makepkg" ]] \
