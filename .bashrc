@@ -259,6 +259,7 @@ _has_subgit="$(command -v subgit)"
 _has_subhg="$(command -v subhg)"
 _has_systemctl="$(command -v systemctl)"
 _has_tree="$(command -v tree)"
+_has_units="$(command -v units)"
 _has_vim="$(command -v vim)"
 _has_wget="$(command -v wget)"
 _has_xautolock="$(command -v xautolock)"
@@ -609,6 +610,12 @@ alias dt-zurich='_t=$(TZ=Europe/Zurich dt)            ; echo "[$_t] Zürich"'
   && alias reset='reset; tmux clear-history'
 
 # --- end tmux }}}
+# --- units {{{
+
+[[ -n "$_has_units" ]] \
+  && alias units='units --history $HOME/.config/units/history'
+
+# --- end units }}}
 # --- vim {{{
 
 alias :e='"$EDITOR"'
