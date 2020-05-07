@@ -234,7 +234,6 @@ export PATH
 
 _has_ack="$(command -v ack)"
 _has_ag="$(command -v ag)"
-_has_archversion="$(command -v archversion)"
 _has_colordiff="$(command -v colordiff)"
 _has_curl="$(command -v curl)"
 _has_diffr="$(command -v diffr)"
@@ -290,14 +289,6 @@ export PS1
 # ==============================================================================
 # aliases {{{
 
-# --- archversion {{{
-
-[[ -n "$_has_archversion" ]] \
-  && alias avs='archversion sync && archversion report --new'
-[[ -n "$_has_archversion" ]] \
-  && alias avr='archversion report --new'
-
-# --- end archversion }}}
 # --- curl {{{
 
 [[ -n "$_has_curl" ]] \
