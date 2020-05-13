@@ -103,7 +103,7 @@ endif
 " turn off any existing search
 augroup searchhighlight
   autocmd!
-  autocmd VimEnter * nohls
+  autocmd VimEnter * nohlsearch
 augroup END
 
 " searches
