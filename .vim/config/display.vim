@@ -67,11 +67,6 @@ if has('gui_running')
   set guifont=Monaco\ for\ Powerline\ 16
   " allow gvim window to occupy whole screen
   set guiheadroom=0
-  " no visual bell
-  augroup errorbells
-    autocmd!
-    autocmd GUIEnter * set vb t_vb=
-  augroup END
   " resize font
   noremap <silent> <M--> :Smaller<CR>
   noremap <silent> <M-+> :Bigger<CR>
