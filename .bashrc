@@ -289,6 +289,11 @@ export PS1
 # ==============================================================================
 # aliases {{{
 
+# --- clipboard {{{
+
+alias n='nullclip'
+
+# --- end clipboard }}}
 # --- curl {{{
 
 [[ -n "$_has_curl" ]] \
