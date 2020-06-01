@@ -95,7 +95,7 @@ done
 username="${_username:-$USER}"
 # e.g. Andy Weidenbaum (for github, aur)
 name="${_name:-$USER}"
-# e.g. archbaum@gmail.com (for github, aur)
+# e.g. atweiden@tutanota.de (for github, aur)
 email="${_email:-$USER@$HOSTNAME}"
 # e.g. atweiden (for github)
 github="${_github:-$USER}"
