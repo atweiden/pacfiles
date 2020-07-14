@@ -130,7 +130,11 @@ set lazyredraw
 
 " indicates fast terminal connection
 set ttyfast
-if !has('nvim') | set ttymouse=xterm2 | endif
+
+if !has('nvim')
+  " terminal type for mouse codes
+  set ttymouse=xterm2
+endif
 
 " use histogram diff algorithm, indent heuristic for internal diff library
 set diffopt+=algorithm:histogram
