@@ -3,7 +3,7 @@ set background=dark
 let g:seoul256_background = 233
 let g:seoul256_light_background = 256
 let g:seoul256_srgb = 1
-colorscheme seoul256
+silent! colorscheme seoul256
 set guicursor=
 
 " window title {{{
@@ -28,7 +28,7 @@ endif
 if has('gui_running')
   " light colorscheme
   set background=light
-  colorscheme seoul256-light
+  silent! colorscheme seoul256-light
   highlight clear Cursor
   highlight Cursor guifg=NONE guibg=#E3E7E4
   highlight clear iCursor
