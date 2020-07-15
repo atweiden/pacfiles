@@ -254,8 +254,6 @@ _has_pt="$(command -v pt)"
 _has_rclone="$(command -v rclone)"
 _has_rg="$(command -v rg)"
 _has_sqlite3="$(command -v sqlite3)"
-_has_subgit="$(command -v subgit)"
-_has_subhg="$(command -v subhg)"
 _has_systemctl="$(command -v systemctl)"
 _has_tree="$(command -v tree)"
 _has_units="$(command -v units)"
@@ -486,14 +484,6 @@ alias timer='echo "Timer started. Stop with Ctrl-D." \
   && date'
 
 # --- end stopwatch }}}
-# --- subrepo {{{
-
-[[ -n "$_has_subgit" ]] \
-  && alias sg='subgit'
-[[ -n "$_has_subhg" ]] \
-  && alias shg='subhg'
-
-# --- end subrepo }}}
 # --- systemctl {{{
 
 [[ -n "$_has_systemctl" ]] \
