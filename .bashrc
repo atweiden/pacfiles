@@ -237,7 +237,6 @@ _has_ag="$(command -v ag)"
 _has_colordiff="$(command -v colordiff)"
 _has_curl="$(command -v curl)"
 _has_diffr="$(command -v diffr)"
-_has_electrum="$(command -v electrum)"
 _has_gdb="$(command -v gdb)"
 _has_gvim="$(command -v gvim)"
 _has_icdiff="$(command -v icdiff)"
@@ -263,7 +262,6 @@ _has_units="$(command -v units)"
 _has_vim="$(command -v vim)"
 _has_wget="$(command -v wget)"
 _has_xautolock="$(command -v xautolock)"
-_has_zbarcam="$(command -v zbarcam)"
 
 # end presence }}}
 # ==============================================================================
@@ -664,14 +662,6 @@ alias :e='"$EDITOR"'
 alias ,='clear'
 
 # --- end xyz }}}
-# --- zbar {{{
-
-[[ -n "$_has_electrum" ]] \
-  && alias electrum='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so electrum'
-[[ -n "$_has_zbarcam" ]] \
-  && alias zbarcam='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam'
-
-# --- end zbar }}}
 
 # end aliases }}}
 # ==============================================================================
