@@ -397,7 +397,8 @@ alias sysctl\?='sysctl --all 2>/dev/null | grep -v grep | grep "$@"'
   && alias rg='rg \
       --hidden \
       --ignore-file $HOME/.config/search/ignore \
-      --smart-case'
+      --smart-case \
+      --ignore-vcs'
 [[ -n "$_has_locate" ]] \
   && alias locate='locate --ignore-case'
 
