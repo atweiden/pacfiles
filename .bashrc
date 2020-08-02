@@ -238,6 +238,7 @@ _has_colordiff="$(command -v colordiff)"
 _has_curl="$(command -v curl)"
 _has_diffr="$(command -v diffr)"
 _has_gdb="$(command -v gdb)"
+_has_git="$(command -v git)"
 _has_gvim="$(command -v gvim)"
 _has_icdiff="$(command -v icdiff)"
 _has_iex="$(command -v iex)"
@@ -332,7 +333,8 @@ alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 alias cdd='cd $HOME/Downloads'
-alias cdg='cd $(git rev-parse --show-cdup)'
+[[ -n "$_has_git" ]] \
+  && alias cdg='cd $(git rev-parse --show-cdup)'
 alias cdp='cd $HOME/Projects'
 alias cds='cd $HOME/.src'
 [[ -n "$_has_pcmanfm" ]] \
@@ -375,6 +377,12 @@ alias bzip2='bzip2 -9'
   && alias gdb='gdb -q -nh -x $HOME/.config/gdb/init'
 
 # --- end gdb }}}
+# --- git {{{
+
+[[ -n "$_has_git" ]] \
+  && alias gs='git status --short --branch'
+
+# --- end git }}}
 # --- grepping {{{
 
 alias grep='grep --ignore-case --color=auto'
