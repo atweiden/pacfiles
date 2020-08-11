@@ -49,25 +49,6 @@ our $SCHEMA = [
     {cat => ['settings',    'Settings',    'applications-accessories']},
     {cat => ['system',      'System',      'applications-system']},
 
-    #{cat => ['qt',          'QT Applications',    'qt4logo']},
-    #{cat => ['gtk',         'GTK Applications',   'gnome-applications']},
-    #{cat => ['x_xfce',      'XFCE Applications',  'applications-other']},
-    #{cat => ['gnome',       'GNOME Applications', 'gnome-applications']},
-    #{cat => ['consoleonly', 'CLI Applications',   'applications-utilities']},
-
-    #                  LABEL          ICON
-    #{begin_cat => ['My category',  'cat-icon']},
-    #             ... some items ...
-    #{end_cat   => undef},
-
-    #            COMMAND     LABEL        ICON
-    #{pipe => ['obbrowser', 'Disk', 'drive-harddisk']},
-
-    ## Generic advanced settings
-    #{sep       => undef},
-    #{obgenmenu => ['Openbox Settings', 'openbox']},
-    #{sep       => undef},
-
     ## Custom advanced settings
     {sep => undef},
     {begin_cat => ['Advanced Settings', 'gnome-settings']},
@@ -97,13 +78,6 @@ our $SCHEMA = [
             {item      => ["$editor ~/.config/openbox/autostart", 'Openbox Autostart',    $editor]},
             {item      => ["$editor ~/.config/openbox/rc.xml",    'Openbox RC',           $editor]},
             {item      => ["$editor ~/.config/openbox/menu.xml",  'Openbox Menu',         $editor]},
-        {end_cat => undef},
-
-        # Pacman category
-        {begin_cat => ['Pacman / Servers', 'package-manager-icon']},
-            {item      => ["gksu $editor /etc/makepkg.conf",        'Makepkg Config',    'start-here']},
-            {item      => ["gksu $editor /etc/pacman.conf",         'Pacman Config',     'start-here']},
-            {item      => ["gksu $editor /etc/pacman.d/mirrorlist", 'Pacman Mirrorlist', 'start-here']},
         {end_cat => undef},
     {end_cat => undef},
     {sep => undef},
