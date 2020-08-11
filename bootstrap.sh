@@ -8,7 +8,6 @@ _usage_function() {
 read -r -d '' _usage_string <<EOF
 Usage:
   ./bootstrap.sh [-h|--help]
-  ./bootstrap.sh [-u|--username <username>]
   ./bootstrap.sh [-n|--name <name>]
                  [-e|--email <email>]
                  [-g|--github <github>]
@@ -18,8 +17,6 @@ Usage:
 Options:
   -h, --help
     print this help message
-  -u, --username <username>
-    set user name (defaults to "$USER")
   -n, --name <name>
     set full name (defaults to "$USER")
   -e, --email <email>
@@ -41,12 +38,6 @@ while [[ $# -gt 0 ]]; do
     -h|--help)
       _usage_function
       exit 0
-      ;;
-    -u|--username)
-      _username="$2"
-      # shift past argument and value
-      shift
-      shift
       ;;
     -n|--name)
       _name="$2"
@@ -91,11 +82,9 @@ done
 # settings
 # -----------------------------------------------------------------------------
 
-# e.g. atweiden (for yay)
-username="${_username:-$USER}"
-# e.g. Andy Weidenbaum (for github, aur)
+# e.g. Andy Weidenbaum (for git/hg, aur)
 name="${_name:-$USER}"
-# e.g. atweiden@tutanota.de (for github, aur)
+# e.g. atweiden@ioiojo.com (for git/hg, aur)
 email="${_email:-$USER@$HOSTNAME}"
 # e.g. atweiden (for github)
 github="${_github:-$USER}"
@@ -186,11 +175,11 @@ sed -i "s#youremail#$email#"       "$HOME/.config/pacman/makepkg.conf"
 # yay
 # -----------------------------------------------------------------------------
 
-sed -i "s#yourusername#$username#" "$HOME/.config/yay/config.json"
+sed -i "s#yourusername#$USER#"     "$HOME/.config/yay/config.json"
 
 
 # -----------------------------------------------------------------------------
-# github
+# git/hg
 # -----------------------------------------------------------------------------
 
 sed -i "s#yourname#$name#"         "$HOME/.config/git/config"
