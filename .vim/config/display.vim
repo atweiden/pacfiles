@@ -78,6 +78,8 @@ if has('gui_running')
   " paste selection with <S-Ins>
   inoremap <S-Insert> <MiddleMouse>
   cnoremap <S-Insert> <MiddleMouse>
+  " don't show statusline
+  set laststatus=0
 endif
 
 " end gvim }}}
