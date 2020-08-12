@@ -63,8 +63,8 @@ if has('gui_running')
   set guioptions-=e
   " use console dialogs instead of popups
   set guioptions+=c
-  " use lightline-compatible monaco
-  set guifont=Monaco\ for\ Powerline\ 16
+  " use monaco font
+  set guifont=Monaco\ 16
   " allow gvim window to occupy whole screen
   set guiheadroom=0
   " no visual bell
