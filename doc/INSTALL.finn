@@ -1,4 +1,4 @@
-/* vim: set ft=journal fdm=marker fdl=0 nowrap: */
+/* vim: set filetype=finn foldmethod=marker foldlevel=0 nowrap: */
 
 Installation
 ============
@@ -120,3 +120,15 @@ mkdir -p "$HOME/.local/share/fonts"
 mv Monaco\ for\ Powerline.ttf "$HOME/.local/share/fonts"
 fc-cache -vf
 ```
+
+see also
+- programmingfonts.org [1]
+- MonoLisa [2]
+- GianCastle/FiraMonaco [3]
+
+
+******************************************************************************
+
+[1]: https://www.programmingfonts.org/
+[2]: https://monolisa.dev/
+[3]: https://github.com/GianCastle/FiraMonaco
