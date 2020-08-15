@@ -1,5 +1,3 @@
-" base {{{
-
 " clear cursor styles
 set guicursor=
 
@@ -53,8 +51,6 @@ set pumheight=20
 
 " make help window more likely to open at half existing window height
 set helpheight=12
-
-" end base }}}
 
 " highlighting {{{
 
@@ -155,7 +151,6 @@ let g:seoul256_srgb = 1
 silent! colorscheme seoul256
 
 " end highlighting }}}
-
 " window title {{{
 
 set title
@@ -172,7 +167,6 @@ if has('title') && (&title || has('gui_running'))
 endif
 
 " end window title }}}
-
 " gvim {{{
 
 if has('gui_running')
@@ -233,7 +227,6 @@ if has('gui_running')
 endif
 
 " end gvim }}}
-
 " neovim {{{
 
 if has('nvim')
@@ -251,7 +244,6 @@ if has('nvim')
 endif
 
 " end neovim }}}
-
 " listchars {{{
 
 " align cursor position flush with line beginnings having leading tabs
@@ -280,7 +272,6 @@ call SetListCharsTabVisible()
 call SetListCharsRemaining()
 
 " end listchars }}}
-
 " screen {{{
 
 " turn off syntax coloring of long lines
