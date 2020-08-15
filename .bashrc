@@ -134,42 +134,28 @@ elif [[ "$TERM" == 'linux' ]]; then
   export TERM='linux-16color'
 fi
 
-# miro8 console colors by jwr
+# seoul256 console colors
 if [[ "$TERM" =~ "linux" || "$TERM" == "vt100" || "$TERM" == "vt220" ]]; then
-   # black
-   echo -en "\e]P0000000"
-   # darkgrey
-   echo -en "\e]P83d3d3d"
-   # darkred
-   echo -en "\e]P18c4665"
-   # red
-   echo -en "\e]P9bf4d80"
-   # darkgreen
-   echo -en "\e]P2287373"
-   # green
-   echo -en "\e]PA53a6a6"
-   # brown
-   echo -en "\e]P37c7c99"
-   # yellow
-   echo -en "\e]PB9e9ecb"
-   # darkblue
-   echo -en "\e]P4395573"
-   # blue
-   echo -en "\e]PC477ab3"
-   # darkmagenta
-   echo -en "\e]P55e468c"
-   # magenta
-   echo -en "\e]PD7e62b3"
-   # darkcyan
-   echo -en "\e]P631658c"
-   # cyan
-   echo -en "\e]PE6096bf"
-   # lightgrey
-   echo -en "\e]P7899ca1"
-   # white
-   echo -en "\e]PFc0c0c0"
-   # bring us back to default input colours
-   clear
+  echo -e "
+  \e]P0121212
+  \e]P1d68787
+  \e]P25f865f
+  \e]P3d8af5f
+  \e]P485add4
+  \e]P5d7afaf
+  \e]P687afaf
+  \e]P7d0d0d0
+  \e]P8626262
+  \e]P9d75f87
+  \e]PA87af87
+  \e]PBffd787
+  \e]PCadd4fb
+  \e]PDffafaf
+  \e]PE87d7d7
+  \e]PFe4e4e4
+  "
+  # get rid of artifacts
+  clear
 fi
 
 # --- end display }}}
