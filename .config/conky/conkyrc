@@ -1,6 +1,6 @@
 background yes
 use_xft yes
-xftfont Monaco:size=9
+xftfont MonoLisa:size=9
 xftalpha 1
 update_interval 1.0
 total_run_times 0
@@ -48,22 +48,22 @@ ${font Muli:normal:size=8}${top_mem name 3}${alignr}${top mem 3} %
 ${font Muli:normal:size=8}${top_mem name 4}${alignr}${top mem 4} %
 
 ${font Muli:bold:size=8}SHORTCUT KEYS ${hr 2}
-${font Monaco:normal:size=8}Super+space${font Muli:normal:size=8}$alignr Main Menu
-${font Monaco:normal:size=8}Super+t${font Muli:normal:size=8}$alignr Terminal
-${font Monaco:normal:size=8}Super+l${font Muli:normal:size=8}$alignr LXTerminal
-${font Monaco:normal:size=8}Super+f${font Muli:normal:size=8}$alignr File Manager
-${font Monaco:normal:size=8}Super+w${font Muli:normal:size=8}$alignr Web Browser
-${font Monaco:normal:size=8}Super+m${font Muli:normal:size=8}$alignr Media Player
-${font Monaco:normal:size=8}Super+e${font Muli:normal:size=8}$alignr Editor
-${font Monaco:normal:size=8}Super+g${font Muli:normal:size=8}$alignr Gvim
-${font Monaco:normal:size=8}Super+r${font Muli:normal:size=8}$alignr Calculator
-${font Monaco:normal:size=8}Super+s${font Muli:normal:size=8}$alignr Spreadsheet
-${font Monaco:normal:size=8}Super+q${font Muli:normal:size=8}$alignr Force Quit
-${font Monaco:normal:size=8}Super+ctrl+q${font Muli:normal:size=8}$alignr Quit
-${font Monaco:normal:size=8}Super+ctrl+l${font Muli:normal:size=8}$alignr Lock
-${font Monaco:normal:size=8}Alt+F2${font Muli:normal:size=8}$alignr Run Dialog
-${font Monaco:normal:size=8}Alt+F3${font Muli:normal:size=8}$alignr Dmenu
-${font Monaco:normal:size=8}Super+x${font Muli:normal:size=8}$alignr Alt Keybinds
+${font MonoLisa:normal:size=8}Super+space${font Muli:normal:size=8}$alignr Main Menu
+${font MonoLisa:normal:size=8}Super+t${font Muli:normal:size=8}$alignr Terminal
+${font MonoLisa:normal:size=8}Super+l${font Muli:normal:size=8}$alignr LXTerminal
+${font MonoLisa:normal:size=8}Super+f${font Muli:normal:size=8}$alignr File Manager
+${font MonoLisa:normal:size=8}Super+w${font Muli:normal:size=8}$alignr Web Browser
+${font MonoLisa:normal:size=8}Super+m${font Muli:normal:size=8}$alignr Media Player
+${font MonoLisa:normal:size=8}Super+e${font Muli:normal:size=8}$alignr Editor
+${font MonoLisa:normal:size=8}Super+g${font Muli:normal:size=8}$alignr Gvim
+${font MonoLisa:normal:size=8}Super+r${font Muli:normal:size=8}$alignr Calculator
+${font MonoLisa:normal:size=8}Super+s${font Muli:normal:size=8}$alignr Spreadsheet
+${font MonoLisa:normal:size=8}Super+q${font Muli:normal:size=8}$alignr Force Quit
+${font MonoLisa:normal:size=8}Super+ctrl+q${font Muli:normal:size=8}$alignr Quit
+${font MonoLisa:normal:size=8}Super+ctrl+l${font Muli:normal:size=8}$alignr Lock
+${font MonoLisa:normal:size=8}Alt+F2${font Muli:normal:size=8}$alignr Run Dialog
+${font MonoLisa:normal:size=8}Alt+F3${font Muli:normal:size=8}$alignr Dmenu
+${font MonoLisa:normal:size=8}Super+x${font Muli:normal:size=8}$alignr Alt Keybinds
 
 ${font Muli:bold:size=8}NETWORK ${hr 2}
 ${font Muli:normal:size=8}Host:$alignr$nodename

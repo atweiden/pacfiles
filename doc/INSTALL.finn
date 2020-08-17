@@ -74,9 +74,7 @@ pacman -S cbatticon \
           xsel
 
 # fonts
-pacaur -S monaco-powerline-font-git \
-          ttf-google-fonts-git \
-          ttf-monaco
+pacaur -S ttf-google-fonts-git
 ```
 
 

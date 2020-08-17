@@ -223,8 +223,8 @@ if has('gui_running')
   set guioptions-=e
   " use console dialogs instead of popups
   set guioptions+=c
-  " use monaco font
-  set guifont=Monaco\ 16
+  " use monolisa font
+  set guifont=MonoLisa\ 16
   " allow gvim window to occupy whole screen
   set guiheadroom=0
   " no visual bell
