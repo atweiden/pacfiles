@@ -20,7 +20,7 @@ set -g status-bg default
 set -g window-status-bell-style bg=default,fg=red,bright
 
 # default window title colors
-set -w -g window-status-style fg=blue,bg=black,none
+set -w -g window-status-style fg=blue,bg=default,none
 set -w -g window-status-activity-style none
 set -w -g window-status-separator ""
 set -w -g window-status-format "#[fg=blue]#I:#W "
