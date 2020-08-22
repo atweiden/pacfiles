@@ -235,6 +235,7 @@ _has_units="$(command -v units)"
 _has_vim="$(command -v vim)"
 _has_wget="$(command -v wget)"
 _has_xautolock="$(command -v xautolock)"
+_has_ydl="$(command -v youtube-dl)"
 
 # end presence }}}
 # ==============================================================================
@@ -653,6 +654,16 @@ alias :e='"$EDITOR"'
 alias ,='clear'
 
 # --- end xyz }}}
+# --- ydl {{{
+
+if [[ -n "$_has_ydl" ]]; then
+  alias ydl-480p='youtube-dl \
+    --format "bestvideo[height<=480]+bestaudio/best[height<=480]"'
+  alias ydl-720p='youtube-dl \
+    --format "bestvideo[height<=720]+bestaudio/best[height<=720]"'
+fi
+
+# --- end ydl }}}
 
 # end aliases }}}
 # ==============================================================================
