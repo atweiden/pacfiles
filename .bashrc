@@ -609,6 +609,8 @@ if [[ -n "$_has_vim" ]]; then
     -u NONE \
     -U NONE \
     --cmd "set nocompatible | syntax on | filetype plugin indent on"'
+  alias rvim='vim -Z'
+  alias rview='view -Z'
 fi
 if [[ -n "$_has_gvim" ]]; then
   alias gview='gvim -R'
