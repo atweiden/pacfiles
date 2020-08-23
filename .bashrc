@@ -135,7 +135,7 @@ elif [[ "$TERM" == 'linux' ]]; then
 fi
 
 # seoul256 console colors
-if [[ "$TERM" =~ "linux" || "$TERM" == "vt100" || "$TERM" == "vt220" ]]; then
+if [[ -z "$DISPLAY" ]]; then
   echo -e "
   \e]P0121212
   \e]P1d68787
