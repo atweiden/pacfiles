@@ -274,10 +274,10 @@ alias n='nullclip'
 # --- end curl }}}
 # --- dbs {{{
 
-[[ -n "$_has_sqlite3" ]] \
-  && alias sqlite3='sqlite3 -init $HOME/.config/sqlite3/sqliterc'
-[[ -n "$_has_sqlite3" ]] \
-  && alias sql='sqlite3 -interactive :memory:'
+if [[ -n "$_has_sqlite3" ]]; then
+  alias sqlite3='sqlite3 -init $HOME/.config/sqlite3/sqliterc'
+  alias sql='sqlite3 -interactive :memory:'
+fi
 
 # --- end dbs }}}
 # --- diff {{{
@@ -585,10 +585,10 @@ alias dt-zurich='_t=$(TZ=Europe/Zurich dt)            ; echo "[$_t] Zürich"'
 [[ -n "$_has_tmux" ]] \
   && alias tmux='tmux -2'
 
-[[ -n "$TMUX" ]] \
-  && alias clear='clear; tmux clear-history'
-[[ -n "$TMUX" ]] \
-  && alias reset='reset; tmux clear-history'
+if [[ -n "$TMUX" ]]; then
+  alias clear='clear; tmux clear-history'
+  alias reset='reset; tmux clear-history'
+fi
 
 # --- end tmux }}}
 # --- units {{{
@@ -600,35 +600,31 @@ alias dt-zurich='_t=$(TZ=Europe/Zurich dt)            ; echo "[$_t] Zürich"'
 # --- vim {{{
 
 alias :e='"$EDITOR"'
-# if not in X, tell vim not to attempt connection w/ X server
-[[ -z "$DISPLAY" ]] \
-  && alias vim='vim -X'
-[[ -n "$_has_vim" ]] \
-  && alias view='vim -R'
-[[ -n "$_has_vim" ]] \
-  && alias vime='vim -u $HOME/.vim/vimrc.encrypt -x'
-[[ -n "$_has_vim" ]] \
-  && alias viml='vim -u $HOME/.vim/vimrc.lite'
-[[ -n "$_has_vim" ]] \
-  && alias vimmin='vim \
+if [[ -n "$_has_vim" ]]; then
+  # if not in X, tell vim not to attempt connection w/ X server
+  [[ -z "$DISPLAY" ]] \
+    && alias vim='vim -X'
+  alias view='vim -R'
+  alias vime='vim -u $HOME/.vim/vimrc.encrypt -x'
+  alias viml='vim -u $HOME/.vim/vimrc.lite'
+  alias vimmin='vim \
     -u NONE \
     -U NONE \
     --cmd "set nocompatible | syntax on | filetype plugin indent on"'
-[[ -n "$_has_gvim" ]] \
-  && alias gview='gvim -R'
-[[ -n "$_has_gvim" ]] \
-  && alias gvime='gvim -u $HOME/.vim/vimrc.encrypt -x'
-[[ -n "$_has_gvim" ]] \
-  && alias gviml='gvim -u $HOME/.vim/vimrc.lite'
-[[ -n "$_has_gvim" ]] \
-  && alias gvimmin='gvim \
+fi
+if [[ -n "$_has_gvim" ]]; then
+  alias gview='gvim -R'
+  alias gvime='gvim -u $HOME/.vim/vimrc.encrypt -x'
+  alias gviml='gvim -u $HOME/.vim/vimrc.lite'
+  alias gvimmin='gvim \
     -u NONE \
     -U NONE \
     --cmd "set nocompatible | syntax on | filetype plugin indent on"'
-[[ -n "$_has_nvim" ]] \
-  && alias nv='nvim'
-[[ -n "$_has_nvim" ]] \
-  && alias nview='nvim -R'
+fi
+if [[ -n "$_has_nvim" ]]; then
+  alias nv='nvim'
+  alias nview='nvim -R'
+fi
 
 # --- end vim }}}
 # --- wget {{{
