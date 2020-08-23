@@ -308,8 +308,6 @@ alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 alias cdd='cd $HOME/Downloads'
-[[ -n "$_has_git" ]] \
-  && alias cdg='cd $(git rev-parse --show-cdup)'
 alias cdp='cd $HOME/Projects'
 alias cds='cd $HOME/.src'
 [[ -n "$_has_pcmanfm" ]] \
