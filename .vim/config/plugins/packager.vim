@@ -25,7 +25,7 @@ function! PackagerInit() abort
 
   " search and replace
   call packager#add('dyng/ctrlsf.vim')
-  call packager#add('junegunn/fzf', { 'do': './install --bin' })
+  call packager#add('junegunn/fzf')
   call packager#add('junegunn/fzf.vim')
   call packager#add('t9md/vim-quickhl')
 
