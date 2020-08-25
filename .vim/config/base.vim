@@ -145,10 +145,6 @@ if !has('nvim')
   set ttymouse=xterm2
 endif
 
-" use histogram diff algorithm, indent heuristic for internal diff library
-set diffopt+=algorithm:histogram
-set diffopt+=indent-heuristic
-
 " format lines with fmt
 set formatprg=fmt
 
