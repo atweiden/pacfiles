@@ -47,9 +47,6 @@ function! PackagerSetup() abort
   " modelines
   call packager#add('ciaranm/securemodelines')
 
-  " registers
-  call packager#add('junegunn/vim-peekaboo')
-
   " align
   call packager#add('tommcdo/vim-lion', { 'type': 'opt' })
   call packager#add('t9md/vim-textmanip', { 'type': 'opt' })
