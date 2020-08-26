@@ -795,8 +795,8 @@ export FZF_DEFAULT_OPTS='
 export FZF_CTRL_R_OPTS="--preview 'echo {}' \
   --preview-window down:3:hidden \
   --bind ?:toggle-preview"
-[[ -x "$HOME/.vim/pack/packager/start/fzf.vim/bin/preview.sh" ]] \
-  && export FZF_CTRL_T_OPTS="--preview '$HOME/.vim/pack/packager/start/fzf.vim/bin/preview.sh {} \
+[[ -x "$HOME/.vim/pack/packager/opt/fzf.vim/bin/preview.sh" ]] \
+  && export FZF_CTRL_T_OPTS="--preview '$HOME/.vim/pack/packager/opt/fzf.vim/bin/preview.sh {} \
     | head -200'"
 
 # source fzf completions
