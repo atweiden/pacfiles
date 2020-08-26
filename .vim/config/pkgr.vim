@@ -27,7 +27,7 @@ function! PkgrSetup() abort
   call packager#add('dyng/ctrlsf.vim', { 'type': 'opt' })
   call packager#add('junegunn/fzf', { 'type': 'opt' })
   call packager#add('junegunn/fzf.vim', { 'type': 'opt' })
-  call packager#add('t9md/vim-quickhl')
+  call packager#add('t9md/vim-quickhl', { 'type': 'opt' })
 
   " movement
   call packager#add('rhysd/clever-f.vim')
