@@ -55,7 +55,7 @@ function! PackagerSetup() abort
   call packager#add('atweiden/vim-viewport', { 'type': 'opt' })
 
   " command runners
-  call packager#add('tpope/vim-tbone')
+  call packager#add('tpope/vim-tbone', { 'type': 'opt' })
 
   " ex mode
   call packager#add('tyru/capture.vim', { 'type': 'opt' })
