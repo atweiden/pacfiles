@@ -144,10 +144,8 @@ set ttyfast
 " make syntax highlighting more robust post vim 8
 set redrawtime=10000
 
-if !has('nvim')
-  " terminal type for mouse codes
-  set ttymouse=xterm2
-endif
+" terminal type for mouse codes
+silent! set ttymouse=xterm2
 
 " format lines with fmt
 set formatprg=fmt
