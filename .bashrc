@@ -199,6 +199,11 @@ PATH="/usr/share/perl6/site/bin:$PATH"
 PATH="/usr/share/perl6/vendor/bin:$PATH"
 
 # --- end raku }}}
+# --- rust {{{
+
+PATH="$HOME/.cargo/bin:$PATH"
+
+# --- end rust }}}
 
 export PATH
 
