@@ -404,14 +404,12 @@ alias sysctl\?='sysctl --all 2>/dev/null | grep -v grep | grep "$@"'
   && alias ag='ag \
       --hidden \
       --smart-case \
-      --path-to-ignore $HOME/.config/search/ignore \
-      --skip-vcs-ignores'
+      --path-to-ignore $HOME/.config/search/ignore'
 if [[ -n "$_has_rg" ]]; then
   alias rg='rg \
     --hidden \
     --ignore-file $HOME/.config/search/ignore \
-    --smart-case \
-    --ignore-vcs'
+    --smart-case'
   alias rgu='rg \
     --no-ignore \
     --no-ignore-files \
