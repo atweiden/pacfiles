@@ -835,6 +835,12 @@ export RLWRAP_EDITOR="vim '+call cursor(%L,%C)'"
 export IRBRC="$HOME/.config/irb/irbrc"
 
 # --- end ruby }}}
+# --- rust {{{
+
+# only shell-complete Cargo.toml
+export FIGNORE="argo.lock"
+
+# --- end rust }}}
 # --- screen {{{
 
 export SCREENRC="$HOME/.config/screen/screenrc"
