@@ -696,6 +696,14 @@ done
 [[ -r '/usr/share/bash-completion/bash_completion' ]] \
   && source /usr/share/bash-completion/bash_completion
 
+# improve git completion for git aliases
+if declare -F __git_complete > /dev/null; then
+  __git_complete g git
+  __git_complete gc git_commit
+  __git_complete gd git_diff
+  __git_complete gs git_status
+fi
+
 # end completions }}}
 # ==============================================================================
 # system {{{
