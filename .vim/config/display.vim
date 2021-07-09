@@ -181,6 +181,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 let g:seoul256_background = 233
 let g:seoul256_light_background = 256
 let g:seoul256_srgb = 1
+let g:lightline_colorscheme = 'seoul256'
 silent! colorscheme seoul256
 
 " end highlighting }}}
@@ -204,6 +205,7 @@ endif
 
 if has('gui_running')
   " light colorscheme
+  let g:lightline_colorscheme = 'seoul256_light'
   silent! colorscheme seoul256-light
   " set normal mode cursor to unblinking Cursor highlighted block
   set guicursor+=n:blinkon0-block-Cursor
