@@ -67,6 +67,11 @@ function! PackagerSetup() abort
   call packager#add('elixir-editors/vim-elixir', { 'type': 'opt' })
 
   " --- end elixir }}}
+  " --- go {{{
+
+  call packager#add('fatih/vim-go', { 'type': 'opt' })
+
+  " --- end go }}}
   " --- journal {{{
 
   call packager#add('junegunn/vim-journal', { 'type': 'opt' })
