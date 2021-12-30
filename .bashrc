@@ -184,6 +184,11 @@ PATH='/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin'
 PATH="$HOME/.bin:$PATH"
 
 # --- end dotfiles }}}
+# --- go {{{
+
+PATH="$HOME/.go/bin:$PATH"
+
+# --- end go }}}
 # --- perl {{{
 
 PATH="/usr/bin/vendor_perl:$PATH"
@@ -811,6 +816,11 @@ export GERBIL_GSC='/usr/bin/gambitc'
 export GERBIL_HOME='/usr/lib/gerbil'
 
 # --- end gerbil }}}
+# --- go {{{
+
+export GOPATH="$HOME/.go"
+
+# --- end go }}}
 # --- gpg {{{
 
 # refresh gpg-agent tty
