@@ -196,6 +196,11 @@ PATH="/usr/bin/core_perl:$PATH"
 PATH="/usr/bin/site_perl:$PATH"
 
 # --- end perl }}}
+# --- python {{{
+
+PATH="$HOME/.pyenv/bin:$PATH"
+
+# --- end python }}}
 # --- raku {{{
 
 PATH="$HOME/.raku/bin:$PATH"
@@ -848,6 +853,8 @@ export PGSERVICEFILE="$HOME/.config/pg/pg_service.conf"
 
 # --- end postgresql }}}
 # --- python {{{
+
+export PYENV_ROOT="$HOME/.pyenv"
 
 # don’t write .pyc files
 export PYTHONDONTWRITEBYTECODE=1
