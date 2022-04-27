@@ -68,11 +68,6 @@ export GROFF_NO_SGR=1
 export MANPAGER="less $LESS"
 
 # --- end man pages }}}
-# --- opener {{{
-
-export OPENER='xdg-open'
-
-# --- end opener }}}
 # --- safety {{{
 
 # do not overwrite existing file by redirect `>`
@@ -707,43 +702,6 @@ fi
 
 # end aliases }}}
 # ==============================================================================
-# functions {{{
-
-for _fn in $(find "$HOME/.functions.d" -type f -name "*.sh"); do
-  source "$_fn"
-done
-
-# end functions }}}
-# ==============================================================================
-# completions {{{
-
-[[ -r '/usr/share/bash-completion/bash_completion' ]] \
-  && source /usr/share/bash-completion/bash_completion
-
-# improve git completion for git aliases
-if declare -F __git_complete > /dev/null; then
-  __git_complete g git
-  __git_complete gc git_commit
-  __git_complete gd git_diff
-  __git_complete gpl git_pull
-  __git_complete gps git_push
-  __git_complete gs git_status
-fi
-
-# end completions }}}
-# ==============================================================================
-# system {{{
-
-if [[ -x "$HOME/.bin/archinfo" && -z "$VIMRUNTIME" ]]; then
-  if ! [[ "$UID" == '0' ]]; then
-    archinfo
-  else
-    archinfo -c red
-  fi
-fi
-
-# end system }}}
-# ==============================================================================
 # software {{{
 
 # --- beam {{{
@@ -847,6 +805,11 @@ export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
 export INTERFACE="$(interface)"
 
 # --- end ip }}}
+# --- opener {{{
+
+export OPENER='xdg-open'
+
+# --- end opener }}}
 # --- postgresql {{{
 
 export PSQLRC="$HOME/.config/pg/psqlrc"
@@ -888,6 +851,43 @@ export SCREENRC="$HOME/.config/screen/screenrc"
 # --- end screen }}}
 
 # end software }}}
+# ==============================================================================
+# functions {{{
+
+for _fn in $(find "$HOME/.functions.d" -type f -name "*.sh"); do
+  source "$_fn"
+done
+
+# end functions }}}
+# ==============================================================================
+# completions {{{
+
+[[ -r '/usr/share/bash-completion/bash_completion' ]] \
+  && source /usr/share/bash-completion/bash_completion
+
+# improve git completion for git aliases
+if declare -F __git_complete > /dev/null; then
+  __git_complete g git
+  __git_complete gc git_commit
+  __git_complete gd git_diff
+  __git_complete gpl git_pull
+  __git_complete gps git_push
+  __git_complete gs git_status
+fi
+
+# end completions }}}
+# ==============================================================================
+# system {{{
+
+if [[ -x "$HOME/.bin/archinfo" && -z "$VIMRUNTIME" ]]; then
+  if ! [[ "$UID" == '0' ]]; then
+    archinfo
+  else
+    archinfo -c red
+  fi
+fi
+
+# end system }}}
 # ==============================================================================
 
 # vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:
