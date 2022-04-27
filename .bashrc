@@ -223,6 +223,7 @@ _has_colordiff="$(command -v colordiff)"
 _has_curl="$(command -v curl)"
 _has_diffr="$(command -v diffr)"
 _has_fd="$(command -v fd)"
+_has_feh="$(command -v feh)"
 _has_gdb="$(command -v gdb)"
 _has_git="$(command -v git)"
 _has_gvim="$(command -v gvim)"
@@ -854,6 +855,16 @@ export FIGNORE="argo.lock"
 export SCREENRC="$HOME/.config/screen/screenrc"
 
 # --- end screen }}}
+# --- viewer {{{
+
+if [[ -n "$_has_feh" ]]; then
+  export VIEWER='feh'
+else
+  # requires ImageMagick
+  export VIEWER='display'
+fi
+
+# --- end viewer }}}
 
 # end software }}}
 # ==============================================================================
