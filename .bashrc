@@ -233,6 +233,7 @@ _has_irssi="$(command -v irssi)"
 _has_locate="$(command -v locate)"
 _has_lynx="$(command -v lynx)"
 _has_makepkg="$(command -v makepkg)"
+_has_mimeo="$(command -v mimeo)"
 _has_mosh="$(command -v mosh)"
 _has_ncdu="$(command -v ncdu)"
 _has_nvim="$(command -v nvim)"
@@ -807,7 +808,11 @@ export INTERFACE="$(interface)"
 # --- end ip }}}
 # --- opener {{{
 
-export OPENER='xdg-open'
+if [[ -n "$_has_mimeo" ]]; then
+  export OPENER='mimeo'
+else
+  export OPENER='xdg-open'
+fi
 
 # --- end opener }}}
 # --- postgresql {{{
