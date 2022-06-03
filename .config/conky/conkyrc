@@ -70,7 +70,6 @@ ${font Muli:normal:size=8}Host:$alignr$nodename
 ${font Muli:normal:size=8}MAC: ${alignr}${wireless_ap wlan0}
 ${font Muli:normal:size=8}ESSID: ${alignr}${wireless_essid wlan0}
 ${font Muli:normal:size=8}Local IP: ${alignr}${addr wlan0}
-${font Muli:normal:size=8}Public IP: ${alignr}${texeci 2000 drill -V 3 myip.opendns.com @resolver1.opendns.com | grep IN | tail -n 1 | cut -f5 -s}
 ${font Muli:normal:size=8}Mode: ${alignr}${wireless_mode wlan0}
 ${font Muli:normal:size=8}Connection quality: ${alignr}${wireless_link_qual_perc wlan0}%
 
