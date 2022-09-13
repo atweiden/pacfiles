@@ -646,7 +646,7 @@ if [[ -n "$_has_vim" ]]; then
   [[ -z "$DISPLAY" ]] \
     && alias vim='vim -X'
   alias view='vim -R'
-  alias vime='vim -u $HOME/.vim/vimrc.encrypt -x'
+  alias vime='vim -u $HOME/.vim/vimrc.encrypt'
   alias viml='vim -u $HOME/.vim/vimrc.lite'
   alias vimmin='vim \
     -u NONE \
@@ -657,7 +657,7 @@ if [[ -n "$_has_vim" ]]; then
 fi
 if [[ -n "$_has_gvim" ]]; then
   alias gview='gvim -R'
-  alias gvime='gvim -u $HOME/.vim/vimrc.encrypt -x'
+  alias gvime='gvim -u $HOME/.vim/vimrc.encrypt'
   alias gviml='gvim -u $HOME/.vim/vimrc.lite'
   alias gvimmin='gvim \
     -u NONE \
