@@ -192,7 +192,7 @@ let g:seoul256_background = 233
 let g:seoul256_light_background = 256
 let g:seoul256_srgb = 1
 let g:lightline_colorscheme = 'seoul256'
-silent! colorscheme seoul256
+silent! colorscheme $COLORSCHEME
 
 " end highlighting }}}
 " window title {{{
