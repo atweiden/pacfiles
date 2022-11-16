@@ -329,6 +329,7 @@ if [[ -n "$_has_exa" ]]; then
   alias ll='ls --all --all --binary --group --inode --links --long'
   alias tree='exa \
     --color=always \
+    --git-ignore \
     --group-directories-first \
     --sort=Name \
     --tree'
