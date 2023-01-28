@@ -240,7 +240,6 @@ _has_mosh="$(command -v mosh)"
 _has_ncdu="$(command -v ncdu)"
 _has_nvim="$(command -v nvim)"
 _has_pcmanfm="$(command -v pcmanfm)"
-_has_pkgcacheclean="$(command -v pkgcacheclean)"
 _has_rclone="$(command -v rclone)"
 _has_rg="$(command -v rg)"
 _has_sqlite3="$(command -v sqlite3)"
@@ -475,8 +474,6 @@ alias info='info --vi-keys'
 
 [[ -n "$_has_makepkg" ]] \
   && alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
-[[ -n "$_has_pkgcacheclean" ]] \
-  && alias pkgcacheclean='pkgcacheclean --human-readable'
 
 # --- end pacman }}}
 # --- path {{{
