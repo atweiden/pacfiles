@@ -422,9 +422,9 @@ fi
 alias grep='grep --ignore-case --color=auto'
 alias egrep='grep --extended-regexp'
 alias fgrep='grep --fixed-strings'
-alias history\?='history | grep -v "history\?" | grep "$@"'
+alias history\?='history | grep --invert-match "history\?" | grep "$@"'
 alias ls\?='ls -1F | grep "$@"'
-alias ps\?='ps -a -x -f | grep "$@"'
+alias ps\?='ps -a -x -f | grep --invert-match grep | grep "$@"'
 alias pkg\?='pacman -Q | grep "$@"'
 alias sysctl\?='sysctl --all 2>/dev/null | grep "$@"'
 [[ -n "$_has_ack" ]] \
