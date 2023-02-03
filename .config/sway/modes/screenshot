@@ -1,0 +1,29 @@
+set $mode_screenshot "📷 [f]ull screen [w]indow a[r]ea [e]dit"
+
+mode $mode_screenshot {
+  bindsym {
+    # capture whole screen
+    f exec grimshot --notify copy screen, mode "default"
+    Shift+f exec grimshot --notify save screen $screenshot_file, mode "default"
+
+    # capture focused window
+    w exec grimshot --notify copy win, mode "default"
+    Shift+w exec grimshot --notify save win $screenshot_file, mode "default"
+
+    # capture selected area
+    r exec grimshot --notify copy area, mode "default"
+    Shift+r exec grimshot --notify save area $screenshot_file, mode "default"
+
+    # edit screenshot
+    e exec swappy --file $screenshot_file
+
+    # return to default mode
+    Escape mode "default"
+    q mode "default"
+  }
+}
+
+# launch screenshot mode
+bindsym $mod+Shift+s mode $mode_screenshot
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

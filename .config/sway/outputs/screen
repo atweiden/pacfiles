@@ -1,0 +1,4 @@
+# solid color desktop background
+output * background $special solid_color
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

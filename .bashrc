@@ -130,7 +130,7 @@ elif [[ "$TERM" == 'linux' ]]; then
 fi
 
 # seoul256 console colors
-if [[ -z "$DISPLAY" ]]; then
+if [[ -z "$WAYLAND_DISPLAY" ]] && [[ -z "$DISPLAY" ]]; then
   echo -e "
   \e]P0121212
   \e]P1d68787
@@ -224,12 +224,12 @@ _has_curl="$(command -v curl)"
 _has_diffr="$(command -v diffr)"
 _has_exa="$(command -v exa)"
 _has_fd="$(command -v fd)"
-_has_feh="$(command -v feh)"
 _has_gdb="$(command -v gdb)"
 _has_git="$(command -v git)"
 _has_gvim="$(command -v gvim)"
 _has_icdiff="$(command -v icdiff)"
 _has_iex="$(command -v iex)"
+_has_imv="$(command -v imv)"
 _has_irb="$(command -v irb)"
 _has_irssi="$(command -v irssi)"
 _has_locate="$(command -v locate)"
@@ -239,7 +239,6 @@ _has_mimeo="$(command -v mimeo)"
 _has_mosh="$(command -v mosh)"
 _has_ncdu="$(command -v ncdu)"
 _has_nvim="$(command -v nvim)"
-_has_pcmanfm="$(command -v pcmanfm)"
 _has_rclone="$(command -v rclone)"
 _has_rg="$(command -v rg)"
 _has_sqlite3="$(command -v sqlite3)"
@@ -249,7 +248,6 @@ _has_tree="$(command -v tree)"
 _has_units="$(command -v units)"
 _has_vim="$(command -v vim)"
 _has_wget="$(command -v wget)"
-_has_xautolock="$(command -v xautolock)"
 _has_ydl="$(command -v youtube-dl)"
 
 # end presence }}}
@@ -360,8 +358,6 @@ alias ..5='cd ../../../../..'
 alias cdd='cd $HOME/Downloads'
 alias cdp='cd $HOME/Projects'
 alias cds='cd $HOME/.src'
-[[ -n "$_has_pcmanfm" ]] \
-  && alias :o='pcmanfm "$PWD" &'
 alias :q='exit'
 
 # --- end directory navigation }}}
@@ -701,7 +697,7 @@ fi
 alias :e='"$EDITOR"'
 if [[ -n "$_has_vim" ]]; then
   # if not in X, tell vim not to attempt connection w/ X server
-  [[ -z "$DISPLAY" ]] \
+  [[ -z "$WAYLAND_DISPLAY" ]] && [[ -z "$DISPLAY" ]] \
     && alias vim='vim -X'
   alias view='vim -R'
   alias vime='vim \
@@ -754,16 +750,6 @@ fi
     --hsts-file=$HOME/.config/wget/wget-hsts'
 
 # --- end wget }}}
-# --- xautolock {{{
-
-[[ -n "$_has_xautolock" ]] \
-  && alias xautolock-start='xautolock \
-    -secure \
-    -time 7 \
-    -locker "/usr/bin/i3lock --color=000000" \
-    -detectsleep &'
-
-# --- end xautolock }}}
 # --- ydl {{{
 
 if [[ -n "$_has_ydl" ]]; then
@@ -937,11 +923,8 @@ export SCREENRC="$HOME/.config/screen/screenrc"
 # --- end screen }}}
 # --- viewer {{{
 
-if [[ -n "$_has_feh" ]]; then
-  export VIEWER='feh'
-else
-  # requires ImageMagick
-  export VIEWER='display'
+if [[ -n "$_has_imv" ]]; then
+  export VIEWER='imv'
 fi
 
 # --- end viewer }}}

@@ -12,7 +12,6 @@ Usage:
                  [-e|--email <email>]
                  [-g|--github <github>]
                  [-i|--irssi <irssi>]
-  ./bootstrap.sh [-a|--latitude <coordinate>] [-o|--longitude <coordinate>]
 
 Options:
   -h, --help
@@ -25,10 +24,6 @@ Options:
     set GitHub username (defaults to "$USER")
   -i, --irssi <irssi>
     set irssi username (defaults to "$USER")
-  -a, --latitude <coordinate>
-    set latitude (defaults to "45.523062")
-  -o, --longitude <coordinate>
-    set longitude (defaults to "-122.676482")
 EOF
 echo "$_usage_string"
 }
@@ -59,16 +54,6 @@ while [[ $# -gt 0 ]]; do
       shift
       shift
       ;;
-    -a|--latitude)
-      _latitude="$2"
-      shift
-      shift
-      ;;
-    -o|--longitude)
-      _longitude="$2"
-      shift
-      shift
-      ;;
     *)
       # unknown option
       _usage_function
@@ -90,10 +75,6 @@ email="${_email:-$USER@$HOSTNAME}"
 github="${_github:-$USER}"
 # e.g. atweiden (for irc)
 irssi="${_irssi:-$USER}"
-# latitude (for redshift)
-latitude="${_latitude:-45.523062}"
-# longitude (for redshift)
-longitude="${_longitude:--122.676482}"
 
 
 # -----------------------------------------------------------------------------
@@ -122,8 +103,10 @@ _rsync_opts+=('--exclude=.git'
               '--exclude=.gitkeep'
               '--exclude=.hg'
               '--exclude=.subgit'
+              '--exclude=doc'
+              '--exclude=etc'
               '--exclude=bootstrap.sh'
-              '--exclude=README.txt'
+              '--exclude=README.md'
               '--exclude=UNLICENSE')
 
 # copy directories recursively
@@ -189,14 +172,6 @@ sed -i "s#githubusername#$github#" "$HOME/.ssh/config"
 # -----------------------------------------------------------------------------
 
 sed -i "s#yourname#$irssi#"        "$HOME/.config/irssi/config"
-
-
-# -----------------------------------------------------------------------------
-# redshift
-# -----------------------------------------------------------------------------
-
-sed -i "s#LATITUDE#$latitude#"     "$HOME/.config/redshift/redshift.conf"
-sed -i "s#LONGITUDE#$longitude#"   "$HOME/.config/redshift/redshift.conf"
 
 
 # -----------------------------------------------------------------------------

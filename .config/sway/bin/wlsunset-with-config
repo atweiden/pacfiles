@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# -----------------------------------------------------------------------------
+# wlsunset-with-config: thin wrapper around wlsunset to add config file
+# -----------------------------------------------------------------------------
+
+[[ -f "$XDG_CONFIG_HOME/wlsunset/config" ]] \
+  && source "$XDG_CONFIG_HOME/wlsunset/config"
+
+wlsunset -l $WLSUNSET_LATITUDE -L $WLSUNSET_LONGITUDE &
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

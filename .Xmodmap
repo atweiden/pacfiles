@@ -1,3 +1,0 @@
-!! remap capslock to backspace
-clear Lock
-keycode 0x42 = BackSpace

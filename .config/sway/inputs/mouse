@@ -1,0 +1,10 @@
+seat * {
+  # hide cursor after 5 seconds of inactivity
+  hide_cursor 5000
+
+  # hide cursor when typing - this would be ideal, but is presently buggy
+  # https://github.com/swaywm/sway/issues/6297
+  #hide_cursor when-typing enable
+}
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

@@ -1,0 +1,24 @@
+# font used for title and bar
+font pango:mononoki Nerd Font 14
+
+# csd:                  border     background text        indicator  child_border
+client.focused          $dark_gray $dark_gray $foreground $dark_gray $dark_gray
+client.focused_inactive $gray      $gray      $foreground $gray      $gray
+client.unfocused        $gray      $gray      $foreground $gray      $gray
+client.urgent           $orange    $orange    $foreground $orange    $orange
+
+bar {
+    swaybar_command waybar
+
+    # prevent changing workspace by scrolling mousewheel
+    bindsym {
+      # disable vertical scrolling
+      button4 nop
+      button5 nop
+      # disable horizontal scrolling
+      button6 nop
+      button7 nop
+    }
+}
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

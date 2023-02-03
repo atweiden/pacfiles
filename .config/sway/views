@@ -1,0 +1,11 @@
+for_window {
+  [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable, resize set width 60 ppt height 80 ppt
+  [app_id="imv"] floating enable
+  [app_id="^termfloat$"] floating enable
+  [window_role="notification"] floating enable sticky enable
+  [window_type="notification"] floating enable sticky enable
+  [window_role="pop-up"] floating enable sticky enable
+  [window_role="task_dialog"] floating enable sticky enable
+}
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

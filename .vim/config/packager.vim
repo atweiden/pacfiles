@@ -22,6 +22,9 @@ def PackagerSetup(): void
   packager#add('kana/vim-arpeggio', { 'type': 'opt' })
   packager#add('drmikehenry/vim-fixkey')
 
+  # wayland
+  packager#add('jasonccox/vim-wayland-clipboard')
+
   # search and replace
   packager#add('dyng/ctrlsf.vim', { 'type': 'opt' })
   packager#add('junegunn/fzf', { 'type': 'opt' })

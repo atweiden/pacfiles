@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# gps coordinates for gold coast qld day/night gamma correction
+export WLSUNSET_LATITUDE=-28
+export WLSUNSET_LONGITUDE=153.4
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

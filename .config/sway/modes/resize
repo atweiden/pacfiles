@@ -1,0 +1,36 @@
+set $mode_resize "⌥ resize [h/j/k/l], increase gaps [+], decrease gaps [-]"
+
+mode $mode_resize {
+  bindsym {
+    # adjust container dimensions
+    $left resize shrink width 10px
+    $down resize grow height 10px
+    $up resize shrink height 10px
+    $right resize grow width 10px
+    Shift+$left resize shrink width 20px
+    Shift+$down resize grow height 20px
+    Shift+$up resize shrink height 20px
+    Shift+$right resize grow width 20px
+    Left resize shrink width 10px
+    Down resize grow height 10px
+    Up resize shrink height 10px
+    Right resize grow width 10px
+    Shift+Left resize shrink width 20px
+    Shift+Down resize grow height 20px
+    Shift+Up resize shrink height 20px
+    Shift+Right resize grow width 20px
+
+    # adjust window gaps
+    minus gaps inner current minus 5px
+    plus gaps inner current plus 5px
+
+    # return to default mode
+    Escape mode "default"
+    q mode "default"
+  }
+}
+
+# launch resize mode
+bindsym $mod+r mode $mode_resize
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

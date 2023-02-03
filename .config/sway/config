@@ -1,0 +1,24 @@
+include $XDG_CONFIG_HOME/sway/definitions
+include $XDG_CONFIG_HOME/sway/bindings
+include $XDG_CONFIG_HOME/sway/inputs/*
+include $XDG_CONFIG_HOME/sway/modes/*
+include $XDG_CONFIG_HOME/sway/outputs/*
+include $XDG_CONFIG_HOME/sway/start
+include $XDG_CONFIG_HOME/sway/style
+include $XDG_CONFIG_HOME/sway/views
+
+# super+lclick to drag window, super+rclick to resize
+floating_modifier $mod normal
+
+focus_follows_mouse yes
+focus_on_window_activation smart
+focus_wrapping no
+
+# use tmux-style dividers rather than gaps/edges
+hide_edge_borders both
+default_floating_border pixel 1
+default_border pixel 1
+
+xwayland enable
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

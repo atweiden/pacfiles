@@ -1,0 +1,40 @@
+set {
+  $mode_recording "🎥 [f]ull screen [w]indow"
+  $mode_recording_on "🎬 Press ESC to end recording"
+}
+
+mode $mode_recording {
+  bindsym {
+    # record whole screen without audio
+    f exec killall -s SIGINT wf-recorder \
+      || wf-recorder --audio=0 --geometry "$(slurp -d)" -f $screenrec_file, mode $mode_recording_on
+
+    # record whole screen with audio
+    Shift+f exec killall -s SIGINT wf-recorder \
+      || wf-recorder --audio --geometry "$(slurp -d)" -f $screenrec_file, mode $mode_recording_on
+
+    # record focused window without audio
+    w exec killall -s SIGINT wf-recorder \
+      || wf-recorder --audio=0 --output $(swaymsg --type get_outputs | jq --raw-output '.[] | select(.focused) | .name') -f $screenrec_file, mode $mode_recording_on
+
+    # record focused window with audio
+    Shift+w exec killall -s SIGINT wf-recorder \
+      || wf-recorder --audio --output $(swaymsg --type get_outputs | jq --raw-output '.[] | select(.focused) | .name') -f $screenrec_file, mode $mode_recording_on
+
+    # return to default mode
+    Escape mode "default"
+    q mode "default"
+  }
+}
+
+mode $mode_recording_on {
+  bindsym {
+    Escape exec killall -s SIGINT wf-recorder, mode "default"
+    q exec killall -s SIGINT wf-recorder, mode "default"
+  }
+}
+
+# launch recording mode
+bindsym $mod+Shift+r mode $mode_recording
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

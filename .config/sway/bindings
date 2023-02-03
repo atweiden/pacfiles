@@ -1,0 +1,137 @@
+bindgesture {
+  # switch to previous workspace
+  swipe:left workspace prev
+  # switch to next workspace
+  swipe:right workspace next
+}
+
+bindsym {
+  # switch between windows
+  $mod+$left focus left
+  $mod+$down focus down
+  $mod+$up focus up
+  $mod+$right focus right
+  $mod+Left focus left
+  $mod+Down focus down
+  $mod+Up focus up
+  $mod+Right focus right
+
+  # move focused window around current workspace
+  $mod+Shift+$left move left
+  $mod+Shift+$down move down
+  $mod+Shift+$up move up
+  $mod+Shift+$right move right
+  $mod+Shift+Left move left
+  $mod+Shift+Down move down
+  $mod+Shift+Up move up
+  $mod+Shift+Right move right
+
+  # switch between workspaces
+  $mod+1 workspace 1
+  $mod+2 workspace 2
+  $mod+3 workspace 3
+  $mod+4 workspace 4
+  $mod+5 workspace 5
+  $mod+6 workspace 6
+  $mod+7 workspace 7
+  $mod+8 workspace 8
+  $mod+9 workspace 9
+  $mod+0 workspace 10
+
+  # move focused window between workspaces
+  $mod+Shift+1 move container to workspace 1
+  $mod+Shift+2 move container to workspace 2
+  $mod+Shift+3 move container to workspace 3
+  $mod+Shift+4 move container to workspace 4
+  $mod+Shift+5 move container to workspace 5
+  $mod+Shift+6 move container to workspace 6
+  $mod+Shift+7 move container to workspace 7
+  $mod+Shift+8 move container to workspace 8
+  $mod+Shift+9 move container to workspace 9
+  $mod+Shift+0 move container to workspace 10
+
+  # move focused window to scratchpad
+  $mod+Shift+minus move scratchpad
+
+  # show next scratchpad window or hide focused one
+  $mod+minus scratchpad show
+
+  # split window horizontally/vertically
+  $mod+b splith
+  $mod+v splitv
+
+  # toggle split window
+  $mod+e layout toggle split
+
+  # switch to stacked window layout
+  $mod+s layout stacking
+
+  # switch to tabbed window layout
+  $mod+t layout tabbed
+
+  # toggle focused window fullscreen
+  $mod+f fullscreen
+
+  # toggle focused window floating
+  $alt+Shift+space floating toggle
+
+  # switch focus between tiling area and floating area
+  $alt+space focus mode_toggle
+
+  # switch focus to parent window
+  $mod+a focus parent
+
+  # kill focused window
+  $mod+q kill
+
+  # prevent changing tabs by scrolling mousewheel
+  # disable vertical scrolling
+  button4 nop
+  button5 nop
+  # disable horizontal scrolling
+  button6 nop
+  button7 nop
+
+  # adjust sound
+  XF86AudioRaiseVolume exec pamixer --unmute --increase 5 && notify-send "󱟛 pamixer" "Volume: $(pamixer --get-volume)"
+  XF86AudioLowerVolume exec pamixer --unmute --decrease 5 && notify-send "󱟛 pamixer" "Volume: $(pamixer --get-volume)"
+  XF86AudioMute exec pamixer --toggle-mute && (pamixer --get-mute && notify-send "󱟛 pamixer" "Volume: 0") || notify-send "󱟛 pamixer" "Volume: $(pamixer --get-volume)"
+
+  # adjust media playback
+  XF86AudioPlay exec playerctl play-pause
+  XF86AudioPrev exec playerctl previous
+  XF86AudioNext exec playerctl next
+
+  # adjust brightness
+  XF86MonBrightnessUp exec light -S "$(light -G | awk '{ print int(($1 + .72) * 1.4) }')" && notify-send "󰃞 Light" "Brightness: $(light -G | cut --delimiter='.' --fields=1)%" --hint="int:value:$(light -G)"
+  XF86MonBrightnessDown exec light -S "$(light -G | awk '{ print int($1 / 1.4) }')" && notify-send "󰃞 Light" "Brightness: $(light -G | cut --delimiter='.' --fields=1)%" --hint="int:value:$(light -G)"
+
+  # launch terminal
+  $mod+Return exec $app_term
+
+  # launch application launcher
+  $mod+space exec $app_menu
+
+  # launch music player
+  $mod+m exec $app_music
+
+  # launch audio controls
+  $mod+Shift+m exec $app_mixer
+
+  # manage notifications
+  $mod+BackSpace exec makoctl dismiss
+  $mod+Shift+BackSpace exec makoctl dismiss --all
+  $mod+z exec makoctl restore
+
+  # show exit menu
+  $mod+Shift+e exec $app_exit
+
+  # lock screen
+  $mod+escape exec $app_lock
+
+  # show power menu
+  $mod+Shift+p exec $app_power
+  XF86PowerOff exec $app_power
+}
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

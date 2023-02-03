@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# -----------------------------------------------------------------------------
+# shoe: launch foot, starting foot server as needed
+#
+# Credit: https://git.sr.ht/~palb91/dotfiles
+# -----------------------------------------------------------------------------
+
+# start server if required
+if ! pgrep -a foot | grep --quiet 'foot \(-s\|--server\)'; then
+  nohup foot --server >/dev/null 2>&1 &
+  sleep 0.5
+fi
+
+exec footclient "$@"
+
+# vim: set filetype=sh foldmethod=marker foldlevel=0 nowrap:

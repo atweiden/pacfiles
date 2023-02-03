@@ -140,7 +140,10 @@ set ttyfast
 set redrawtime=10000
 
 # terminal type for mouse codes
-silent! set ttymouse=xterm2
+silent! set ttymouse=sgr
+
+# ensure kitty keyboard protocol is enabled in foot
+silent! set keyprotocol=foot:kitty,kitty:kitty,xterm:mok2
 
 # format lines with fmt
 set formatprg=fmt

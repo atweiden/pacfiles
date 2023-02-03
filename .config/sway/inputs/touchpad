@@ -1,0 +1,15 @@
+input type:touchpad {
+  # two-finger right click, three-finger middle click
+  click_method clickfinger
+
+  # don't disable touchpad while typing
+  dwt disable
+
+  # disable "natural" scrolling
+  natural_scroll disabled
+
+  # disable touchpad tap
+  tap disabled
+}
+
+# vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:
