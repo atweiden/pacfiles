@@ -78,6 +78,7 @@ as of `0fb50749015c56f84591b52707410e59e149f419` (2023-02-04)
 
 - `.config/fontconfig`
 - `.config/foot`
+- `.config/gtk-4.0`
 - `.config/imv`
 - `.config/kitty`
 - `.config/mako`
