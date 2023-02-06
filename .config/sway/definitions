@@ -25,7 +25,7 @@ set {
 
   $app_exit swaynag --type custom --message 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' --button 'Yes, exit sway' 'swaymsg exit'
   $app_idle swayidle -w
-  $app_lock waylock -fork-on-lock
+  $app_lock waylock
   $app_power swaynag --type custom --message 'What action would you like to perform?' --button 'Shutdown' 'systemctl poweroff -i' --button 'Reboot' 'systemctl reboot' --button 'Suspend' 'systemctl suspend'
   $app_term $bin/shoe
   $app_menu wofi --hide-scroll | xargs swaymsg exec --
