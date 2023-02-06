@@ -24,7 +24,7 @@ set {
   $bin $XDG_CONFIG_HOME/sway/bin
 
   $app_exit swaynag --type custom --message 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' --button 'Yes, exit sway' 'swaymsg exit'
-  $app_lock swayidle -w timeout 1 'swaylock --daemonize' timeout 10 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"; killall swayidle'
+  $app_lock swaylock --daemonize
   $app_power swaynag --type custom --message 'What action would you like to perform?' --button 'Shutdown' 'systemctl poweroff -i' --button 'Reboot' 'systemctl reboot' --button 'Suspend' 'systemctl suspend'
   $app_term $bin/shoe
   $app_menu wofi --hide-scroll | xargs swaymsg exec --
