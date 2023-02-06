@@ -130,7 +130,6 @@ def PackagerSetup(): void
   # end languages }}}
 
   # colors
-  packager#add('noahfrederick/vim-noctu')
   packager#add('atweiden/seoul256.vim', { 'branch': 'fix-todo-hi' })
   packager#add('atweiden/vim-preto')
 
