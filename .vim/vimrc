@@ -6,7 +6,13 @@ if &compatible | set nocompatible | endif
 $VIMPATH = $HOME .. '/.vim'
 $CFGPATH = $VIMPATH .. '/config'
 $ALDPATH = $VIMPATH .. '/autoload/home'
-$COLORSCHEME = 'seoul256'
+if $TERM =~# "256color"
+  $COLORSCHEME = 'seoul256'
+else
+  # fallback for linux-16color
+  set t_Co=16
+  $COLORSCHEME = 'noctu'
+endif
 
 def SourceConfig(path: string): void
   execute 'source' fnameescape($CFGPATH .. '/' .. path)
