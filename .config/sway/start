@@ -3,8 +3,8 @@ exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null \
   && dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK
 
+exec $app_idle
 exec mako
-
 exec $bin/wlsunset-with-config
 
 # vim: set filetype=swayconfig foldmethod=marker foldlevel=0 nowrap:

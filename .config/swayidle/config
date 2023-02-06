@@ -1,0 +1,7 @@
+timeout 30 'if pgrep waylock; then swaymsg "output * dpms off"; fi' resume 'if pgrep waylock; then swaymsg "output * dpms on"; fi'
+timeout 300 'light -G > /tmp/brightness && light -S 10' resume 'light -S $([ -f /tmp/brightness ] && cat /tmp/brightness || echo 100%)'
+timeout 420 'waylock -fork-on-lock'
+timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+before-sleep 'waylock -fork-on-lock'
+
+# vim: set filetype=conf foldmethod=marker foldlevel=0 nowrap:

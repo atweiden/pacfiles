@@ -87,7 +87,7 @@ as of `0fb50749015c56f84591b52707410e59e149f419` (2023-02-04)
 - `.config/qt6ct`
 - `.config/swappy`
 - `.config/sway`
-- `.config/swaylock`
+- `.config/swayidle`
 - `.config/swaynag`
 - `.config/waybar`
 - `.config/wlsunset`
