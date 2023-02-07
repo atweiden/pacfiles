@@ -1,0 +1,33 @@
+# --------------------------------------
+# swaylock configuration
+# --------------------------------------
+color=3b3b3b
+
+inside-color=3b3b3b
+inside-ver-color=3b3b3b
+inside-clear-color=3b3b3b
+inside-wrong-color=3b3b3b
+inside-caps-lock-color=3b3b3b
+
+line-uses-ring
+key-hl-color=c6bb8d
+separator-color=00000000
+
+ring-color=c6bb8d
+ring-ver-color=a6b4ad
+ring-clear-color=f3b785
+ring-wrong-color=f98e79
+
+text-ver-color=a6b4ad
+text-clear-color=f3b785
+text-wrong-color=f98e79
+text-caps-lock-color=c6bb8d
+
+layout-bg-color=3b3b3b
+layout-text-color=998f85
+layout-border-color=3b3b3b
+
+indicator-radius=65
+indicator-thickness=5
+
+font="mononoki Nerd Font"
