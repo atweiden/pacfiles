@@ -4,9 +4,9 @@
   "modules-center": [
     "sway/workspaces",
     "idle_inhibitor",
-    "network",
     "pulseaudio",
     "battery",
+    "network",
     "custom/date",
     "clock"
   ],
