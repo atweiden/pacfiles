@@ -42,7 +42,7 @@ tooltip {
   border-radius: 15px;
 }
 
-#custom-date, #clock, #battery, #pulseaudio, #network, #workspaces {
+#idle_inhibitor, #custom-date, #clock, #battery, #pulseaudio, #network, #workspaces {
   background-color: #0f0f0f;
   padding: 5px 10px;
   margin: 5px 0px;

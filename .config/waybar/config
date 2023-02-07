@@ -3,6 +3,7 @@
   "height": 30,
   "modules-center": [
     "sway/workspaces",
+    "idle_inhibitor",
     "network",
     "pulseaudio",
     "battery",
@@ -33,6 +34,14 @@
       "8": "八",
       "9": "九",
       "10": "〇"
+    }
+  },
+  "idle_inhibitor": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
     }
   },
   "custom/date": {
