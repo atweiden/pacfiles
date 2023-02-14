@@ -957,6 +957,12 @@ FIGNORE='~'
 FIGNORE="$FIGNORE:.o"
 
 # --- end c }}}
+# --- fsharp {{{
+
+# only shell-complete paket.{dependencies,references}
+FIGNORE="$FIGNORE:aket.lock"
+
+# --- end fsharp }}}
 # --- git {{{
 
 # improve git completion for git aliases
