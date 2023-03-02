@@ -884,6 +884,17 @@ export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
 export INTERFACE="$(interface)"
 
 # --- end ip }}}
+# --- ocaml {{{
+
+# configure opam
+test -r "$HOME/.opam/opam-init/init.sh" \
+  && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null \
+  || true
+
+# use extended utf-8 characters (camels) in opam messages
+export OPAMUTF8MSGS=1
+
+# --- end ocaml }}}
 # --- opener {{{
 
 if [[ -n "$_has_mimeo" ]]; then
