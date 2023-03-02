@@ -178,6 +178,12 @@ PATH='/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin'
 PATH="$HOME/.bin:$PATH"
 
 # --- end dotfiles }}}
+# --- dotnet {{{
+
+# add .NET Core SDK tools
+PATH="$HOME/.dotnet/tools:$PATH"
+
+# --- end dotnet }}}
 # --- go {{{
 
 PATH="$HOME/.go/bin:$PATH"
