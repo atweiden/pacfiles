@@ -844,12 +844,6 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' \
   && source /usr/share/fzf/fzf-extras.bash
 
 # --- end fzf }}}
-# --- gerbil {{{
-
-export GERBIL_GSC='/usr/bin/gambitc'
-export GERBIL_HOME='/usr/lib/gerbil'
-
-# --- end gerbil }}}
 # --- go {{{
 
 export GOPATH="$HOME/.go"
