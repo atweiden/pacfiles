@@ -107,21 +107,21 @@ vnoremap <silent> <expr> [x '<ESC>:<C-U>execute "normal ' .. v:count .. '[xmzgv`
 noremap Y y$
 
 # copy to clipboard
-vmap <leader>y "+y
-nmap <leader>y "+y
-nmap <leader>Y "+y$
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
 
 # paste from clipboard
-nmap <leader>p "+p
-vmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>P "+P
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
 
 # paste from clipboard holding cursor position steady
-nmap <leader><leader>p mz"+p`z
-vmap <leader><leader>p mz"+p`z
-nmap <leader><leader>P mz"+P`z
-vmap <leader><leader>P mz"+P`z
+nnoremap <leader><leader>p mz"+p`z
+vnoremap <leader><leader>p mz"+p`z
+nnoremap <leader><leader>P mz"+P`z
+vnoremap <leader><leader>P mz"+P`z
 
 # end pasting }}}
 # formatting and whitespace {{{
