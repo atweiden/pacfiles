@@ -111,18 +111,11 @@ vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 
-# copy to clipboard (wayland)
-import autoload $ALDPATH .. '/wl_clipboard.vim' as wlclip
-augroup wlyank
-  autocmd!
-  autocmd TextYankPost * call wlclip.WLYank(v:event)
-augroup END
-
-# paste from clipboard (wayland)
-nnoremap <leader>p :WLPaste p<CR>
-vnoremap <leader>p <ESC>:WLPaste p<CR>gv
-nnoremap <leader>P :WLPaste P<CR>
-vnoremap <leader>P <ESC>:WLPaste P<CR>gv
+# paste from clipboard
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
 
 # end pasting }}}
 # formatting and whitespace {{{
