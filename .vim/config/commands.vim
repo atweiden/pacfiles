@@ -44,4 +44,7 @@ command! ToggleLaststatus togglels.ToggleLaststatus()
 import autoload $ALDPATH .. '/toggle_virtualedit.vim' as toggleve
 command! ToggleVirtualedit toggleve.ToggleVirtualedit()
 
+import autoload $ALDPATH .. '/wl_clipboard.vim' as wlclip
+command! -nargs=1 WLPaste wlclip.WLPaste(<q-args>)
+
 # vim: set filetype=vim foldmethod=marker foldlevel=0 nowrap:
