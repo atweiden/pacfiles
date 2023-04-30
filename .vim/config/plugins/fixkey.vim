@@ -1,5 +1,7 @@
 vim9script
 
+g:Fixkey_setupDelay = 10
+
 if $TERM == 'foot'
   g:Fixkey_termType = 'xterm'
 endif
