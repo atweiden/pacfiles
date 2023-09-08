@@ -1,7 +1,7 @@
 # set WAYLAND_DISPLAY/DISPLAY in systemd user environment, see: FS#63021
-exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
 exec hash dbus-update-activation-environment 2>/dev/null \
-  && dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY
+  && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
 
 exec $app_idle
 exec mako
