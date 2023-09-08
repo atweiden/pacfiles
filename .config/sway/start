@@ -4,6 +4,7 @@ exec hash dbus-update-activation-environment 2>/dev/null \
   && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
 
 exec $app_idle
+exec pipewire
 exec mako
 exec $bin/wlsunset-with-config
 
