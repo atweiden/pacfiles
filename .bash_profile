@@ -61,7 +61,7 @@ if [[ -f "$gtkcfg" ]]; then
   gsettings set "$gnome_interface_schema" cursor-theme "$cursor_theme"
   gsettings set "$gnome_interface_schema" font-name "$font_name"
   # some settings which can't be parsed from settings file
-  gsettings set $gnome_interface_schema monospace-font-name "mononoki Nerd Font 10"
+  gsettings set $gnome_interface_schema monospace-font-name "MonoLisa 10"
   gsettings set $gnome_interface_schema toolbar-style "text"
   gsettings set $gnome_interface_schema toolbar-icons-size "small"
 fi

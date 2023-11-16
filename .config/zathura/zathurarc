@@ -1,5 +1,5 @@
 # set font
-set font "mononoki Nerd Font 12"
+set font "MonoLisa 12"
 
 # auto-adjust by width
 set adjust-open "width"

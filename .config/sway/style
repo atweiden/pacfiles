@@ -1,5 +1,5 @@
 # font used for title and bar
-font pango:mononoki Nerd Font 14
+font pango:MonoLisa 14
 
 # csd:                  border     background text        indicator  child_border
 client.focused          $dark_gray $dark_gray $foreground $dark_gray $dark_gray
