@@ -890,6 +890,15 @@ export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc"
 export INTERFACE="$(interface)"
 
 # --- end ip }}}
+# --- mise {{{
+
+export MISE_DATA_DIR="$XDG_DATA_HOME/mise"
+export MISE_CACHE_DIR="$XDG_CACHE_HOME/mise"
+export MISE_CONFIG_FILE="$XDG_CONFIG_HOME/mise/config.toml"
+# disable update checks
+export MISE_HIDE_UPDATE_WARNING=1
+
+# --- end mise }}}
 # --- ocaml {{{
 
 # configure opam
@@ -933,15 +942,6 @@ export RLWRAP_HOME="$HOME/.config/rlwrap"
 export RLWRAP_EDITOR="vim '+call cursor(%L,%C)'"
 
 # --- end rlwrap }}}
-# --- rtx {{{
-
-export RTX_DATA_DIR="$XDG_DATA_HOME/rtx"
-export RTX_CACHE_DIR="$XDG_CACHE_HOME/rtx"
-export RTX_CONFIG_FILE="$XDG_CONFIG_HOME/rtx/config.toml"
-# disable update checks
-export RTX_HIDE_UPDATE_WARNING=1
-
-# --- end rtx }}}
 # --- ruby {{{
 
 export IRBRC="$HOME/.config/irb/irbrc"
